@@ -33,6 +33,7 @@
       font-size: 1.5rem;
     }
 
+    /* Barra de búsqueda sin borde negro y más larga */
     .search-bar input {
       padding: 0.6rem 1rem;
       border-radius: 20px;
@@ -40,8 +41,10 @@
       font-size: 1rem;
       color: #777;
       background-color: #F2F2F2;
+      width: 300px; /* Aumentado el tamaño */
     }
 
+    /* Menú y submenú */
     .menu {
       display: flex;
       gap: 2rem;
@@ -57,40 +60,40 @@
       text-decoration: underline;
     }
 
-    .categories {
-      display: flex;
-      gap: 2rem;
-      background-color: #F2F2F2;
-      padding: 1rem 2rem;
-      flex-wrap: wrap;
-    }
-
-    .category {
-      width: 30%;
-      background-color: #fff;
+    /* Submenú dentro de Categorías */
+    .submenu {
+      display: none;
+      position: absolute;
+      background-color: #FFFFFF;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      text-align: center;
+      top: 50px;
+      left: 0;
+      min-width: 200px;
     }
 
-    .category h3 {
-      font-size: 1.2rem;
+    .submenu a {
+      color: #333;
+      text-decoration: none;
+      display: block;
       margin-bottom: 0.5rem;
     }
 
-    .category ul {
-      list-style: none;
+    .submenu a:hover {
+      color: #F75B68;
     }
 
-    .category ul li {
-      margin: 0.5rem 0;
-      font-size: 1rem;
+    .categories-container {
+      position: relative;
     }
 
-    /* Hero Section con color Phantom 186c (verde oscuro) */
+    .categories-container:hover .submenu {
+      display: block;
+    }
+
+    /* Hero Section con color Phantom F75B68 (Rosa) */
     .hero {
-      background-color: #264D3D; /* Phantom 186c - Verde oscuro */
+      background-color: #F75B68; /* Phantom F75B68 - Rosa */
       color: white;
       padding: 3rem 2rem;
       text-align: center;
@@ -134,45 +137,24 @@
     </div>
     <nav class="menu">
       <a href="#">Inicio</a>
-      <a href="#">Categorías</a>
+      <div class="categories-container">
+        <a href="#">Categorías</a>
+        <div class="submenu">
+          <a href="#">Subcategoría 1</a>
+          <a href="#">Subcategoría 2</a>
+          <a href="#">Subcategoría 3</a>
+        </div>
+      </div>
       <a href="#">Catálogos</a>
       <a href="#">Nosotros</a>
       <a href="#">Ayuda</a>
     </nav>
   </header>
 
-  <!-- Hero Section con color Phantom 186c (verde oscuro) -->
+  <!-- Hero Section con color Phantom F75B68 (Rosa) -->
   <section class="hero">
     <h1>Bienvenidos a VCM</h1>
     <p>Explora nuestro catálogo de merchandising único y exclusivo.</p>
-  </section>
-
-  <!-- Categorías -->
-  <section class="categories">
-    <div class="category">
-      <h3>Categoría 1</h3>
-      <ul>
-        <li><a href="#">Subcategoría 1.1</a></li>
-        <li><a href="#">Subcategoría 1.2</a></li>
-        <li><a href="#">Subcategoría 1.3</a></li>
-      </ul>
-    </div>
-    <div class="category">
-      <h3>Categoría 2</h3>
-      <ul>
-        <li><a href="#">Subcategoría 2.1</a></li>
-        <li><a href="#">Subcategoría 2.2</a></li>
-        <li><a href="#">Subcategoría 2.3</a></li>
-      </ul>
-    </div>
-    <div class="category">
-      <h3>Categoría 3</h3>
-      <ul>
-        <li><a href="#">Subcategoría 3.1</a></li>
-        <li><a href="#">Subcategoría 3.2</a></li>
-        <li><a href="#">Subcategoría 3.3</a></li>
-      </ul>
-    </div>
   </section>
 
   <!-- Footer -->
