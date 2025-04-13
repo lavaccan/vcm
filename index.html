@@ -129,4 +129,124 @@
       padding: 1rem;
       cursor: pointer;
       font-size: 1.5rem;
-      z
+      z-index: 1;
+    }
+
+    .slider .prev {
+      left: 10px;
+    }
+
+    .slider .next {
+      right: 10px;
+    }
+
+    footer {
+      background-color: #F75B68;
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 1rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header con logo, barra de búsqueda y menú -->
+  <header>
+    <div class="logo">VCM</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar productos o categorías">
+    </div>
+    <nav class="menu">
+      <a href="#">Inicio</a>
+      <div class="categories-container" id="categories-menu">
+        <a href="javascript:void(0)" onclick="toggleSubmenu()">Categorías</a>
+        <div class="submenu" id="submenu">
+          <a href="#">Subcategoría 1</a>
+          <a href="#">Subcategoría 2</a>
+          <a href="#">Subcategoría 3</a>
+        </div>
+      </div>
+      <a href="#">Catálogos</a>
+      <a href="#">Nosotros</a>
+      <a href="#">Ayuda</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section con banner deslizante -->
+  <section class="hero">
+    <h1>Bienvenidos a VCM</h1>
+    <p>Explora nuestro catálogo de merchandising único y exclusivo.</p>
+    
+    <!-- Slider de imágenes -->
+    <div class="slider" id="bannerSlider">
+      <div class="slides">
+        <div class="slide">
+          <img src="https://via.placeholder.com/1200x500/FF5733/FFFFFF?text=Banner+1" alt="Banner 1">
+        </div>
+        <div class="slide">
+          <img src="https://via.placeholder.com/1200x500/33A1FF/FFFFFF?text=Banner+2" alt="Banner 2">
+        </div>
+        <div class="slide">
+          <img src="https://via.placeholder.com/1200x500/DAF733/FFFFFF?text=Banner+3" alt="Banner 3">
+        </div>
+      </div>
+      <!-- Botones para controlar el slider -->
+      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 VCM. Todos los derechos reservados.</p>
+    <nav>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Términos de uso</a>
+      <a href="#">Contactanos</a>
+    </nav>
+  </footer>
+
+  <script>
+    // Control del slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slider .slide');
+    const totalSlides = slides.length;
+
+    function moveSlide(step) {
+      currentSlide += step;
+      if (currentSlide < 0) currentSlide = totalSlides - 1;
+      if (currentSlide >= totalSlides) currentSlide = 0;
+      updateSlider();
+    }
+
+    function updateSlider() {
+      const slider = document.querySelector('.slider .slides');
+      const offset = -currentSlide * 100;
+      slider.style.transform = `translateX(${offset}%)`;
+    }
+
+    // Cambiar el banner automáticamente cada 10 segundos
+    setInterval(() => {
+      moveSlide(1);
+    }, 10000); // Cambiar cada 10 segundos
+
+    // Función para mostrar/ocultar el submenú
+    function toggleSubmenu() {
+      const submenu = document.getElementById('submenu');
+      submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
+    }
+  </script>
+
+</body>
+</html>
