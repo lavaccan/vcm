@@ -147,32 +147,49 @@
       right: 10px;
     }
 
-    /* GALERÍA DE PRODUCTOS */
-    .galeria {
+    .productos-destacados {
+      padding: 3rem 2rem;
+      text-align: center;
+      background-color: #fff6f7;
+    }
+
+    .productos-destacados h2 {
+      font-size: 2rem;
+      color: #F75B68;
+      margin-bottom: 2rem;
+    }
+
+    .productos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-      background-color: #f9f9f9;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      justify-items: center;
     }
 
-    .imagen-contenedor {
-      background-color: #fff;
+    .producto {
+      background-color: white;
       border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .imagen-contenedor:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(245, 98, 117, 0.4);
-    }
-
-    .imagen-contenedor img {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      transition: transform 0.3s ease;
       width: 100%;
-      height: auto;
-      display: block;
+      max-width: 300px;
+    }
+
+    .producto img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+
+    .producto h3 {
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .producto:hover {
+      transform: scale(1.05);
     }
 
     footer {
@@ -231,60 +248,4 @@
         <div class="slide">
           <img src="https://via.placeholder.com/1628x340/33A1FF/FFFFFF?text=Banner+2" alt="Banner 2" />
         </div>
-        <div class="slide">
-          <img src="https://via.placeholder.com/1628x340/DAF733/FFFFFF?text=Banner+3" alt="Banner 3" />
-        </div>
-      </div>
-      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-      <button class="next" onclick="moveSlide(1)">&#10095;</button>
-    </section>
-  </div>
-
-  <!-- GALERÍA DE PRODUCTOS -->
-  <section class="galeria">
-    <div class="imagen-contenedor"><img src="2.png" alt="Producto 1"></div>
-    <div class="imagen-contenedor"><img src="3.png" alt="Producto 2"></div>
-    <div class="imagen-contenedor"><img src="4.png" alt="Producto 3"></div>
-    <div class="imagen-contenedor"><img src="botellas.png" alt="Producto 4"></div>
-    <div class="imagen-contenedor"><img src="Sin título.png" alt="Producto 5"></div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 VCM. Todos los derechos reservados.</p>
-    <nav>
-      <a href="#">Política de privacidad</a>
-      <a href="#">Términos de uso</a>
-      <a href="#">Contactanos</a>
-    </nav>
-  </footer>
-
-  <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slider .slide');
-    const totalSlides = slides.length;
-
-    function moveSlide(step) {
-      currentSlide += step;
-      if (currentSlide < 0) currentSlide = totalSlides - 1;
-      if (currentSlide >= totalSlides) currentSlide = 0;
-      updateSlider();
-    }
-
-    function updateSlider() {
-      const slider = document.querySelector('.slider .slides');
-      const offset = -currentSlide * 1628;
-      slider.style.transform = `translateX(${offset}px)`;
-    }
-
-    setInterval(() => {
-      moveSlide(1);
-    }, 10000);
-
-    function toggleSubmenu() {
-      const submenu = document.getElementById('submenu');
-      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
-
-</body>
-</html>
+        <
