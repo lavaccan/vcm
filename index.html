@@ -41,7 +41,7 @@
       font-size: 1rem;
       color: #777;
       background-color: #F2F2F2;
-      width: 400px; /* Aumentado el tamaño */
+      width: 500px; /* Barra de búsqueda más larga */
     }
 
     /* Menú y submenú */
@@ -91,9 +91,8 @@
     .hero {
       background-color: #F75B68; /* Phantom F75B68 - Rosa */
       color: white;
-      padding: 3rem 2rem;
       text-align: center;
-      position: relative;
+      padding: 2rem;
     }
 
     /* Estilos para el slider */
@@ -101,6 +100,7 @@
       position: relative;
       width: 100%;
       overflow: hidden;
+      margin-top: 2rem;
     }
 
     .slider img {
@@ -183,28 +183,28 @@
     </nav>
   </header>
 
-  <!-- Hero Section con banner deslizante -->
+  <!-- Mensaje de bienvenida -->
   <section class="hero">
     <h1>Bienvenidos a VCM</h1>
     <p>Explora nuestro catálogo de merchandising único y exclusivo.</p>
-    
-    <!-- Slider de imágenes -->
-    <div class="slider" id="bannerSlider">
-      <div class="slides">
-        <div class="slide">
-          <img src="https://via.placeholder.com/1200x500/FF5733/FFFFFF?text=Banner+1" alt="Banner 1">
-        </div>
-        <div class="slide">
-          <img src="https://via.placeholder.com/1200x500/33A1FF/FFFFFF?text=Banner+2" alt="Banner 2">
-        </div>
-        <div class="slide">
-          <img src="https://via.placeholder.com/1200x500/DAF733/FFFFFF?text=Banner+3" alt="Banner 3">
-        </div>
+  </section>
+
+  <!-- Slider de imágenes -->
+  <section class="slider" id="bannerSlider">
+    <div class="slides">
+      <div class="slide">
+        <img src="https://via.placeholder.com/1200x500/FF5733/FFFFFF?text=Banner+1" alt="Banner 1">
       </div>
-      <!-- Botones para controlar el slider -->
-      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-      <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      <div class="slide">
+        <img src="https://via.placeholder.com/1200x500/33A1FF/FFFFFF?text=Banner+2" alt="Banner 2">
+      </div>
+      <div class="slide">
+        <img src="https://via.placeholder.com/1200x500/DAF733/FFFFFF?text=Banner+3" alt="Banner 3">
+      </div>
     </div>
+    <!-- Botones para controlar el slider -->
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
   </section>
 
   <!-- Footer -->
