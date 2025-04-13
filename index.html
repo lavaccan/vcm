@@ -114,7 +114,7 @@
         }
       }
 
-      /* Estilo para el menú emergente */
+      /* Menú desplegable catálogo */
       #catalogo-menu {
         display: none;
         position: absolute;
@@ -151,7 +151,7 @@
       <nav>
         <a href="#inicio">Inicio</a>
         <a href="#productos">Productos</a>
-        <a href="javascript:void(0)" onclick="toggleCatalogo()">Catálogo</a>
+        <a id="catalogo-btn" onclick="toggleCatalogo()">Catálogo</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <div id="catalogo-menu">
@@ -206,14 +206,14 @@
     <script>
       function toggleCatalogo() {
         const menu = document.getElementById('catalogo-menu');
-        menu.style.display = (menu.style.display === 'none' || menu.style.display === '') ? 'block' : 'none';
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
       }
 
       // Cierra el menú si se hace clic fuera
-      window.addEventListener('click', function(e) {
+      document.addEventListener('click', function(e) {
         const menu = document.getElementById('catalogo-menu');
-        const trigger = document.querySelector('a[onclick="toggleCatalogo()"]');
-        if (!menu.contains(e.target) && e.target !== trigger) {
+        const trigger = document.getElementById('catalogo-btn');
+        if (!menu.contains(e.target) && !trigger.contains(e.target)) {
           menu.style.display = 'none';
         }
       });
