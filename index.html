@@ -2,115 +2,188 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>VCM - Catálogo de Merchandising</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VCM - Catálogo de Merchandising</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    /* Reset y diseño base */
+    * {
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #FFFFFF; /* Fondo general blanco */
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #FFFFFF;
+      color: #333;
+    }
+
     header {
-      background-color: #F75B68; /* Rosa para el logo */
+      background-color: #F75B68;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
+      color: white;
     }
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-    .logo img {
-      height: 40px;
-      margin-right: 10px;
-    }
-    .logo span {
+
+    header .logo {
       font-weight: 700;
-      font-size: 1.4rem;
-      color: #FFFFFF; /* Texto blanco para el logo */
+      font-size: 1.5rem;
     }
-    .search-bar {
-      flex: 1;
-      margin: 0 2rem;
-    }
+
     .search-bar input {
-      width: 100%;
       padding: 0.6rem 1rem;
-      border: none;
       border-radius: 20px;
+      border: none;
       font-size: 1rem;
-      color: #777; /* Letras más claras */
-      background-color: #F2F2F2; /* Fondo gris claro para la barra de búsqueda */
+      color: #777;
+      background-color: #F2F2F2;
     }
-    .search-bar input::placeholder {
-      color: #aaa; /* Placeholder más claro */
-    }
+
     .menu {
       display: flex;
-      gap: 3rem; /* Aumenté la distancia entre los botones */
+      gap: 2rem;
     }
+
     .menu a {
-      color: #FFFFFF; /* Texto blanco para los enlaces */
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
+      color: white;
+      font-weight: 600;
     }
+
     .menu a:hover {
       text-decoration: underline;
-      color: #F75B68; /* Cambia al color rosa cuando se pasa el cursor */
     }
-    .buttons {
+
+    .categories {
       display: flex;
-      gap: 1rem;
+      gap: 2rem;
+      background-color: #F2F2F2;
+      padding: 1rem 2rem;
+      flex-wrap: wrap;
     }
-    .buttons button {
-      background-color: #FFFFFF; /* Fondo blanco para los botones */
-      color: #2B3A67; /* Texto azul oscuro para los botones */
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      font-weight: 600;
-      cursor: pointer;
-      display: none; /* Ocultar los botones "Ingresar" y "Crear cuenta" */
+
+    .category {
+      width: 30%;
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
+
+    .category h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .category ul {
+      list-style: none;
+    }
+
+    .category ul li {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    /* Hero Section con color Phantom 186c (verde oscuro) */
     .hero {
-      background: #2B3A67; /* Azul oscuro para el fondo de la sección Hero */
-      color: #FFFFFF; /* Texto blanco en la sección Hero */
+      background-color: #264D3D; /* Phantom 186c - Verde oscuro */
+      color: white;
       padding: 3rem 2rem;
       text-align: center;
     }
+
     .hero h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
+
     .hero p {
       font-size: 1.2rem;
+    }
+
+    footer {
+      background-color: #F75B68;
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 1rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
+
+  <!-- Header con logo, barra de búsqueda y menú -->
   <header>
-    <div class="logo">
-      <img src="tu-logo.png" alt="VCM Logo" />
-      <span>VCM</span>
-    </div>
+    <div class="logo">VCM</div>
     <div class="search-bar">
-      <input type="text" placeholder="Buscá productos o categorías">
+      <input type="text" placeholder="Buscar productos o categorías">
     </div>
-    <div class="menu">
+    <nav class="menu">
+      <a href="#">Inicio</a>
       <a href="#">Categorías</a>
       <a href="#">Catálogos</a>
       <a href="#">Nosotros</a>
       <a href="#">Ayuda</a>
-    </div>
+    </nav>
   </header>
 
-  <!-- Sección Hero sin mensaje de descuento -->
+  <!-- Hero Section con color Phantom 186c (verde oscuro) -->
   <section class="hero">
     <h1>Bienvenidos a VCM</h1>
     <p>Explora nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
+
+  <!-- Categorías -->
+  <section class="categories">
+    <div class="category">
+      <h3>Categoría 1</h3>
+      <ul>
+        <li><a href="#">Subcategoría 1.1</a></li>
+        <li><a href="#">Subcategoría 1.2</a></li>
+        <li><a href="#">Subcategoría 1.3</a></li>
+      </ul>
+    </div>
+    <div class="category">
+      <h3>Categoría 2</h3>
+      <ul>
+        <li><a href="#">Subcategoría 2.1</a></li>
+        <li><a href="#">Subcategoría 2.2</a></li>
+        <li><a href="#">Subcategoría 2.3</a></li>
+      </ul>
+    </div>
+    <div class="category">
+      <h3>Categoría 3</h3>
+      <ul>
+        <li><a href="#">Subcategoría 3.1</a></li>
+        <li><a href="#">Subcategoría 3.2</a></li>
+        <li><a href="#">Subcategoría 3.3</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 VCM. Todos los derechos reservados.</p>
+    <nav>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Términos de uso</a>
+      <a href="#">Contactanos</a>
+    </nav>
+  </footer>
+
 </body>
 </html>
