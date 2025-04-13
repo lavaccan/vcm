@@ -34,6 +34,7 @@
         color: #00205b;
         font-weight: 500;
         transition: color 0.3s;
+        cursor: pointer;
       }
       nav a:hover {
         color: #ba0c2f;
@@ -112,6 +113,36 @@
           transform: translateY(0);
         }
       }
+
+      /* Estilo para el menú emergente */
+      #catalogo-menu {
+        display: none;
+        position: absolute;
+        right: 2rem;
+        top: 80px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+        padding: 1rem;
+      }
+      #catalogo-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #catalogo-menu li {
+        margin-bottom: 0.5rem;
+      }
+      #catalogo-menu a {
+        text-decoration: none;
+        color: #00205b;
+        transition: color 0.3s;
+      }
+      #catalogo-menu a:hover {
+        color: #ba0c2f;
+      }
     </style>
   </head>
   <body>
@@ -120,9 +151,18 @@
       <nav>
         <a href="#inicio">Inicio</a>
         <a href="#productos">Productos</a>
-        <a href="#categorias">Categorías</a>
+        <a href="javascript:void(0)" onclick="toggleCatalogo()">Catálogo</a>
         <a href="#contacto">Contacto</a>
       </nav>
+      <div id="catalogo-menu">
+        <ul>
+          <li><a href="#">Novedades 2025</a></li>
+          <li><a href="#">Reingresos 2025</a></li>
+          <li><a href="#">Agro 2025</a></li>
+          <li><a href="#">Catálogo Día del Trabajador</a></li>
+          <li><a href="#">Catálogo Hydra Go</a></li>
+        </ul>
+      </div>
     </header>
 
     <section class="hero" id="inicio">
@@ -162,5 +202,21 @@
     <footer>
       <p>&copy; 2025 VCM - Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+      function toggleCatalogo() {
+        const menu = document.getElementById('catalogo-menu');
+        menu.style.display = (menu.style.display === 'none' || menu.style.display === '') ? 'block' : 'none';
+      }
+
+      // Cierra el menú si se hace clic fuera
+      window.addEventListener('click', function(e) {
+        const menu = document.getElementById('catalogo-menu');
+        const trigger = document.querySelector('a[onclick="toggleCatalogo()"]');
+        if (!menu.contains(e.target) && e.target !== trigger) {
+          menu.style.display = 'none';
+        }
+      });
+    </script>
   </body>
 </html>
