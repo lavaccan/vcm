@@ -1,222 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>VCM - Regalos Corporativos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-        font-family: 'Montserrat', sans-serif;
-        background-color: #ffffff;
-        color: #00205b;
-      }
-      header {
-        background-color: #ffffff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 2rem;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-      }
-      nav a {
-        margin-left: 1.5rem;
-        text-decoration: none;
-        color: #00205b;
-        font-weight: 500;
-        transition: color 0.3s;
-        cursor: pointer;
-      }
-      nav a:hover {
-        color: #ba0c2f;
-      }
-      .hero {
-        background: linear-gradient(to right, #ba0c2f, #00205b);
-        color: white;
-        padding: 4rem 2rem;
-        text-align: center;
-        animation: fadeIn 2s ease-in;
-      }
-      .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-      }
-      .hero p {
-        font-size: 1.2rem;
-      }
-      .productos {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        padding: 2rem;
-        animation: fadeInUp 1s ease forwards;
-      }
-      .producto {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-        transition: transform 0.3s ease;
-      }
-      .producto:hover {
-        transform: translateY(-5px);
-      }
-      .producto img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-      }
-      .producto-info {
-        padding: 1rem;
-      }
-      .producto-info h3 {
-        margin: 0.5rem 0;
-      }
-      #contacto {
-        background-color: #f2f2f2;
-        padding: 2rem;
-        text-align: center;
-      }
-      #contacto h2 {
-        color: #00205b;
-      }
-      #contacto p {
-        font-size: 1.1rem;
-        margin-top: 0.5rem;
-      }
-      footer {
-        background-color: #00205b;
-        color: white;
-        text-align: center;
-        padding: 2rem;
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
+<head>
+  <meta charset="UTF-8">
+  <title>VCM - Catálogo de Merchandising</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f7f7f7;
+    }
 
-      /* Menú desplegable catálogo */
-      #catalogo-menu {
-        display: none;
-        position: absolute;
-        right: 2rem;
-        top: 80px;
-        background: white;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        z-index: 999;
-        padding: 1rem;
-      }
-      #catalogo-menu ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      #catalogo-menu li {
-        margin-bottom: 0.5rem;
-      }
-      #catalogo-menu a {
-        text-decoration: none;
-        color: #00205b;
-        transition: color 0.3s;
-      }
-      #catalogo-menu a:hover {
-        color: #ba0c2f;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <div><strong>VCM</strong></div>
-      <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#productos">Productos</a>
-        <a id="catalogo-btn" onclick="toggleCatalogo()">Catálogo</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-      <div id="catalogo-menu">
-        <ul>
-          <li><a href="#">Novedades 2025</a></li>
-          <li><a href="#">Reingresos 2025</a></li>
-          <li><a href="#">Agro 2025</a></li>
-          <li><a href="#">Catálogo Día del Trabajador</a></li>
-          <li><a href="#">Catálogo Hydra Go</a></li>
-        </ul>
-      </div>
-    </header>
+    header {
+      background-color: #f86b67;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: relative;
+    }
 
-    <section class="hero" id="inicio">
-      <h1>Regalos Corporativos con Impacto</h1>
-      <p>Potencia tu marca con productos personalizados de alta calidad.</p>
-    </section>
+    .logo {
+      display: flex;
+      align-items: center;
+    }
 
-    <section class="productos" id="productos">
-      <div class="producto">
-        <img src="https://via.placeholder.com/300x200" alt="Producto 1" />
-        <div class="producto-info">
-          <h3>Producto 1</h3>
-          <p>Descripción breve del producto.</p>
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: white;
+    }
+
+    .search-bar {
+      flex: 1;
+      margin: 0 2rem;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 20px;
+      font-size: 1rem;
+    }
+
+    .menu {
+      display: flex;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 2.5rem;
+      left: 0;
+      background-color: white;
+      color: #333;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      z-index: 100;
+      width: 200px;
+      flex-direction: column;
+    }
+
+    .submenu a {
+      text-decoration: none;
+      color: #333;
+      padding: 0.4rem 0;
+      transition: all 0.2s;
+    }
+
+    .submenu a:hover {
+      color: #f86b67;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .buttons button {
+      background-color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .hero {
+      background: #0077b6;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="tu-logo.png" alt="VCM Logo" />
+      <span>VCM</span>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscá productos o categorías">
+    </div>
+    <div class="menu">
+      <a href="#">Categorías</a>
+      <div id="catalogo-btn" style="position: relative;">
+        <a onclick="toggleSubmenu()">Catálogos ▾</a>
+        <div class="submenu" id="submenu">
+          <a href="#">Novedades 2025</a>
+          <a href="#">Ingresos 2025</a>
+          <a href="#">Catálogo Hydra Go</a>
         </div>
       </div>
-      <div class="producto">
-        <img src="https://via.placeholder.com/300x200" alt="Producto 2" />
-        <div class="producto-info">
-          <h3>Producto 2</h3>
-          <p>Descripción breve del producto.</p>
-        </div>
-      </div>
-      <div class="producto">
-        <img src="https://via.placeholder.com/300x200" alt="Producto 3" />
-        <div class="producto-info">
-          <h3>Producto 3</h3>
-          <p>Descripción breve del producto.</p>
-        </div>
-      </div>
-    </section>
+      <a href="#">Nosotros</a>
+      <a href="#">Ayuda</a>
+    </div>
+    <div class="buttons">
+      <button>Ingresá</button>
+      <button>Creá tu cuenta</button>
+    </div>
+  </header>
 
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p>Email: <a href="mailto:vcmmarking@gmail.com">vcmmarking@gmail.com</a></p>
-    </section>
+  <section class="hero">
+    <h1>¡SALE! HASTA 30% OFF</h1>
+    <p>Descuentos adicionales en productos seleccionados</p>
+  </section>
 
-    <footer>
-      <p>&copy; 2025 VCM - Todos los derechos reservados.</p>
-    </footer>
+  <script>
+    function toggleSubmenu() {
+      const submenu = document.getElementById('submenu');
+      submenu.style.display = submenu.style.display === 'flex' ? 'none' : 'flex';
+    }
 
-    <script>
-      function toggleCatalogo() {
-        const menu = document.getElementById('catalogo-menu');
-        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    // Opcional: ocultar submenu si se hace clic fuera
+    document.addEventListener('click', function(event) {
+      const catalogoBtn = document.getElementById('catalogo-btn');
+      const submenu = document.getElementById('submenu');
+      if (!catalogoBtn.contains(event.target)) {
+        submenu.style.display = 'none';
       }
-
-      // Cierra el menú si se hace clic fuera
-      document.addEventListener('click', function(e) {
-        const menu = document.getElementById('catalogo-menu');
-        const trigger = document.getElementById('catalogo-btn');
-        if (!menu.contains(e.target) && !trigger.contains(e.target)) {
-          menu.style.display = 'none';
-        }
-      });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
