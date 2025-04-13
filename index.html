@@ -11,37 +11,30 @@
       font-family: 'Montserrat', sans-serif;
       background-color: #f7f7f7;
     }
-
     header {
       background-color: #f86b67;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      position: relative;
     }
-
     .logo {
       display: flex;
       align-items: center;
     }
-
     .logo img {
       height: 40px;
       margin-right: 10px;
     }
-
     .logo span {
       font-weight: 700;
       font-size: 1.4rem;
       color: white;
     }
-
     .search-bar {
       flex: 1;
       margin: 0 2rem;
     }
-
     .search-bar input {
       width: 100%;
       padding: 0.6rem 1rem;
@@ -49,52 +42,22 @@
       border-radius: 20px;
       font-size: 1rem;
     }
-
     .menu {
       display: flex;
       gap: 1.5rem;
-      position: relative;
     }
-
     .menu a {
       color: white;
       text-decoration: none;
       font-weight: 500;
-      position: relative;
-      cursor: pointer;
     }
-
-    .submenu {
-      display: none;
-      position: absolute;
-      top: 2.5rem;
-      left: 0;
-      background-color: white;
-      color: #333;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      z-index: 100;
-      width: 200px;
-      flex-direction: column;
+    .menu a:hover {
+      text-decoration: underline;
     }
-
-    .submenu a {
-      text-decoration: none;
-      color: #333;
-      padding: 0.4rem 0;
-      transition: all 0.2s;
-    }
-
-    .submenu a:hover {
-      color: #f86b67;
-    }
-
     .buttons {
       display: flex;
       gap: 1rem;
     }
-
     .buttons button {
       background-color: white;
       border: none;
@@ -103,7 +66,6 @@
       font-weight: 600;
       cursor: pointer;
     }
-
     .hero {
       background: #0077b6;
       color: white;
@@ -123,14 +85,7 @@
     </div>
     <div class="menu">
       <a href="#">Categorías</a>
-      <div id="catalogo-btn" style="position: relative;">
-        <a onclick="toggleSubmenu()">Catálogos ▾</a>
-        <div class="submenu" id="submenu">
-          <a href="#">Novedades 2025</a>
-          <a href="#">Ingresos 2025</a>
-          <a href="#">Catálogo Hydra Go</a>
-        </div>
-      </div>
+      <a href="#">Catálogos</a>
       <a href="#">Nosotros</a>
       <a href="#">Ayuda</a>
     </div>
@@ -144,21 +99,5 @@
     <h1>¡SALE! HASTA 30% OFF</h1>
     <p>Descuentos adicionales en productos seleccionados</p>
   </section>
-
-  <script>
-    function toggleSubmenu() {
-      const submenu = document.getElementById('submenu');
-      submenu.style.display = submenu.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    // Opcional: ocultar submenu si se hace clic fuera
-    document.addEventListener('click', function(event) {
-      const catalogoBtn = document.getElementById('catalogo-btn');
-      const submenu = document.getElementById('submenu');
-      if (!catalogoBtn.contains(event.target)) {
-        submenu.style.display = 'none';
-      }
-    });
-  </script>
 </body>
 </html>
