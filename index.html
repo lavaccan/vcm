@@ -2,39 +2,56 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>VCM - Catálogo de Merchandising</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VCM - Catálogo de merchandising, encuentra los productos más exclusivos con descuentos de hasta el 30%">
+  <meta name="keywords" content="merchandising, catálogo, productos, descuentos, VCM">
+  <meta name="author" content="VCM">
+  <title>VCM - Catálogo de Merchandising</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    /* Reset de márgenes y paddings */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Montserrat', sans-serif;
       background-color: #f7f7f7;
     }
+
+    /* Header */
     header {
-      background-color: #9B1C1C; /* Phantom 186C */
+      background-color: #9e1b32; /* Phantom 186C */
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
     }
+
     .logo {
       display: flex;
       align-items: center;
     }
+
     .logo img {
       height: 40px;
       margin-right: 10px;
     }
+
     .logo span {
       font-weight: 700;
       font-size: 1.4rem;
       color: white;
     }
+
+    /* Barra de búsqueda */
     .search-bar {
       flex: 1;
       margin: 0 2rem;
     }
+
     .search-bar input {
       width: 100%;
       padding: 0.6rem 1rem;
@@ -42,132 +59,72 @@
       border-radius: 20px;
       font-size: 1rem;
     }
+
+    /* Menú de navegación */
     .menu {
       display: flex;
-      gap: 3rem; /* Aumenté la distancia entre los botones */
+      gap: 2rem; /* Separación entre botones aumentada */
     }
+
     .menu a {
       color: white;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease; /* Efecto de transición al interactuar */
+      transition: color 0.3s;
     }
+
     .menu a:hover {
-      text-decoration: underline;
-      color: #f7f7f7; /* Cambiar color al hacer hover */
+      color: #f86b67; /* Cambia el color al pasar el ratón */
     }
-    .buttons {
-      display: flex;
-      gap: 1rem;
-    }
-    .buttons button {
-      background-color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      font-weight: 600;
-      cursor: pointer;
-      display: none; /* Ocultar los botones "Ingresar" y "Crear cuenta" */
-    }
+
+    /* Hero Section */
     .hero {
       background: #0077b6;
       color: white;
       padding: 3rem 2rem;
       text-align: center;
     }
-    .menu a:active {
-      transform: scale(0.98); /* Efecto cuando se presiona el botón */
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">
-      <img src="tu-logo.png" alt="VCM Logo" />
-      <span>VCM</span>
-    </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Buscá productos o categorías">
-    </div>
-    <div class="menu">
-      <a href="#">Categorías</a>
-      <a href="#">Catálogos</a>
-      <a href="#">Nosotros</a>
-      <a href="#">Ayuda</a>
-    </div>
-    <div class="buttons">
-      <button>Ingresá</button>
-      <button>Creá tu cuenta</button>
-    </div>
-  </header>
 
-  <section class="hero">
-  </section>
-</body>
-</html>
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
 
+    .hero p {
+      font-size: 1.2rem;
     }
-    .search-bar input {
-      width: 100%;
-      padding: 0.6rem 1rem;
-      border: none;
-      border-radius: 20px;
-      font-size: 1rem;
-    }
-    .menu {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .menu a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-    }
+
+    /* Estilo interactivo para los botones */
     .menu a:hover {
       text-decoration: underline;
     }
-    .buttons {
-      display: flex;
-      gap: 1rem;
-    }
-    .buttons button {
-      background-color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .hero {
-      background: #0077b6;
-      color: white;
-      padding: 3rem 2rem;
-      text-align: center;
-    }
+
   </style>
 </head>
 <body>
   <header>
+    <!-- Logo y Nombre -->
     <div class="logo">
       <img src="tu-logo.png" alt="VCM Logo" />
       <span>VCM</span>
     </div>
+    <!-- Barra de búsqueda -->
     <div class="search-bar">
       <input type="text" placeholder="Buscá productos o categorías">
     </div>
+    <!-- Menú de navegación -->
     <div class="menu">
       <a href="#">Categorías</a>
       <a href="#">Catálogos</a>
       <a href="#">Nosotros</a>
       <a href="#">Ayuda</a>
     </div>
-    <div class="buttons">
-      <button>Ingresá</button>
-      <button>Creá tu cuenta</button>
-    </div>
   </header>
 
+  <!-- Sección Hero -->
   <section class="hero">
+    <h1>¡SALE! HASTA 30% OFF</h1>
+    <p>Descuentos adicionales en productos seleccionados</p>
   </section>
 </body>
 </html>
