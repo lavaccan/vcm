@@ -59,31 +59,33 @@
       text-decoration: underline;
     }
 
+    .categories-container {
+      position: relative;
+    }
+
     .submenu {
       display: none;
       position: absolute;
       background-color: #FFFFFF;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      top: 40px;
+      padding: 0.5rem 1rem;
+      top: 35px;
       left: 0;
-      min-width: 200px;
+      min-width: 160px;
       z-index: 10;
+      border-radius: 10px;
     }
 
     .submenu a {
       color: #333;
       text-decoration: none;
       display: block;
-      margin-bottom: 0.5rem;
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
     }
 
     .submenu a:hover {
       color: #F75B68;
-    }
-
-    .categories-container {
-      position: relative;
     }
 
     .hero {
@@ -223,9 +225,11 @@
       <div class="categories-container">
         <a onclick="toggleSubmenu()">Categorías</a>
         <div class="submenu" id="submenu">
-          <a href="#">Subcategoría 1</a>
-          <a href="#">Subcategoría 2</a>
-          <a href="#">Subcategoría 3</a>
+          <a href="#">Termos</a>
+          <a href="#">Mates</a>
+          <a href="#">Bolígrafos</a>
+          <a href="#">Botellas</a>
+          <a href="#">Indumentaria</a>
         </div>
       </div>
       <a href="#">Catálogos</a>
@@ -239,13 +243,22 @@
     <p>Explora nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
 
-  <div class="slider-wrapper">
-    <section class="slider" id="bannerSlider">
-      <div class="slides">
-        <div class="slide">
-          <img src="https://via.placeholder.com/1628x340/FF5733/FFFFFF?text=Banner+1" alt="Banner 1" />
-        </div>
-        <div class="slide">
-          <img src="https://via.placeholder.com/1628x340/33A1FF/FFFFFF?text=Banner+2" alt="Banner 2" />
-        </div>
-        <
+  <!-- Resto del contenido aquí -->
+
+  <script>
+    function toggleSubmenu() {
+      const submenu = document.getElementById('submenu');
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Cierra el menú si se hace clic fuera
+    document.addEventListener('click', function(event) {
+      const submenu = document.getElementById('submenu');
+      const categories = document.querySelector('.categories-container');
+      if (!categories.contains(event.target)) {
+        submenu.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
