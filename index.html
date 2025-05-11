@@ -1,158 +1,142 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VCM - Catálogo de Merchandising</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menú de Productos - VCM</title>
   <style>
-    /* Estilos generales */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #FFFFFF;
-      color: #333;
-    }
-
-    header {
-      background-color: #F75B68;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      color: white;
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-    }
-
-    .search-bar input {
-      padding: 0.6rem 1rem;
-      border-radius: 20px;
-      border: none;
-      font-size: 1rem;
-      color: #777;
-      background-color: #F2F2F2;
-      width: 500px;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f4;
+      padding: 2rem;
     }
 
     .menu {
-      display: flex;
-      gap: 2rem;
       position: relative;
+      display: inline-block;
     }
 
-    .menu a {
+    .menu > a {
+      background-color: #fff;
+      color: #333;
+      padding: 12px 18px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
       text-decoration: none;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
     }
 
-    .menu a:hover {
-      text-decoration: underline;
-    }
-
-    .categories-container {
-      position: relative;
+    .menu > a:hover {
+      background-color: #f0f0f0;
     }
 
     .submenu {
       display: none;
       position: absolute;
-      background-color: #FFFFFF;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      top: 40px;
+      top: 120%;
       left: 0;
-      min-width: 200px;
-      z-index: 10;
-      border-radius: 10px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      min-width: 260px;
+      z-index: 999;
     }
 
-    .submenu a {
-      color: #333;
-      text-decoration: none;
+    .menu:hover .submenu {
       display: block;
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); /* Sombra al 15% */
     }
 
-    .submenu a:hover {
-      color: #F75B68;
+    .submenu .productos {
+      margin-bottom: 16px;
     }
 
-    .hero {
-      background-color: #F75B68;
-      color: white;
-      text-align: center;
-      padding: 2rem;
+    .submenu h2 {
+      font-size: 16px;
+      margin: 8px 0;
+      color: #222;
     }
 
-    /* Resto de tus estilos... */
+    .submenu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .submenu ul li {
+      margin: 4px 0;
+    }
+
+    .submenu ul li a {
+      color: #444;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+
+    .submenu ul li a:hover {
+      color: #e91e63; /* Rosa suave */
+    }
+
+    @media (max-width: 600px) {
+      .submenu {
+        position: static;
+        box-shadow: none;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 12px;
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .menu > a {
+        display: block;
+        width: 100%;
+        text-align: left;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">VCM</div>
-    <div class="search-bar">
-      <input type="text" placeholder="Buscar productos o categorías" />
-    </div>
-    <nav class="menu">
-      <a href="#">Inicio</a>
-      <div class="categories-container">
-        <a onclick="toggleSubmenu()">Catálogo</a>
-        <div class="submenu" id="submenu">
-          <a href="#" onclick="setCategoryCookie('Termos')">Termos</a>
-          <a href="#" onclick="setCategoryCookie('Mates')">Mates</a>
-          <a href="#" onclick="setCategoryCookie('Bolígrafos')">Bolígrafos</a>
-          <a href="#" onclick="setCategoryCookie('Botellas')">Botellas</a>
-          <a href="#" onclick="setCategoryCookie('Indumentaria')">Indumentaria</a>
-        </div>
+  <div class="menu">
+    <a href="#">Categorías</a>
+    <div class="submenu">
+      <div class="productos">
+        <h2>Termos</h2>
+        <ul>
+          <li><a href="#termos-clasicos">Clásicos</a></li>
+          <li><a href="#termos-personalizados">Personalizados</a></li>
+        </ul>
       </div>
-      <a href="#">Catálogos</a>
-      <a href="#">Nosotros</a>
-      <a href="#">Ayuda</a>
-    </nav>
-  </header>
+      <div class="productos">
+        <h2>Mates</h2>
+        <ul>
+          <li><a href="#mates-vidrio">Vidrio</a></li>
+          <li><a href="#mates-colores">Colores</a></li>
+        </ul>
+      </div>
+      <div class="productos">
+        <h2>Botellas</h2>
+        <ul>
+          <li><a href="#botellas-deportivas">Deportivas</a></li>
+          <li><a href="#botellas-aluminio">Aluminio</a></li>
+        </ul>
+      </div>
+      <div class="productos">
+        <h2>Indumentaria</h2>
+        <ul>
+          <li><a href="#remeras">Remeras</a></li>
+          <li><a href="#buzos">Buzos</a></li>
+          <li><a href="#gorras">Gorras</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-  <section class="hero">
-    <h1>Bienvenidos a VCM</h1>
-    <p>Explora nuestro catálogo de merchandising único y exclusivo.</p>
-  </section>
-
-  <!-- Resto del contenido aquí -->
-
-  <script>
-    function toggleSubmenu() {
-      const submenu = document.getElementById('submenu');
-      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // Cierra el menú si se hace clic fuera
-    document.addEventListener('click', function(event) {
-      const submenu = document.getElementById('submenu');
-      const categories = document.querySelector('.categories-container');
-      if (!categories.contains(event.target)) {
-        submenu.style.display = 'none';
-      }
-    });
-
-    // Función para establecer una cookie con la categoría seleccionada
-    function setCategoryCookie(category) {
-      document.cookie = "selectedCategory=" + encodeURIComponent(category) + "; path=/";
-      // Aquí puedes redirigir a la página correspondiente si lo deseas
-      // window.location.href = "/categoria/" + encodeURIComponent(category);
-    }
-  </script>
 </body>
 </html>
