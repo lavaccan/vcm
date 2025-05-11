@@ -26,6 +26,7 @@
       align-items: center;
       padding: 1rem 2rem;
       color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .logo {
@@ -41,6 +42,7 @@
       color: #777;
       background-color: #F2F2F2;
       width: 500px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .menu {
@@ -54,6 +56,7 @@
       color: white;
       font-weight: 600;
       cursor: pointer;
+      position: relative;
     }
 
     .menu a:hover {
@@ -68,7 +71,7 @@
       display: none;
       position: absolute;
       background-color: #FFFFFF;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
       padding: 1rem;
       top: 40px;
       left: 0;
@@ -83,11 +86,14 @@
       display: block;
       margin-bottom: 0.5rem;
       font-size: 1rem;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); /* Sombra al 15% */
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      transition: color 0.3s ease, background-color 0.3s ease;
     }
 
     .submenu a:hover {
       color: #F75B68;
+      background-color: #f7f7f7;
+      padding-left: 10px;
     }
 
     .hero {
@@ -95,6 +101,9 @@
       color: white;
       text-align: center;
       padding: 2rem;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      margin-top: 2rem;
     }
 
     /* Resto de tus estilos... */
