@@ -6,6 +6,7 @@
   <title>VCM - Catálogo de Merchandising</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
+    /* Estilos generales */
     * {
       margin: 0;
       padding: 0;
@@ -71,7 +72,7 @@
       padding: 0.5rem 1rem;
       top: 35px;
       left: 0;
-      min-width: 160px;
+      min-width: 200px;
       z-index: 10;
       border-radius: 10px;
     }
@@ -82,6 +83,7 @@
       display: block;
       margin: 0.5rem 0;
       font-size: 0.9rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15); /* Sombra al 15% */
     }
 
     .submenu a:hover {
@@ -95,122 +97,7 @@
       padding: 2rem;
     }
 
-    .slider-wrapper {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .slider {
-      position: relative;
-      width: 1628px;
-      height: 340px;
-      overflow: hidden;
-      margin: 4rem auto;
-    }
-
-    .slider .slides {
-      display: flex;
-      transition: transform 1s ease-in-out;
-      height: 100%;
-    }
-
-    .slider .slide {
-      min-width: 100%;
-      height: 100%;
-    }
-
-    .slider img {
-      width: 1628px;
-      height: 340px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .slider .prev,
-    .slider .next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: white;
-      border: none;
-      padding: 1rem;
-      cursor: pointer;
-      font-size: 1.5rem;
-      z-index: 1;
-    }
-
-    .slider .prev {
-      left: 10px;
-    }
-
-    .slider .next {
-      right: 10px;
-    }
-
-    .productos-destacados {
-      padding: 3rem 2rem;
-      text-align: center;
-      background-color: #fff6f7;
-    }
-
-    .productos-destacados h2 {
-      font-size: 2rem;
-      color: #F75B68;
-      margin-bottom: 2rem;
-    }
-
-    .productos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      justify-items: center;
-    }
-
-    .producto {
-      background-color: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      transition: transform 0.3s ease;
-      width: 100%;
-      max-width: 300px;
-    }
-
-    .producto img {
-      width: 100%;
-      height: 250px;
-      object-fit: contain;
-      margin-bottom: 1rem;
-    }
-
-    .producto h3 {
-      font-size: 1.2rem;
-      color: #333;
-    }
-
-    .producto:hover {
-      transform: scale(1.05);
-    }
-
-    footer {
-      background-color: #F75B68;
-      color: white;
-      padding: 3rem 0;
-      text-align: center;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      margin: 0 1rem;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
+    /* Resto de tus estilos... */
   </style>
 </head>
 <body>
@@ -223,13 +110,20 @@
     <nav class="menu">
       <a href="#">Inicio</a>
       <div class="categories-container">
-        <a onclick="toggleSubmenu()">Categorías</a>
+        <a onclick="toggleSubmenu()">Catálogo</a>
         <div class="submenu" id="submenu">
-          <a href="#">Termos</a>
-          <a href="#">Mates</a>
-          <a href="#">Bolígrafos</a>
-          <a href="#">Botellas</a>
-          <a href="#">Indumentaria</a>
+          <a href="#" onclick="setCategoryCookie('Zapatillas')">Zapatillas</a>
+          <a href="#" onclick="setCategoryCookie('Remeras')">Remeras</a>
+          <a href="#" onclick="setCategoryCookie('Pantalones')">Pantalones</a>
+          <a href="#" onclick="setCategoryCookie('Buzos')">Buzos</a>
+          <a href="#" onclick="setCategoryCookie('Camperas')">Camperas</a>
+          <a href="#" onclick="setCategoryCookie('Shorts')">Shorts</a>
+          <a href="#" onclick="setCategoryCookie('Calzas')">Calzas</a>
+          <a href="#" onclick="setCategoryCookie('Tops')">Tops</a>
+          <a href="#" onclick="setCategoryCookie('Ojotas')">Ojotas</a>
+          <a href="#" onclick="setCategoryCookie('Mochilas')">Mochilas</a>
+          <a href="#" onclick="setCategoryCookie('Gorras')">Gorras</a>
+          <a href="#" onclick="setCategoryCookie('Pelotas')">Pelotas</a>
         </div>
       </div>
       <a href="#">Catálogos</a>
@@ -259,6 +153,13 @@
         submenu.style.display = 'none';
       }
     });
+
+    // Función para establecer una cookie con la categoría seleccionada
+    function setCategoryCookie(category) {
+      document.cookie = "selectedCategory=" + encodeURIComponent(category) + "; path=/";
+      // Aquí puedes redirigir a la página correspondiente si lo deseas
+      // window.location.href = "/categoria/" + encodeURIComponent(category);
+    }
   </script>
 </body>
 </html>
