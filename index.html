@@ -12,6 +12,11 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: #FFFFFF;
@@ -121,9 +126,15 @@
       width: 300%;
     }
 
+    .slides a {
+      width: 100%;
+      display: block;
+    }
+
     .slides img {
       width: 100%;
       height: auto;
+      display: block;
     }
 
     .whatsapp-button {
@@ -175,12 +186,18 @@
     <p>Explora nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
 
-  <!-- Carrusel -->
+  <!-- Carrusel con enlaces -->
   <div class="slider" id="slider">
     <div class="slides">
-      <img src="banner1.jpg" alt="Banner 1">
-      <img src="banner2.jpg" alt="Banner 2">
-      <img src="banner3.jpg" alt="Banner 3">
+      <a href="https://photos.google.com/tu-enlace-1" target="_blank">
+        <img src="banner1.jpg" alt="Banner 1">
+      </a>
+      <a href="https://photos.google.com/tu-enlace-2" target="_blank">
+        <img src="banner2.jpg" alt="Banner 2">
+      </a>
+      <a href="https://photos.google.com/tu-enlace-3" target="_blank">
+        <img src="banner3.jpg" alt="Banner 3">
+      </a>
     </div>
   </div>
 
@@ -217,50 +234,6 @@
       slides.style.transform = `translateX(-${currentSlide * 100}%)`;
     }, 4000);
   </script>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Carrito de Compras - VCM</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      padding: 2rem;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #F75B68;
-    }
-
-    .cart-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-      padding: 1rem 0;
-    }
-
-    .cart-item:last-child {
-      border-bottom: none;
-    }
+</body>
+</html>
