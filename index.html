@@ -6,6 +6,7 @@
   <title>VCM - Catálogo de Merchandising</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
+    /* Estilos generales */
     * {
       margin: 0;
       padding: 0;
@@ -46,8 +47,8 @@
 
     .menu {
       display: flex;
-      gap: 1.2rem;
-      margin-right: 2rem;
+      gap: 2rem;
+      position: relative;
     }
 
     .menu a {
@@ -55,6 +56,7 @@
       color: white;
       font-weight: 600;
       cursor: pointer;
+      position: relative;
     }
 
     .menu a:hover {
@@ -65,10 +67,33 @@
       position: relative;
     }
 
-    .cart-icon {
-      font-size: 1.5rem;
-      color: white;
+    .submenu {
+      display: none;
+      position: absolute;
+      background-color: #FFFFFF;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      top: 40px;
+      left: 0;
+      min-width: 200px;
+      z-index: 10;
+      border-radius: 10px;
+    }
+
+    .submenu a {
+      color: #333;
       text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .submenu a:hover {
+      color: #F75B68;
+      background-color: #f7f7f7;
+      padding-left: 10px;
     }
 
     .hero {
@@ -81,96 +106,83 @@
       margin-top: 2rem;
     }
 
-    .slider {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      max-width: 100%;
-      margin-top: 20px;
-    }
-
-    .slides {
+    .catalog-container {
       display: flex;
-      transition: transform 0.5s ease-in-out;
-      width: 300%;
-    }
-
-    .slides img {
-      width: 100%;
-      height: auto;
-    }
-
-    .whatsapp-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
       justify-content: center;
-      text-decoration: none;
-      font-size: 30px;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      margin-top: 2rem;
     }
 
-    .product {
-      background-color: #f7f7f7;
+    .catalog-item {
+      background-color: #F2F2F2;
       padding: 1rem;
-      margin: 1rem;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       text-align: center;
+      width: 200px;
     }
 
-    /* Página del carrito */
+    .catalog-item button {
+      background-color: #F75B68;
+      border: none;
+      padding: 0.5rem;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .catalog-item .price {
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
     .cart-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
+      margin-top: 2rem;
       padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .cart-item {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-      padding: 1rem 0;
-    }
-
-    .cart-item:last-child {
-      border-bottom: none;
-    }
-
-    .checkout-button {
-      display: block;
       width: 100%;
+      max-width: 600px;
       padding: 1rem;
-      background-color: #F75B68;
-      color: white;
-      text-align: center;
-      border-radius: 5px;
-      font-size: 1.2rem;
-      cursor: pointer;
-      margin-top: 2rem;
+      background-color: #F2F2F2;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .checkout-button:hover {
-      background-color: #F44336;
+    .cart-item .quantity {
+      display: flex;
+      align-items: center;
+    }
+
+    .cart-item .quantity button {
+      background-color: #F75B68;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .cart-item .price {
+      font-weight: bold;
+      align-self: center;
     }
 
   </style>
 </head>
 <body>
 
-  <!-- Página de Inicio -->
   <header>
     <div class="logo">VCM</div>
     <div class="search-bar">
@@ -181,17 +193,17 @@
       <div class="categories-container">
         <a onclick="toggleSubmenu()">Catálogo</a>
         <div class="submenu" id="submenu">
-          <a href="#" onclick="setCategoryCookie('Termos')">Termos</a>
-          <a href="#" onclick="setCategoryCookie('Mates')">Mates</a>
-          <a href="#" onclick="setCategoryCookie('Bolígrafos')">Bolígrafos</a>
-          <a href="#" onclick="setCategoryCookie('Botellas')">Botellas</a>
-          <a href="#" onclick="setCategoryCookie('Indumentaria')">Indumentaria</a>
+          <a href="#">Termos</a>
+          <a href="#">Mates</a>
+          <a href="#">Bolígrafos</a>
+          <a href="#">Botellas</a>
+          <a href="#">Indumentaria</a>
         </div>
       </div>
+      <a href="cart.html">Carrito</a>
       <a href="#">Nosotros</a>
       <a href="#">Ayuda</a>
     </nav>
-    <a class="cart-icon" href="#carrito" title="Ver carrito">🛒</a>
   </header>
 
   <section class="hero">
@@ -199,32 +211,31 @@
     <p>Explora nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
 
-  <!-- Carrusel -->
-  <div class="slider" id="slider">
-    <div class="slides">
-      <img src="banner1.jpg" alt="Banner 1">
-      <img src="banner2.jpg" alt="Banner 2">
-      <img src="banner3.jpg" alt="Banner 3">
+  <section class="catalog-container">
+    <div class="catalog-item">
+      <h3>Termo VCM</h3>
+      <img src="termovcm.jpg" alt="Termo VCM" width="150" />
+      <p class="price">$500</p>
+      <div class="quantity">
+        <button onclick="updateQuantity('termovcm', 'decrease')">-</button>
+        <span id="termovcm">0</span>
+        <button onclick="updateQuantity('termovcm', 'increase')">+</button>
+      </div>
     </div>
-  </div>
 
-  <!-- Productos -->
-  <div class="product" data-name="Termo X" data-price="1000">
-    <h2>Termo X</h2>
-    <p>Precio: $1000</p>
-    <button onclick="addToCart('Termo X', 1000)">Agregar al carrito</button>
-  </div>
+    <div class="catalog-item">
+      <h3>Mate VCM</h3>
+      <img src="matevcm.jpg" alt="Mate VCM" width="150" />
+      <p class="price">$200</p>
+      <div class="quantity">
+        <button onclick="updateQuantity('matevcm', 'decrease')">-</button>
+        <span id="matevcm">0</span>
+        <button onclick="updateQuantity('matevcm', 'increase')">+</button>
+      </div>
+    </div>
 
-  <div class="product" data-name="Mate Y" data-price="800">
-    <h2>Mate Y</h2>
-    <p>Precio: $800</p>
-    <button onclick="addToCart('Mate Y', 800)">Agregar al carrito</button>
-  </div>
-
-  <!-- Botón de WhatsApp -->
-  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">
-    💬
-  </a>
+    <!-- Agregar más productos aquí -->
+  </section>
 
   <script>
     function toggleSubmenu() {
@@ -232,6 +243,7 @@
       submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
 
+    // Cierra el menú si se hace clic fuera
     document.addEventListener('click', function(event) {
       const submenu = document.getElementById('submenu');
       const categories = document.querySelector('.categories-container');
@@ -240,56 +252,17 @@
       }
     });
 
-    function setCategoryCookie(category) {
-      document.cookie = "selectedCategory=" + encodeURIComponent(category) + "; path=/";
+    // Función para actualizar las cantidades de los productos
+    function updateQuantity(itemId, action) {
+      const itemElement = document.getElementById(itemId);
+      let currentQuantity = parseInt(itemElement.innerText);
+
+      if (action === 'increase') {
+        itemElement.innerText = currentQuantity + 1;
+      } else if (action === 'decrease' && currentQuantity > 0) {
+        itemElement.innerText = currentQuantity - 1;
+      }
     }
-
-    function addToCart(productName, productPrice) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push({ name: productName, price: productPrice });
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    // Carrusel automático
-    let currentSlide = 0;
-    const slides = document.querySelector('.slides');
-    const totalSlides = slides.children.length;
-
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }, 4000);
   </script>
-
-  <!-- Página del Carrito -->
-  <div id="carrito" style="display: none;">
-    <h1>Tu Carrito</h1>
-    <div class="cart-container" id="cartContainer"></div>
-    <button class="checkout-button" onclick="proceedToCheckout()">Ir a pagar</button>
-
-    <script>
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const cartContainer = document.getElementById('cartContainer');
-
-      if (cart.length === 0) {
-        cartContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
-      } else {
-        cart.forEach(item => {
-          const itemDiv = document.createElement('div');
-          itemDiv.classList.add('cart-item');
-          itemDiv.innerHTML = `
-            <p>${item.name}</p>
-            <p>$${item.price}</p>
-          `;
-          cartContainer.appendChild(itemDiv);
-        });
-      }
-
-      function proceedToCheckout() {
-        alert("Redirigiendo a la página de pago...");
-        // Aquí puedes agregar la lógica para proceder con el pago
-      }
-    </script>
-  </div>
 </body>
 </html>
