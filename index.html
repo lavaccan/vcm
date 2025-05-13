@@ -50,7 +50,7 @@
       border-radius: 20px;
       border: none;
       font-size: 1rem;
-      color: #333; /* Letras negras */
+      color: #000; /* Cambio de color de texto a negro */
       background-color: #F2F2F2;
       width: 100%;
       transition: all 0.3s ease;
@@ -126,6 +126,12 @@
 
     .categories-container {
       position: relative;
+    }
+
+    .cart-icon {
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
     }
 
     .whatsapp-button {
@@ -240,7 +246,9 @@
       <a href="#">Nosotros</a>
       <a href="#">Ayuda</a>
     </nav>
+    <a class="cart-icon" href="carrito.html" title="Ver carrito">🛒</a>
   </header>
+
   <section class="hero">
     <h1>Bienvenidos a VCM</h1>
     <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
@@ -270,63 +278,75 @@
 
   <section id="ofertasDestacadas">
     <h2>Ofertas Destacadas</h2>
-    <div class="slider" id="sliderOfertasDestacadas">
-      <button class="arrow left" onclick="moveSlide(-1, 'ofertasDestacadas')">❮</button>
-      <div class="slides" id="slidesOfertasDestacadas">
-        <img src="https://via.placeholder.com/300x180?text=Oferta+1" alt="Oferta 1">
-        <img src="https://via.placeholder.com/300x180?text=Oferta+2" alt="Oferta 2">
-        <img src="https://via.placeholder.com/300x180?text=Oferta+3" alt="Oferta 3">
-      </div>
-      <button class="arrow right" onclick="moveSlide(1, 'ofertasDestacadas')">❯</button>
+    <div class="category-carousel" id="carouselOfertas">
+      <img src="https://via.placeholder.com/200x150?text=Promo+1" alt="Promo 1">
+      <img src="https://via.placeholder.com/200x150?text=Promo+2" alt="Promo 2">
+      <img src="https://via.placeholder.com/200x150?text=Promo+3" alt="Promo 3">
+      <img src="https://via.placeholder.com/200x150?text=Promo+4" alt="Promo 4">
     </div>
   </section>
 
+  <section id="descubri">
+    <h2>Descubrí</h2>
+    <div class="category-carousel">
+      <img src="https://via.placeholder.com/200x150?text=Nuevos" alt="Nuevos">
+      <img src="https://via.placeholder.com/200x150?text=Personalizables" alt="Personalizables">
+      <img src="https://via.placeholder.com/200x150?text=Edici%C3%B3n+Limitada" alt="Edición Limitada">
+    </div>
+  </section>
+
+  <footer style="background-color: #F2F2F2; padding: 2rem; text-align: center;">
+    <div style="margin-bottom: 1rem;">
+      <h3>Seguinos</h3>
+      <a href="https://www.linkedin.com" target="_blank" style="margin: 0 10px;">🔗 LinkedIn</a>
+      <a href="https://www.instagram.com" target="_blank" style="margin: 0 10px;">📸 Instagram</a>
+      <a href="https://www.facebook.com" target="_blank" style="margin: 0 10px;">📘 Facebook</a>
+    </div>
+    <div>
+      <h3>Contactanos</h3>
+      <p>📞 +54 9 11 7098-3414</p>
+      <p>📧 vcmmarking@gmail.com</p>
+    </div>
+  </footer>
+
   <script>
-    let currentSlideBanners = 0;
-    let currentSlideOfertasDestacadas = 0;
+    const searchBar = document.getElementById('searchBar');
+    const suggestions = document.getElementById('suggestions');
+    const submenu = document.getElementById('submenu');
 
-    function moveSlide(direction, section) {
-      const slides = section === 'banners'
-        ? document.getElementById('slidesBanners')
-        : document.getElementById('slidesOfertasDestacadas');
-      const totalSlides = slides.children.length;
-      const current = section === 'banners' ? currentSlideBanners : currentSlideOfertasDestacadas;
-
-      const next = (current + direction + totalSlides) % totalSlides;
-      slides.style.transform = `translateX(-${next * 100}%)`;
-
-      if (section === 'banners') currentSlideBanners = next;
-      else currentSlideOfertasDestacadas = next;
+    function showSuggestions() {
+      suggestions.style.display = 'block';
     }
 
-    function toggleSubmenu() {
-      const submenu = document.getElementById('submenu');
-      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    function selectSuggestion(text) {
+      document.getElementById('searchInput').value = text;
+      suggestions.style.display = 'none';
     }
 
-    window.addEventListener('click', function(event) {
-      const submenu = document.getElementById('submenu');
-      const categoriesContainer = document.querySelector('.categories-container');
-      const searchBar = document.getElementById('searchBar');
-      const suggestions = document.getElementById('suggestions');
-
-      if (!categoriesContainer.contains(event.target)) {
-        submenu.style.display = 'none';
-      }
-
+    document.addEventListener('click', function(event) {
       if (!searchBar.contains(event.target)) {
         suggestions.style.display = 'none';
       }
+      if (!submenu.contains(event.target)) {
+        submenu.style.display = 'none';
+      }
     });
 
-    function showSuggestions() {
-      document.getElementById('suggestions').style.display = 'block';
+    function toggleSubmenu() {
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
 
-    function selectSuggestion(suggestion) {
-      document.getElementById('searchInput').value = suggestion;
-      document.getElementById('suggestions').style.display = 'none';
+    let currentBanner = 0;
+
+    function moveSlide(step, slider) {
+      const slides = document.getElementById('slidesBanners');
+      const total = slides.children.length;
+      currentBanner = (currentBanner + step + total) % total;
+      slides.style.transform = `translateX(-${currentBanner * 100}%)`;
     }
+
+    setInterval(() => moveSlide(1, 'banners'), 5000);
   </script>
+
 </body>
 </html>
