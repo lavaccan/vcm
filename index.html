@@ -2,306 +2,184 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VCM - Catálogo de Merchandising</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #FFFFFF;
-      color: #333;
-    }
-
-    header {
-      background-color: #F75B68;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      color: white;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .search-bar {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .search-bar input {
-      padding: 0.6rem 1rem;
-      border-radius: 20px;
-      border: none;
-      font-size: 1rem;
-      color: #777;
-      background-color: #F2F2F2;
-      width: 100%;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-bar input:focus {
-      outline: none;
-      background-color: #FFF;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .menu {
-      display: flex;
-      gap: 1.2rem;
-      margin-right: 2rem;
-    }
-
-    .menu a {
-      text-decoration: none;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .submenu {
-      display: none;
-      position: absolute;
-      background-color: #FFFFFF;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      top: 40px;
-      left: 0;
-      min-width: 200px;
-      z-index: 10;
-      border-radius: 10px;
-    }
-
-    .submenu a {
-      color: #333;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .submenu a:hover {
-      color: #F75B68;
-      background-color: #f7f7f7;
-      padding-left: 10px;
-    }
-
-    .categories-container {
-      position: relative;
-    }
-
-    .cart-icon {
-      font-size: 1.5rem;
-      color: white;
-      text-decoration: none;
-    }
-
-    .whatsapp-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      border-radius: 50%;
-      padding: 15px;
-      color: white;
-      font-size: 24px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      z-index: 100;
-    }
-
-    .whatsapp-button:hover {
-      background-color: #128C7E;
-      cursor: pointer;
-    }
-
-    .hero {
-      background-color: #F75B68;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 70px;
-    }
-
-    .slider {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 250px;
-      margin-top: 20px;
-    }
-
-    .slides {
-      display: flex;
-      transition: transform 1s ease-in-out;
-      width: 300%;
-    }
-
-    .slides img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.3);
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .arrow.left {
-      left: 10px;
-    }
-
-    .arrow.right {
-      right: 10px;
-    }
-
-    .category-carousel {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-      padding: 1rem;
-      overflow-x: auto;
-    }
-
-    .category-carousel img {
-      width: 200px;
-      height: 150px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VCM</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-
   <header>
-    <div class="logo" onclick="window.location.href='index.html'">VCM</div>
-    <div class="search-bar">
-      <input type="text" id="search-input" placeholder="Buscar productos o categorías"/>
+    <div class="logo" onclick="location.href='index.html'">VCM</div>
+    <div class="search-container">
+      <input type="text" placeholder="Buscar productos" class="search-bar" id="search-bar"/>
     </div>
-    <nav class="menu">
-      <a href="#">Inicio</a>
-      <div class="categories-container">
-        <a onclick="toggleSubmenu()">Catálogo</a>
-        <div class="submenu" id="submenu">
-          <a href="#">Termos</a>
-          <a href="#">Mates</a>
-          <a href="#">Bolígrafos</a>
-          <a href="#">Botellas</a>
-          <a href="#">Indumentaria</a>
-        </div>
-      </div>
-      <a href="#">Nosotros</a>
-      <a href="#">Ayuda</a>
-    </nav>
-    <a class="cart-icon" href="carrito.html" title="Ver carrito">🛒</a>
+    <div class="menu-bajo">
+      <nav class="menu">
+        <div class="menu-item" onclick="toggleCategorias()">Categorías</div>
+        <div class="menu-item" onclick="location.href='carrito.html'">🛒</div>
+      </nav>
+    </div>
+    <div class="categorias" id="categorias">
+      <div class="categoria">Ofertas Destacadas</div>
+      <div class="categoria">Más Buscados</div>
+    </div>
   </header>
 
-  <section class="hero">
-    <h1>Bienvenidos a VCM</h1>
-    <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
-  </section>
-
-  <!-- Botón de WhatsApp -->
-  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank">📲</a>
-  <!-- Carrusel de Banners -->
-  <section class="slider" id="bannerSlider">
-    <div class="slides" id="slidesBanners">
-      <img src="https://via.placeholder.com/1200x400?text=Banner+1" alt="Banner 1">
-      <img src="https://via.placeholder.com/1200x400?text=Banner+2" alt="Banner 2">
-      <img src="https://via.placeholder.com/1200x400?text=Banner+3" alt="Banner 3">
-    </div>
-    <button class="arrow left" onclick="moveSlide(-1, 'banners')">❮</button>
-    <button class="arrow right" onclick="moveSlide(1, 'banners')">❯</button>
-  </section>
-
-  <!-- Carrusel Lo Más Buscado -->
-  <section id="masBuscados">
-    <h2>Lo Más Buscado</h2>
-    <div class="category-carousel" id="carouselMasBuscados">
-      <img src="https://via.placeholder.com/200x150?text=Mates" alt="Mate">
-      <img src="https://via.placeholder.com/200x150?text=Termos" alt="Termo">
-      <img src="https://via.placeholder.com/200x150?text=Botellas" alt="Botella">
-      <img src="https://via.placeholder.com/200x150?text=Indumentaria" alt="Indumentaria">
+  <section class="banner-carrusel">
+    <div class="banner-track" id="banner-track">
+      <div class="banner-item">Mate Camionero</div>
+      <div class="banner-item">Termo Acero</div>
+      <div class="banner-item">Botella Personalizada</div>
+      <!-- duplicados para efecto infinito -->
+      <div class="banner-item">Mate Camionero</div>
+      <div class="banner-item">Termo Acero</div>
+      <div class="banner-item">Botella Personalizada</div>
     </div>
   </section>
 
-  <!-- Carrusel Ofertas Destacadas -->
-  <section id="ofertasDestacadas">
-    <h2>Ofertas Destacadas</h2>
-    <div class="slider" id="sliderOfertasDestacadas">
-      <button class="arrow left" onclick="moveSlide(-1, 'ofertasDestacadas')">❮</button>
-      <div class="slides" id="slidesOfertasDestacadas">
-        <img src="https://via.placeholder.com/300x180?text=Oferta+1" alt="Oferta 1">
-        <img src="https://via.placeholder.com/300x180?text=Oferta+2" alt="Oferta 2">
-        <img src="https://via.placeholder.com/300x180?text=Oferta+3" alt="Oferta 3">
+  <main>
+    <section class="productos">
+      <h2>Ofertas Destacadas</h2>
+      <div class="productos-carrusel">
+        <div class="producto">Termo Vacio</div>
+        <div class="producto">Mate de Madera</div>
+        <div class="producto">Set Matero</div>
       </div>
-      <button class="arrow right" onclick="moveSlide(1, 'ofertasDestacadas')">❯</button>
-    </div>
-  </section>
+    </section>
 
-  <script>
-    let currentSlideBanners = 0;
-    let currentSlideOfertasDestacadas = 0;
-    let currentSlideMasBuscados = 0;
+    <section class="productos">
+      <h2>Más Buscados</h2>
+      <div class="productos-carrusel">
+        <div class="producto">Bolígrafo VCM</div>
+        <div class="producto">Botella Deportiva</div>
+        <div class="producto">Remera con Logo</div>
+      </div>
+    </section>
+  </main>
 
-    // Función de movimiento de slides
-    function moveSlide(direction, section) {
-      if (section === 'banners') {
-        const slides = document.getElementById('slidesBanners');
-        const totalSlides = slides.children.length;
-        currentSlideBanners = (currentSlideBanners + direction + totalSlides) % totalSlides;
-        slides.style.transform = `translateX(-${currentSlideBanners * 100}%)`;
-      } else if (section === 'ofertasDestacadas') {
-        const slides = document.getElementById('slidesOfertasDestacadas');
-        const totalSlides = slides.children.length;
-        currentSlideOfertasDestacadas = (currentSlideOfertasDestacadas + direction + totalSlides) % totalSlides;
-        slides.style.transform = `translateX(-${currentSlideOfertasDestacadas * 100}%)`;
-      }
-    }
-
-    // Desplegar categorías
-    function toggleSubmenu() {
-      const submenu = document.getElementById('submenu');
-      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // Cerrar categorías al hacer clic fuera
-    window.addEventListener('click', function(event) {
-      const submenu = document.getElementById('submenu');
-      const categoriesContainer = document.querySelector('.categories-container');
-      if (!categoriesContainer.contains(event.target)) {
-        submenu.style.display = 'none';
-      }
-    });
-
-    // Función automática para el carrusel de banners
-    setInterval(function() {
-      moveSlide(1, 'banners');
-    }, 3000);
-  </script>
+  <a href="https://wa.me/549123456789" class="whatsapp-button" target="_blank">WhatsApp</a>
 
 </body>
 </html>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  header {
+    background: #f75b68;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+  }
+  .logo {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .search-bar {
+    width: 40%;
+    padding: 0.5rem;
+    border-radius: 20px;
+    border: none;
+    transition: width 0.3s;
+  }
+  .search-bar:focus {
+    width: 60%;
+    outline: none;
+  }
+  .menu-bajo {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  .menu-item {
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .categorias {
+    display: none;
+    background: #fff;
+    color: #333;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+  }
+  .categorias.mostrar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .banner-carrusel {
+    overflow: hidden;
+    background: #eee;
+    padding: 1rem 0;
+  }
+  .banner-track {
+    display: flex;
+    animation: scrollBanner 20s linear infinite;
+    gap: 2rem;
+  }
+  .banner-item {
+    min-width: 200px;
+    background: #ccc;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+  @keyframes scrollBanner {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .productos {
+    padding: 2rem;
+  }
+  .productos-carrusel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+  }
+  .producto {
+    min-width: 150px;
+    background: #f2f2f2;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    color: white;
+    padding: 1rem;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+</style>
+
+<script>
+  function toggleCategorias() {
+    document.getElementById('categorias').classList.toggle('mostrar');
+  }
+
+  // Cerrar menú al hacer clic fuera
+  document.addEventListener('click', function(e) {
+    const cat = document.getElementById('categorias');
+    const menu = e.target.closest('.menu-item');
+    if (!menu && !e.target.closest('.categorias')) {
+      cat.classList.remove('mostrar');
+    }
+  });
+</script>
