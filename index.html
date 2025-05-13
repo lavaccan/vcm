@@ -35,6 +35,7 @@
     .logo {
       font-weight: 700;
       font-size: 1.5rem;
+      cursor: pointer;
     }
 
     .search-bar {
@@ -109,6 +110,24 @@
       text-decoration: none;
     }
 
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      border-radius: 50%;
+      padding: 15px;
+      color: white;
+      font-size: 24px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
+
+    .whatsapp-button:hover {
+      background-color: #128C7E;
+      cursor: pointer;
+    }
+
     .hero {
       background-color: #F75B68;
       color: white;
@@ -158,12 +177,27 @@
     .arrow.right {
       right: 10px;
     }
+
+    .category-carousel {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+
+    .category-carousel img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo">VCM</div>
+    <div class="logo" onclick="window.location.href='index.html'">VCM</div>
     <div class="search-bar">
       <input type="text" id="search-input" placeholder="Buscar productos o categorías"/>
     </div>
@@ -189,6 +223,9 @@
     <h1>Bienvenidos a VCM</h1>
     <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
+
+  <!-- Botón de WhatsApp -->
+  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank">📲</a>
   <!-- Carrusel de Banners -->
   <section class="slider" id="bannerSlider">
     <div class="slides" id="slidesBanners">
@@ -198,6 +235,17 @@
     </div>
     <button class="arrow left" onclick="moveSlide(-1, 'banners')">❮</button>
     <button class="arrow right" onclick="moveSlide(1, 'banners')">❯</button>
+  </section>
+
+  <!-- Carrusel Lo Más Buscado -->
+  <section id="masBuscados">
+    <h2>Lo Más Buscado</h2>
+    <div class="category-carousel" id="carouselMasBuscados">
+      <img src="https://via.placeholder.com/200x150?text=Mates" alt="Mate">
+      <img src="https://via.placeholder.com/200x150?text=Termos" alt="Termo">
+      <img src="https://via.placeholder.com/200x150?text=Botellas" alt="Botella">
+      <img src="https://via.placeholder.com/200x150?text=Indumentaria" alt="Indumentaria">
+    </div>
   </section>
 
   <!-- Carrusel Ofertas Destacadas -->
@@ -217,7 +265,9 @@
   <script>
     let currentSlideBanners = 0;
     let currentSlideOfertasDestacadas = 0;
+    let currentSlideMasBuscados = 0;
 
+    // Función de movimiento de slides
     function moveSlide(direction, section) {
       if (section === 'banners') {
         const slides = document.getElementById('slidesBanners');
@@ -232,10 +282,25 @@
       }
     }
 
+    // Desplegar categorías
     function toggleSubmenu() {
       const submenu = document.getElementById('submenu');
       submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
+
+    // Cerrar categorías al hacer clic fuera
+    window.addEventListener('click', function(event) {
+      const submenu = document.getElementById('submenu');
+      const categoriesContainer = document.querySelector('.categories-container');
+      if (!categoriesContainer.contains(event.target)) {
+        submenu.style.display = 'none';
+      }
+    });
+
+    // Función automática para el carrusel de banners
+    setInterval(function() {
+      moveSlide(1, 'banners');
+    }, 3000);
   </script>
 
 </body>
