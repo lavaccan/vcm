@@ -127,6 +127,7 @@
       text-align: center;
     }
 
+    /* Página del carrito */
     .cart-container {
       max-width: 800px;
       margin: 0 auto;
@@ -147,10 +148,29 @@
     .cart-item:last-child {
       border-bottom: none;
     }
+
+    .checkout-button {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background-color: #F75B68;
+      color: white;
+      text-align: center;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-top: 2rem;
+    }
+
+    .checkout-button:hover {
+      background-color: #F44336;
+    }
+
   </style>
 </head>
 <body>
 
+  <!-- Página de Inicio -->
   <header>
     <div class="logo">VCM</div>
     <div class="search-bar">
@@ -171,7 +191,7 @@
       <a href="#">Nosotros</a>
       <a href="#">Ayuda</a>
     </nav>
-    <a class="cart-icon" href="carrito.html" title="Ver carrito">🛒</a>
+    <a class="cart-icon" href="#carrito" title="Ver carrito">🛒</a>
   </header>
 
   <section class="hero">
@@ -241,78 +261,35 @@
     }, 4000);
   </script>
 
-</body>
-</html>
+  <!-- Página del Carrito -->
+  <div id="carrito" style="display: none;">
+    <h1>Tu Carrito</h1>
+    <div class="cart-container" id="cartContainer"></div>
+    <button class="checkout-button" onclick="proceedToCheckout()">Ir a pagar</button>
 
-<!-- Página del carrito -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Carrito de Compras - VCM</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    /* Estilos para la página del carrito */
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      padding: 2rem;
-    }
+    <script>
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartContainer = document.getElementById('cartContainer');
 
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #F75B68;
-    }
+      if (cart.length === 0) {
+        cartContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
+      } else {
+        cart.forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.classList.add('cart-item');
+          itemDiv.innerHTML = `
+            <p>${item.name}</p>
+            <p>$${item.price}</p>
+          `;
+          cartContainer.appendChild(itemDiv);
+        });
+      }
 
-    .cart-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-      padding: 1rem 0;
-    }
-
-    .cart-item:last-child {
-      border-bottom: none;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Tu Carrito</h1>
-
-  <div class="cart-container" id="cartContainer"></div>
-
-  <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartContainer = document.getElementById('cartContainer');
-
-    if (cart.length === 0) {
-      cartContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
-    } else {
-      cart.forEach(item => {
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('cart-item');
-        itemDiv.innerHTML = `
-          <p>${item.name}</p>
-          <p>$${item.price}</p>
-        `;
-        cartContainer.appendChild(itemDiv);
-      });
-    }
-  </script>
-
+      function proceedToCheckout() {
+        alert("Redirigiendo a la página de pago...");
+        // Aquí puedes agregar la lógica para proceder con el pago
+      }
+    </script>
+  </div>
 </body>
 </html>
