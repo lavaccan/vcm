@@ -42,6 +42,7 @@
       position: relative;
       width: 100%;
       max-width: 400px;
+      transition: all 0.3s ease;
     }
 
     .search-bar input {
@@ -52,6 +53,7 @@
       color: #777;
       background-color: #F2F2F2;
       width: 100%;
+      transition: all 0.3s ease;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
@@ -59,6 +61,28 @@
       outline: none;
       background-color: #FFF;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 100%;
+    }
+
+    .search-suggestions {
+      display: none;
+      position: absolute;
+      background-color: white;
+      width: 100%;
+      top: 110%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      z-index: 20;
+      padding: 0.5rem 0;
+    }
+
+    .search-suggestions div {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    .search-suggestions div:hover {
+      background-color: #f2f2f2;
     }
 
     .menu {
@@ -198,8 +222,14 @@
 
   <header>
     <div class="logo" onclick="window.location.href='index.html'">VCM</div>
-    <div class="search-bar">
-      <input type="text" id="search-input" placeholder="Buscar productos o categorías"/>
+    <div class="search-bar" id="searchBar">
+      <input type="text" id="searchInput" placeholder="Buscar productos o categorías" onfocus="showSuggestions()"/>
+      <div class="search-suggestions" id="suggestions">
+        <div onclick="selectSuggestion('Mates')">Mates</div>
+        <div onclick="selectSuggestion('Termos')">Termos</div>
+        <div onclick="selectSuggestion('Botellas')">Botellas</div>
+        <div onclick="selectSuggestion('Remeras')">Remeras</div>
+      </div>
     </div>
     <nav class="menu">
       <a href="#">Inicio</a>
@@ -224,9 +254,8 @@
     <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
 
-  <!-- Botón de WhatsApp -->
   <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank">📲</a>
-  <!-- Carrusel de Banners -->
+
   <section class="slider" id="bannerSlider">
     <div class="slides" id="slidesBanners">
       <img src="https://via.placeholder.com/1200x400?text=Banner+1" alt="Banner 1">
@@ -237,7 +266,6 @@
     <button class="arrow right" onclick="moveSlide(1, 'banners')">❯</button>
   </section>
 
-  <!-- Carrusel Lo Más Buscado -->
   <section id="masBuscados">
     <h2>Lo Más Buscado</h2>
     <div class="category-carousel" id="carouselMasBuscados">
@@ -248,7 +276,6 @@
     </div>
   </section>
 
-  <!-- Carrusel Ofertas Destacadas -->
   <section id="ofertasDestacadas">
     <h2>Ofertas Destacadas</h2>
     <div class="slider" id="sliderOfertasDestacadas">
@@ -265,43 +292,51 @@
   <script>
     let currentSlideBanners = 0;
     let currentSlideOfertasDestacadas = 0;
-    let currentSlideMasBuscados = 0;
 
-    // Función de movimiento de slides
     function moveSlide(direction, section) {
-      if (section === 'banners') {
-        const slides = document.getElementById('slidesBanners');
-        const totalSlides = slides.children.length;
-        currentSlideBanners = (currentSlideBanners + direction + totalSlides) % totalSlides;
-        slides.style.transform = `translateX(-${currentSlideBanners * 100}%)`;
-      } else if (section === 'ofertasDestacadas') {
-        const slides = document.getElementById('slidesOfertasDestacadas');
-        const totalSlides = slides.children.length;
-        currentSlideOfertasDestacadas = (currentSlideOfertasDestacadas + direction + totalSlides) % totalSlides;
-        slides.style.transform = `translateX(-${currentSlideOfertasDestacadas * 100}%)`;
-      }
+      const slides = section === 'banners'
+        ? document.getElementById('slidesBanners')
+        : document.getElementById('slidesOfertasDestacadas');
+      const totalSlides = slides.children.length;
+      const current = section === 'banners' ? currentSlideBanners : currentSlideOfertasDestacadas;
+
+      const next = (current + direction + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${next * 100}%)`;
+
+      if (section === 'banners') currentSlideBanners = next;
+      else currentSlideOfertasDestacadas = next;
     }
 
-    // Desplegar categorías
     function toggleSubmenu() {
       const submenu = document.getElementById('submenu');
       submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Cerrar categorías al hacer clic fuera
     window.addEventListener('click', function(event) {
       const submenu = document.getElementById('submenu');
       const categoriesContainer = document.querySelector('.categories-container');
+      const searchBar = document.getElementById('searchBar');
+      const suggestions = document.getElementById('suggestions');
+
       if (!categoriesContainer.contains(event.target)) {
         submenu.style.display = 'none';
       }
+
+      if (!searchBar.contains(event.target)) {
+        suggestions.style.display = 'none';
+      }
     });
 
-    // Función automática para el carrusel de banners
-    setInterval(function() {
-      moveSlide(1, 'banners');
-    }, 3000);
-  </script>
+    function showSuggestions() {
+      document.getElementById('suggestions').style.display = 'block';
+    }
 
+    function selectSuggestion(value) {
+      document.getElementById('searchInput').value = value;
+      document.getElementById('suggestions').style.display = 'none';
+    }
+
+    setInterval(() => moveSlide(1, 'banners'), 3000);
+  </script>
 </body>
 </html>
