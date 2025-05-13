@@ -28,7 +28,8 @@
       position: fixed;
       width: 100%;
       top: 0;
-      z-index: 1000;
+      z-index: 100;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .logo {
@@ -44,40 +45,45 @@
       color: #777;
       background-color: #F2F2F2;
       width: 400px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .menu {
       display: flex;
       gap: 1.2rem;
+      margin-right: 2rem;
     }
 
     .menu a {
       text-decoration: none;
       color: white;
       font-weight: 600;
+      cursor: pointer;
     }
 
     .submenu {
       display: none;
       position: absolute;
-      background-color: #fff;
-      top: 50px;
-      left: 0;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      background-color: #FFFFFF;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
       padding: 1rem;
-      border-radius: 10px;
+      top: 40px;
+      left: 0;
+      min-width: 200px;
       z-index: 10;
+      border-radius: 10px;
     }
 
     .submenu a {
-      display: block;
       color: #333;
+      text-decoration: none;
+      display: block;
       margin-bottom: 0.5rem;
     }
 
     .submenu a:hover {
       color: #F75B68;
-      background-color: #f2f2f2;
+      background-color: #f7f7f7;
       padding-left: 10px;
     }
 
@@ -92,27 +98,31 @@
     }
 
     .hero {
-      margin-top: 80px;
-      padding: 2rem;
       background-color: #F75B68;
-      text-align: center;
       color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 70px;
     }
 
     .slider {
       position: relative;
       overflow: hidden;
-      max-width: 100%;
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
     }
 
     .slides {
       display: flex;
-      transition: transform 0.8s ease-in-out;
+      transition: transform 1s ease-in-out;
+      width: 300%;
     }
 
     .slides img {
       width: 100%;
-      flex-shrink: 0;
+      height: 400px;
+      object-fit: cover;
     }
 
     .arrow {
@@ -122,56 +132,48 @@
       font-size: 2rem;
       color: white;
       background-color: rgba(0, 0, 0, 0.3);
-      padding: 0.5rem;
-      border-radius: 50%;
+      border: none;
+      padding: 0.5rem 1rem;
       cursor: pointer;
-      z-index: 1;
+      z-index: 10;
     }
 
-    .arrow-left { left: 10px; }
-    .arrow-right { right: 10px; }
+    .arrow.left {
+      left: 10px;
+    }
 
-    .products-section {
+    .arrow.right {
+      right: 10px;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
       padding: 2rem;
-      text-align: center;
     }
 
-    .products-section h2 {
-      margin-bottom: 2rem;
-      color: #F75B68;
-    }
-
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
-
-    .product {
-      width: 200px;
-      border: 1px solid #eee;
+    .product-card {
+      background: #fff;
       border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-      cursor: pointer;
+      transition: transform 0.3s;
     }
 
-    .product:hover {
-      transform: scale(1.05);
+    .product-card:hover {
+      transform: translateY(-5px);
     }
 
-    .product img {
+    .product-card img {
       width: 100%;
       height: 180px;
       object-fit: cover;
     }
 
-    .product-name {
+    .product-card h3 {
+      font-size: 1rem;
       padding: 1rem;
-      font-weight: bold;
-      background-color: #fff;
     }
 
     .whatsapp-button {
@@ -205,11 +207,11 @@
       <div class="categories-container">
         <a onclick="toggleSubmenu()">Catálogo</a>
         <div class="submenu" id="submenu">
-          <a href="#" onclick="setCategoryCookie('Termos')">Termos</a>
-          <a href="#" onclick="setCategoryCookie('Mates')">Mates</a>
-          <a href="#" onclick="setCategoryCookie('Bolígrafos')">Bolígrafos</a>
-          <a href="#" onclick="setCategoryCookie('Botellas')">Botellas</a>
-          <a href="#" onclick="setCategoryCookie('Indumentaria')">Indumentaria</a>
+          <a href="#">Termos</a>
+          <a href="#">Mates</a>
+          <a href="#">Bolígrafos</a>
+          <a href="#">Botellas</a>
+          <a href="#">Indumentaria</a>
         </div>
       </div>
       <a href="#">Nosotros</a>
@@ -224,31 +226,44 @@
   </section>
 
   <!-- Carrusel -->
-  <div class="slider">
-    <div class="arrow arrow-left" onclick="prevSlide()">❮</div>
-    <div class="arrow arrow-right" onclick="nextSlide()">❯</div>
+  <div class="slider" id="slider">
+    <button class="arrow left" onclick="moveSlide(-1)">❮</button>
     <div class="slides" id="slides">
-      <!-- Agregá tus links a Google Fotos aquí -->
-      <img src="banner1.jpg" alt="Banner 1">
-      <img src="banner2.jpg" alt="Banner 2">
-      <img src="banner3.jpg" alt="Banner 3">
+      <img src="https://images.unsplash.com/photo-1611691547886-cf1f64f241e4" alt="Mono 1">
+      <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783" alt="Mono 2">
+      <img src="https://images.unsplash.com/photo-1543872084-c7bd3822856f" alt="Mono 3">
     </div>
+    <button class="arrow right" onclick="moveSlide(1)">❯</button>
   </div>
 
-  <!-- Sección de productos -->
-  <section class="products-section">
-    <h2>Nuestros Productos</h2>
-    <div class="products">
-      <div class="product"><img src="https://via.placeholder.com/200x180?text=Termo" alt="Termo"><div class="product-name">Termos</div></div>
-      <div class="product"><img src="https://via.placeholder.com/200x180?text=Mate" alt="Mate"><div class="product-name">Mates</div></div>
-      <div class="product"><img src="https://via.placeholder.com/200x180?text=Bol%C3%ADgrafo" alt="Bolígrafo"><div class="product-name">Bolígrafos</div></div>
-      <div class="product"><img src="https://via.placeholder.com/200x180?text=Botella" alt="Botella"><div class="product-name">Botellas</div></div>
-      <div class="product"><img src="https://via.placeholder.com/200x180?text=Indumentaria" alt="Indumentaria"><div class="product-name">Indumentaria</div></div>
+  <!-- Productos -->
+  <section class="product-list">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x180?text=Termo" alt="Termo">
+      <h3>Termo personalizado</h3>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x180?text=Mate" alt="Mate">
+      <h3>Mate clásico</h3>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x180?text=Bolígrafo" alt="Bolígrafo">
+      <h3>Bolígrafo corporativo</h3>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x180?text=Botella" alt="Botella">
+      <h3>Botella deportiva</h3>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x180?text=Indumentaria" alt="Indumentaria">
+      <h3>Remera estampada</h3>
     </div>
   </section>
 
-  <!-- Botón WhatsApp -->
-  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">💬</a>
+  <!-- Botón de WhatsApp -->
+  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">
+    💬
+  </a>
 
   <script>
     function toggleSubmenu() {
@@ -264,31 +279,19 @@
       }
     });
 
-    function setCategoryCookie(category) {
-      document.cookie = "selectedCategory=" + encodeURIComponent(category) + "; path=/";
-    }
-
-    // Carrusel con flechas
     let currentSlide = 0;
     const slides = document.getElementById('slides');
     const totalSlides = slides.children.length;
 
-    function showSlide(index) {
-      if (index < 0) index = totalSlides - 1;
-      if (index >= totalSlides) index = 0;
-      slides.style.transform = `translateX(-${index * 100}%)`;
-      currentSlide = index;
+    function moveSlide(direction) {
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
 
-    function nextSlide() {
-      showSlide(currentSlide + 1);
-    }
-
-    function prevSlide() {
-      showSlide(currentSlide - 1);
-    }
-
-    setInterval(nextSlide, 5000); // Cambia cada 5 segundos
+    setInterval(() => {
+      moveSlide(1);
+    }, 6000);
   </script>
+
 </body>
 </html>
