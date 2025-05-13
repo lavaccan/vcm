@@ -211,63 +211,120 @@
     </div>
     <button class="arrow right" onclick="moveSlide(1)">❯</button>
   </div>
-  <!-- Ofertas destacadas -->
-  <section style="padding: 2rem;">
-    <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">🎯 Ofertas destacadas</h2>
-    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
-      <div style="width: 200px; border: 1px solid #eee; border-radius: 10px; padding: 1rem; text-align: center; transition: transform 0.3s;">
-        <img src="https://images.unsplash.com/photo-1611415513540-9fa7cda5ff1b" alt="Producto 1" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px;">
-        <h3 style="margin-top: 0.5rem;">Termo Clásico</h3>
-        <p style="color: #F75B68; font-weight: bold;">$5.999</p>
-      </div>
-      <div style="width: 200px; border: 1px solid #eee; border-radius: 10px; padding: 1rem; text-align: center; transition: transform 0.3s;">
-        <img src="https://images.unsplash.com/photo-1607082350598-bacb56b0227c" alt="Producto 2" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px;">
-        <h3 style="margin-top: 0.5rem;">Mate Imperial</h3>
-        <p style="color: #F75B68; font-weight: bold;">$4.500</p>
-      </div>
-      <div style="width: 200px; border: 1px solid #eee; border-radius: 10px; padding: 1rem; text-align: center; transition: transform 0.3s;">
-        <img src="https://images.unsplash.com/photo-1583573444203-803dbfcd26c4" alt="Producto 3" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px;">
-        <h3 style="margin-top: 0.5rem;">Bolígrafo Metálico</h3>
-        <p style="color: #F75B68; font-weight: bold;">$1.200</p>
-      </div>
-    </div>
-  </section>
+<!-- Ofertas destacadas -->
+<section class="highlight-title">
+  <h2>Ofertas destacadas</h2>
+</section>
 
-  <!-- Footer -->
-  <footer style="background-color: #f2f2f2; padding: 2rem; text-align: center; margin-top: 2rem;">
-    <p>© 2025 VCM Merchandising. Todos los derechos reservados.</p>
-    <p><a href="#" style="text-decoration: none; color: #F75B68;">Política de privacidad</a> | <a href="#" style="text-decoration: none; color: #F75B68;">Términos y condiciones</a></p>
-  </footer>
+<section class="highlight-products" id="highlight-products">
+  <!-- Aquí se cargarán los productos desde JSON -->
+</section>
 
-  <!-- Scripts -->
-  <script>
-    // Carrusel
-    let currentIndex = 0;
-    const slides = document.getElementById('slides');
-    const totalSlides = slides.children.length;
+<!-- Footer -->
+<footer class="footer-bar">
+  <a href="#">Ubicación</a>
+  <a href="#">Políticas de privacidad</a>
+  <a href="mailto:contacto@empresa.com">Contáctanos</a>
+  <a href="#">Productos</a>
+</footer>
 
-    function moveSlide(direction) {
-      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+<!-- Botón de WhatsApp -->
+<a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">
+  💬
+</a>
+
+<script>
+  // Datos simulados (esto debería estar en un archivo .json real)
+  const productosDestacados = [
+    {
+      nombre: "Mochila personalizada",
+      imagen: "https://via.placeholder.com/300x180?text=Mochila",
+      precio: "$4.500"
+    },
+    {
+      nombre: "Llavero metálico",
+      imagen: "https://via.placeholder.com/300x180?text=Llavero",
+      precio: "$850"
+    },
+    {
+      nombre: "Taza con logo",
+      imagen: "https://via.placeholder.com/300x180?text=Taza",
+      precio: "$1.200"
+    },
+    {
+      nombre: "Cuaderno corporativo",
+      imagen: "https://via.placeholder.com/300x180?text=Cuaderno",
+      precio: "$1.700"
     }
+  ];
 
-    // Menú categorías
-    function toggleSubmenu() {
-      const submenu = document.getElementById("submenu");
-      submenu.style.display = submenu.style.display === "block" ? "none" : "block";
-    }
+  const contenedor = document.getElementById("highlight-products");
 
-    // Hover animaciones en ofertas destacadas
-    const ofertas = document.querySelectorAll("section div > div");
-    ofertas.forEach(oferta => {
-      oferta.addEventListener("mouseenter", () => {
-        oferta.style.transform = "scale(1.05)";
-      });
-      oferta.addEventListener("mouseleave", () => {
-        oferta.style.transform = "scale(1)";
-      });
-    });
-  </script>
+  productosDestacados.forEach(producto => {
+    const card = document.createElement("div");
+    card.classList.add("product-card");
+    card.innerHTML = `
+      <img src="${producto.imagen}" alt="${producto.nombre}">
+      <h3>${producto.nombre}</h3>
+      <p style="padding: 0 1rem 1rem 1rem; font-weight: bold;">${producto.precio}</p>
+    `;
+    contenedor.appendChild(card);
+  });
+</script>
 
-</body>
-</html>
+<style>
+  .highlight-title {
+    padding: 2rem;
+    text-align: center;
+    background-color: #fff;
+  }
+
+  .highlight-title h2 {
+    font-size: 2rem;
+    color: #F75B68;
+    animation: fadeInUp 0.5s ease-out;
+  }
+
+  .highlight-products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    animation: fadeIn 1s ease;
+  }
+
+  .whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 30px;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+  }
+
+  .whatsapp-button:hover {
+    transform: scale(1.1);
+  }
+
+  /* Animaciones estilo Zecat */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
