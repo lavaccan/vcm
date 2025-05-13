@@ -252,6 +252,26 @@
     .category-item a:hover {
       color: #F75B68;
     }
+
+    /* Centrado de la barra de búsqueda */
+    .header-search-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 80px; /* Para que no quede pegado al header */
+    }
+
+    .menu-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .menu {
+      display: flex;
+      gap: 1.2rem;
+    }
   </style>
 </head>
 <body>
@@ -278,85 +298,36 @@
     <a class="cart-icon" href="carrito.html" title="Ver carrito">🛒</a>
   </header>
 
-  <section class="hero">
-    <h1>Bienvenidos a VCM</h1>
-    <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
-  </section>
+  <div class="header-search-container">
+    <section class="hero">
+      <h1>Bienvenidos a VCM</h1>
+      <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
+    </section>
 
-  <!-- Carrusel de Banners -->
-  <div class="slider" id="slider">
-    <button class="arrow left" onclick="moveSlide(-1)">❮</button>
-    <div class="slides" id="slides">
-      <img src="https://images.unsplash.com/photo-1558980664-10a5e7470e62" alt="Banner 1">
-      <img src="https://images.unsplash.com/photo-1573812041185-1a801c3a81eb" alt="Banner 2">
-      <img src="https://images.unsplash.com/photo-1615797311616-05dc636d07bb" alt="Banner 3">
+    <!-- Carrusel de Banners -->
+    <div class="slider" id="slider">
+      <button class="arrow left" onclick="moveSlide(-1)">❮</button>
+      <div class="slides" id="slides">
+        <img src="https://images.unsplash.com/photo-1558980664-10a5e7470e62" alt="Banner 1">
+        <img src="https://images.unsplash.com/photo-1573812041185-1a801c3a81eb" alt="Banner 2">
+        <img src="https://images.unsplash.com/photo-1615797311616-05dc636d07bb" alt="Banner 3">
+      </div>
+      <button class="arrow right" onclick="moveSlide(1)">❯</button>
     </div>
-    <button class="arrow right" onclick="moveSlide(1)">❯</button>
-  </div>
-  
-  <!-- Categorías (Ofertas destacadas y más buscados) -->
-  <section class="categories">
-    <div class="category-item">
-      <h3>Ofertas Destacadas</h3>
-      <a href="#">Ver más</a>
-    </div>
-    <div class="category-item">
-      <h3>Más Buscados</h3>
-      <a href="#">Ver más</a>
-    </div>
-  </section>
 
-  <section class="product-list">
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1592927307067-0fe3f7ebec8f" alt="Producto 1">
-      <h3>Producto 1</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1592927307067-0fe3f7ebec8f" alt="Producto 2">
-      <h3>Producto 2</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://images.unsplash.com/photo-1592927307067-0fe3f7ebec8f" alt="Producto 3">
-      <h3>Producto 3</h3>
-    </div>
-  </section>
+    <!-- Categorías (Ofertas destacadas y más buscados) -->
+    <section class="categories">
+      <div class="category-item">
+        <h3>Ofertas Destacadas</h3>
+        <a href="#">Ver más</a>
+      </div>
+      <div class="category-item">
+        <h3>Más Buscados</h3>
+        <a href="#">Ver más</a>
+      </div>
+    </section>
 
-  <!-- Botón de WhatsApp -->
-  <a href="https://wa.me/5491137750107" target="_blank" class="whatsapp-button">
-    <span>🟢</span>
-  </a>
-
-  <script>
-    let currentSlide = 0;
-    const slides = document.getElementById('slides');
-    const totalSlides = slides.children.length;
-
-    function moveSlide(direction) {
-      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-
-    function toggleSubmenu() {
-      const submenu = document.getElementById('submenu');
-      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-    }
-
-    document.addEventListener('click', function(event) {
-      const submenu = document.getElementById('submenu');
-      const categoriesContainer = document.querySelector('.categories-container');
-      if (!categoriesContainer.contains(event.target)) {
-        submenu.style.display = 'none';
-      }
-    });
-
-    const searchInput = document.getElementById('search-input');
-    searchInput.addEventListener('focus', function() {
-      this.style.width = '500px';
-    });
-
-    searchInput.addEventListener('blur', function() {
-      this.style.width = '350px';
-    });
-  </script>
-</body>
-</html>
+    <section class="product-list">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1592927307067-0fe3f7ebec8f" alt="Producto 1">
+        <h3>Producto 1</h3>
