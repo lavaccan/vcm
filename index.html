@@ -40,19 +40,20 @@
 
     .search-bar {
       position: relative;
-      width: 100%;
       max-width: 400px;
+      flex-grow: 1;
+      margin: 0 1rem;
       transition: all 0.3s ease;
     }
 
     .search-bar input {
+      width: 100%;
       padding: 0.6rem 1rem;
       border-radius: 20px;
       border: none;
       font-size: 1rem;
       color: #777;
       background-color: #F2F2F2;
-      width: 100%;
       transition: all 0.3s ease;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
@@ -61,19 +62,17 @@
       outline: none;
       background-color: #FFF;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 100%;
     }
 
     .search-suggestions {
       display: none;
       position: absolute;
-      background-color: white;
       width: 100%;
       top: 110%;
+      background-color: white;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       z-index: 20;
-      padding: 0.5rem 0;
     }
 
     .search-suggestions div {
@@ -88,34 +87,36 @@
     .menu {
       display: flex;
       gap: 1.2rem;
-      margin-right: 2rem;
     }
 
     .menu a {
       text-decoration: none;
       color: white;
       font-weight: 600;
-      cursor: pointer;
+    }
+
+    .categories-container {
+      position: relative;
     }
 
     .submenu {
       display: none;
       position: absolute;
-      background-color: #FFFFFF;
+      background-color: white;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
       padding: 1rem;
       top: 40px;
       left: 0;
       min-width: 200px;
       z-index: 10;
-      border-radius: 10px;
     }
 
     .submenu a {
-      color: #333;
-      text-decoration: none;
       display: block;
+      color: #333;
       margin-bottom: 0.5rem;
+      text-decoration: none;
     }
 
     .submenu a:hover {
@@ -124,14 +125,10 @@
       padding-left: 10px;
     }
 
-    .categories-container {
-      position: relative;
-    }
-
     .cart-icon {
       font-size: 1.5rem;
-      color: white;
       text-decoration: none;
+      color: white;
     }
 
     .whatsapp-button {
@@ -149,7 +146,6 @@
 
     .whatsapp-button:hover {
       background-color: #128C7E;
-      cursor: pointer;
     }
 
     .hero {
@@ -170,8 +166,8 @@
 
     .slides {
       display: flex;
-      transition: transform 1s ease-in-out;
       width: 300%;
+      transition: transform 1s ease-in-out;
     }
 
     .slides img {
@@ -186,12 +182,12 @@
       top: 50%;
       transform: translateY(-50%);
       font-size: 2rem;
-      color: white;
       background-color: rgba(0, 0, 0, 0.3);
       border: none;
+      color: white;
       padding: 0.5rem 1rem;
-      cursor: pointer;
       z-index: 10;
+      cursor: pointer;
     }
 
     .arrow.left {
@@ -205,8 +201,8 @@
     .category-carousel {
       display: flex;
       gap: 1rem;
-      margin-top: 2rem;
       padding: 1rem;
+      margin-top: 2rem;
       overflow-x: auto;
     }
 
@@ -219,11 +215,10 @@
   </style>
 </head>
 <body>
-
   <header>
     <div class="logo" onclick="window.location.href='index.html'">VCM</div>
     <div class="search-bar" id="searchBar">
-      <input type="text" id="searchInput" placeholder="Buscar productos o categorías" onfocus="showSuggestions()"/>
+      <input type="text" id="searchInput" placeholder="Buscar productos o categorías" onfocus="showSuggestions()" />
       <div class="search-suggestions" id="suggestions">
         <div onclick="selectSuggestion('Mates')">Mates</div>
         <div onclick="selectSuggestion('Termos')">Termos</div>
@@ -254,7 +249,7 @@
     <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
 
-  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank">📲</a>
+  <a href="https://wa.me/+5491131904180" class="whatsapp-button" target="_blank">📲</a>
 
   <section class="slider" id="bannerSlider">
     <div class="slides" id="slidesBanners">
@@ -268,7 +263,7 @@
 
   <section id="masBuscados">
     <h2>Lo Más Buscado</h2>
-    <div class="category-carousel" id="carouselMasBuscados">
+    <div class="category-carousel">
       <img src="https://via.placeholder.com/200x150?text=Mates" alt="Mate">
       <img src="https://via.placeholder.com/200x150?text=Termos" alt="Termo">
       <img src="https://via.placeholder.com/200x150?text=Botellas" alt="Botella">
@@ -278,7 +273,7 @@
 
   <section id="ofertasDestacadas">
     <h2>Ofertas Destacadas</h2>
-    <div class="slider" id="sliderOfertasDestacadas">
+    <div class="slider">
       <button class="arrow left" onclick="moveSlide(-1, 'ofertasDestacadas')">❮</button>
       <div class="slides" id="slidesOfertasDestacadas">
         <img src="https://via.placeholder.com/300x180?text=Oferta+1" alt="Oferta 1">
@@ -294,14 +289,12 @@
     let currentSlideOfertasDestacadas = 0;
 
     function moveSlide(direction, section) {
-      const slides = section === 'banners'
-        ? document.getElementById('slidesBanners')
-        : document.getElementById('slidesOfertasDestacadas');
+      const slides = document.getElementById(section === 'banners' ? 'slidesBanners' : 'slidesOfertasDestacadas');
       const totalSlides = slides.children.length;
-      const current = section === 'banners' ? currentSlideBanners : currentSlideOfertasDestacadas;
+      let current = section === 'banners' ? currentSlideBanners : currentSlideOfertasDestacadas;
 
       const next = (current + direction + totalSlides) % totalSlides;
-      slides.style.transform = translateX(-${next * 100}%);
+      slides.style.transform = `translateX(-${next * 100}%)`;
 
       if (section === 'banners') currentSlideBanners = next;
       else currentSlideOfertasDestacadas = next;
@@ -312,19 +305,14 @@
       submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
 
-    window.addEventListener('click', function(event) {
+    window.addEventListener('click', function(e) {
       const submenu = document.getElementById('submenu');
       const categoriesContainer = document.querySelector('.categories-container');
       const searchBar = document.getElementById('searchBar');
       const suggestions = document.getElementById('suggestions');
 
-      if (!categoriesContainer.contains(event.target)) {
-        submenu.style.display = 'none';
-      }
-
-      if (!searchBar.contains(event.target)) {
-        suggestions.style.display = 'none';
-      }
+      if (!categoriesContainer.contains(e.target)) submenu.style.display = 'none';
+      if (!searchBar.contains(e.target)) suggestions.style.display = 'none';
     });
 
     function showSuggestions() {
