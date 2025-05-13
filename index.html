@@ -37,10 +37,25 @@
       font-size: 1.5rem;
     }
 
+    .search-bar {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-bar input {
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      border: none;
+      font-size: 1rem;
+      background-color: #F2F2F2;
+      width: 400px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
     .menu {
       display: flex;
       gap: 1.2rem;
-      margin-right: 2rem;
     }
 
     .menu a {
@@ -50,17 +65,13 @@
       cursor: pointer;
     }
 
-    .categories-container {
-      position: relative;
-    }
-
     .submenu {
       display: none;
       position: absolute;
       background-color: #FFFFFF;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
       padding: 1rem;
-      top: 40px;
+      top: 60px;
       left: 0;
       min-width: 200px;
       z-index: 10;
@@ -80,37 +91,28 @@
       padding-left: 10px;
     }
 
+    .categories-container {
+      position: relative;
+    }
+
     .cart-icon {
       font-size: 1.5rem;
       color: white;
       text-decoration: none;
+      margin-left: 1rem;
     }
 
-    .search-section {
-      background-color: #D1D3D4;
-      padding: 5rem 2rem 1rem;
-      text-align: center;
-      margin-top: 70px;
-    }
-
-    .search-section input {
-      padding: 0.6rem 1rem;
-      border-radius: 20px;
-      border: none;
-      font-size: 1rem;
-      width: 50%;
-      max-width: 500px;
-      background-color: #f2f2f2;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    .main-content {
+      padding-top: 100px;
     }
 
     .categories-bar {
       background-color: #f4f4f4;
-      padding: 1rem;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
       gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ddd;
     }
 
     .categories-bar a {
@@ -118,10 +120,9 @@
       color: #333;
       font-weight: 600;
       padding: 0.5rem 1rem;
-      background-color: white;
-      border-radius: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: background-color 0.3s, color 0.3s;
+      background-color: #fff;
+      border-radius: 5px;
+      transition: background-color 0.3s;
     }
 
     .categories-bar a:hover {
@@ -129,11 +130,12 @@
       color: white;
     }
 
-    .hero {
-      background-color: #F75B68;
-      color: white;
+    .section-title {
       text-align: center;
-      padding: 2rem;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin: 2rem 0 1rem;
+      color: #F75B68;
     }
 
     .slider {
@@ -141,7 +143,6 @@
       overflow: hidden;
       width: 100%;
       height: 250px;
-      margin-top: 20px;
     }
 
     .slides {
@@ -170,13 +171,8 @@
       z-index: 10;
     }
 
-    .arrow.left {
-      left: 10px;
-    }
-
-    .arrow.right {
-      right: 10px;
-    }
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
 
     .product-list {
       display: grid;
@@ -208,24 +204,6 @@
       padding: 1rem;
     }
 
-    .whatsapp-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 30px;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
     .footer-bar {
       background-color: #D1D3D4;
       padding: 1.5rem;
@@ -243,12 +221,33 @@
     .footer-bar a:hover {
       color: #F75B68;
     }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 30px;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
   </style>
 </head>
 <body>
 
   <header>
     <div class="logo">VCM</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar productos o categorías" />
+    </div>
     <nav class="menu">
       <a href="#">Inicio</a>
       <div class="categories-container">
@@ -263,67 +262,61 @@
       </div>
       <a href="#">Nosotros</a>
       <a href="#">Ayuda</a>
+      <a class="cart-icon" href="#">🛒</a>
     </nav>
-    <a class="cart-icon" href="carrito.html" title="Ver carrito">🛒</a>
   </header>
 
-  <!-- Buscador debajo del header -->
-  <section class="search-section">
-    <input type="text" placeholder="Buscar productos o categorías" />
-  </section>
+  <div class="main-content">
 
-  <!-- Barra de categorías -->
-  <div class="categories-bar">
-    <a href="#">Termos</a>
-    <a href="#">Mates</a>
-    <a href="#">Botellas</a>
-    <a href="#">Bolígrafos</a>
-    <a href="#">Textil</a>
-    <a href="#">Tecnología</a>
-    <a href="#">Accesorios</a>
+    <!-- Barra de categorías -->
+    <div class="categories-bar">
+      <a href="#">Termos</a>
+      <a href="#">Mates</a>
+      <a href="#">Botellas</a>
+      <a href="#">Textiles</a>
+      <a href="#">Escritorio</a>
+    </div>
+
+    <!-- Carrusel -->
+    <div class="slider" id="slider">
+      <button class="arrow left" onclick="moveSlide(-1)">❮</button>
+      <div class="slides" id="slides">
+        <img src="https://images.unsplash.com/photo-1558980664-10a5e7470e62" alt="Banner 1">
+        <img src="https://images.unsplash.com/photo-1573812041185-1a801c3a81eb" alt="Banner 2">
+        <img src="https://images.unsplash.com/photo-1615797311616-05dc636d07bb" alt="Banner 3">
+      </div>
+      <button class="arrow right" onclick="moveSlide(1)">❯</button>
+    </div>
+
+    <!-- Ofertas destacadas -->
+    <h2 class="section-title">Ofertas destacadas</h2>
+    <section class="product-list">
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x180?text=Termo" alt="Termo">
+        <h3>Termo en oferta</h3>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x180?text=Mate" alt="Mate">
+        <h3>Mate con descuento</h3>
+      </div>
+    </section>
+
+    <!-- Lo más buscado -->
+    <h2 class="section-title">Lo más buscado</h2>
+    <section class="product-list">
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x180?text=Bolígrafo" alt="Bolígrafo">
+        <h3>Bolígrafo premium</h3>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/300x180?text=Botella" alt="Botella">
+        <h3>Botella térmica</h3>
+      </div>
+    </section>
+
   </div>
 
-  <section class="hero">
-    <h1>Bienvenidos a VCM</h1>
-    <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
-  </section>
-
-  <!-- Carrusel -->
-  <div class="slider" id="slider">
-    <button class="arrow left" onclick="moveSlide(-1)">❮</button>
-    <div class="slides" id="slides">
-      <img src="https://images.unsplash.com/photo-1558980664-10a5e7470e62" alt="Banner 1">
-      <img src="https://images.unsplash.com/photo-1573812041185-1a801c3a81eb" alt="Banner 2">
-      <img src="https://images.unsplash.com/photo-1615797311616-05dc636d07bb" alt="Banner 3">
-    </div>
-    <button class="arrow right" onclick="moveSlide(1)">❯</button>
-  </div>
-
-  <!-- Productos -->
-  <section class="product-list">
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Termo" alt="Termo">
-      <h3>Termo personalizado</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Mate" alt="Mate">
-      <h3>Mate clásico</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Bolígrafo" alt="Bolígrafo">
-      <h3>Bolígrafo corporativo</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Botella" alt="Botella">
-      <h3>Botella deportiva</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Indumentaria" alt="Indumentaria">
-      <h3>Remera estampada</h3>
-    </div>
-  </section>
-
-  <!-- Barra gris con enlaces -->
+  <!-- Barra gris -->
   <div class="footer-bar">
     <a href="#">Ubicación</a>
     <a href="#">Políticas de privacidad</a>
@@ -331,10 +324,8 @@
     <a href="#">Productos</a>
   </div>
 
-  <!-- Botón de WhatsApp -->
-  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">
-    💬
-  </a>
+  <!-- WhatsApp -->
+  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">💬</a>
 
   <script>
     function toggleSubmenu() {
