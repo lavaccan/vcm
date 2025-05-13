@@ -3,350 +3,223 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VCM - Catálogo de Merchandising</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <title>VCM</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #FFFFFF;
-      color: #333;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
     }
 
     header {
-      background-color: #F75B68;
+      background-color: #ffffff;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 1rem 2rem;
-      color: white;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .search-bar {
       position: relative;
-      width: 100%;
-      max-width: 400px;
-      transition: all 0.3s ease;
     }
 
-    .search-bar input {
-      padding: 0.6rem 1rem;
-      border-radius: 20px;
-      border: none;
-      font-size: 1rem;
-      color: #000; /* Cambio de color de texto a negro */
-      background-color: #F2F2F2;
-      width: 100%;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-bar input:focus {
+    #searchInput {
+      padding: 10px;
+      width: 150px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
       outline: none;
-      background-color: #FFF;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 100%;
+      font-size: 16px;
+      color: black;
     }
 
-    .search-suggestions {
-      display: none;
-      position: absolute;
-      background-color: white;
-      width: 100%;
-      top: 110%;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      z-index: 20;
-      padding: 0.5rem 0;
-    }
-
-    .search-suggestions div {
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-    }
-
-    .search-suggestions div:hover {
-      background-color: #f2f2f2;
-    }
-
-    .menu {
+    nav {
+      background-color: #ffffff;
       display: flex;
-      gap: 1.2rem;
-      margin-right: 2rem;
+      justify-content: center;
+      padding: 10px;
+      gap: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .menu a {
-      text-decoration: none;
-      color: white;
-      font-weight: 600;
+    .categoria {
       cursor: pointer;
+      padding: 8px 16px;
+      background-color: #eee;
+      border-radius: 20px;
+      transition: background-color 0.3s;
     }
 
-    .submenu {
+    .categoria:hover {
+      background-color: #ccc;
+    }
+
+    .seccion {
+      padding: 20px;
+    }
+
+    .titulo-seccion {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+
+    .carousel::-webkit-scrollbar {
       display: none;
-      position: absolute;
-      background-color: #FFFFFF;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      top: 40px;
-      left: 0;
+    }
+
+    .item {
       min-width: 200px;
-      z-index: 10;
+      height: 200px;
+      margin-right: 10px;
+      background-color: #ddd;
       border-radius: 10px;
+      transition: transform 0.3s;
     }
 
-    .submenu a {
-      color: #333;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
+    .item:hover {
+      transform: scale(1.05);
     }
 
-    .submenu a:hover {
-      color: #F75B68;
-      background-color: #f7f7f7;
-      padding-left: 10px;
-    }
-
-    .categories-container {
-      position: relative;
-    }
-
-    .cart-icon {
-      font-size: 1.5rem;
-      color: white;
-      text-decoration: none;
-    }
-
-    .whatsapp-button {
+    #whatsapp {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #25D366;
+      background-color: #25d366;
+      color: white;
+      padding: 10px 15px;
       border-radius: 50%;
-      padding: 15px;
-      color: white;
       font-size: 24px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      z-index: 100;
+      text-decoration: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    .whatsapp-button:hover {
-      background-color: #128C7E;
-      cursor: pointer;
-    }
-
-    .hero {
-      background-color: #F75B68;
+    footer {
+      background-color: #222;
       color: white;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 70px;
-    }
-
-    .slider {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 250px;
-      margin-top: 20px;
-    }
-
-    .slides {
+      padding: 20px;
       display: flex;
-      transition: transform 1s ease-in-out;
-      width: 300%;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
-    .slides img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      flex-shrink: 0;
+    .footer-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
+    .footer-section a {
       color: white;
-      background-color: rgba(0, 0, 0, 0.3);
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .arrow.left {
-      left: 10px;
-    }
-
-    .arrow.right {
-      right: 10px;
-    }
-
-    .category-carousel {
+      text-decoration: none;
       display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-      padding: 1rem;
-      overflow-x: auto;
+      align-items: center;
+      gap: 5px;
     }
 
-    .category-carousel img {
-      width: 200px;
-      height: 150px;
-      object-fit: cover;
-      flex-shrink: 0;
+    .footer-section a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="logo" onclick="window.location.href='index.html'">VCM</div>
-    <div class="search-bar" id="searchBar">
-      <input type="text" id="searchInput" placeholder="Buscar productos o categorías" onfocus="showSuggestions()"/>
-      <div class="search-suggestions" id="suggestions">
-        <div onclick="selectSuggestion('Mates')">Mates</div>
-        <div onclick="selectSuggestion('Termos')">Termos</div>
-        <div onclick="selectSuggestion('Botellas')">Botellas</div>
-        <div onclick="selectSuggestion('Remeras')">Remeras</div>
-      </div>
-    </div>
-    <nav class="menu">
-      <a href="#">Inicio</a>
-      <div class="categories-container">
-        <a onclick="toggleSubmenu()">Catálogo</a>
-        <div class="submenu" id="submenu">
-          <a href="#">Termos</a>
-          <a href="#">Mates</a>
-          <a href="#">Bolígrafos</a>
-          <a href="#">Botellas</a>
-          <a href="#">Indumentaria</a>
-        </div>
-      </div>
-      <a href="#">Nosotros</a>
-      <a href="#">Ayuda</a>
-    </nav>
-    <a class="cart-icon" href="carrito.html" title="Ver carrito">🛒</a>
+    <input type="text" id="searchInput" placeholder="Buscar..."/>
   </header>
 
-  <section class="hero">
-    <h1>Bienvenidos a VCM</h1>
-    <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
-  </section>
+  <nav>
+    <div class="categoria">Ofertas Destacadas</div>
+    <div class="categoria">Lo Más Buscado</div>
+    <div class="categoria">Descubrí</div>
+  </nav>
 
-  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank">📲</a>
-
-  <section class="slider" id="bannerSlider">
-    <div class="slides" id="slidesBanners">
-      <img src="https://via.placeholder.com/1200x400?text=Banner+1" alt="Banner 1">
-      <img src="https://via.placeholder.com/1200x400?text=Banner+2" alt="Banner 2">
-      <img src="https://via.placeholder.com/1200x400?text=Banner+3" alt="Banner 3">
-    </div>
-    <button class="arrow left" onclick="moveSlide(-1, 'banners')">❮</button>
-    <button class="arrow right" onclick="moveSlide(1, 'banners')">❯</button>
-  </section>
-
-  <section id="masBuscados">
-    <h2>Lo Más Buscado</h2>
-    <div class="category-carousel" id="carouselMasBuscados">
-      <img src="https://via.placeholder.com/200x150?text=Mates" alt="Mate">
-      <img src="https://via.placeholder.com/200x150?text=Termos" alt="Termo">
-      <img src="https://via.placeholder.com/200x150?text=Botellas" alt="Botella">
-      <img src="https://via.placeholder.com/200x150?text=Indumentaria" alt="Indumentaria">
+  <section class="seccion">
+    <div class="titulo-seccion">Ofertas Destacadas</div>
+    <div class="carousel" id="carouselOfertas">
+      <div class="item">Mate 1</div>
+      <div class="item">Mate 2</div>
+      <div class="item">Mate 3</div>
+      <div class="item">Mate 4</div>
     </div>
   </section>
 
-  <section id="ofertasDestacadas">
-    <h2>Ofertas Destacadas</h2>
-    <div class="category-carousel" id="carouselOfertas">
-      <img src="https://via.placeholder.com/200x150?text=Promo+1" alt="Promo 1">
-      <img src="https://via.placeholder.com/200x150?text=Promo+2" alt="Promo 2">
-      <img src="https://via.placeholder.com/200x150?text=Promo+3" alt="Promo 3">
-      <img src="https://via.placeholder.com/200x150?text=Promo+4" alt="Promo 4">
+  <section class="seccion">
+    <div class="titulo-seccion">Lo Más Buscado</div>
+    <div class="carousel" id="carouselBuscado">
+      <div class="item">Producto A</div>
+      <div class="item">Producto B</div>
+      <div class="item">Producto C</div>
+    </div>
+  </section>
+  <section class="seccion">
+    <div class="titulo-seccion">Descubrí</div>
+    <div class="carousel" id="carouselDescubri">
+      <div class="item">Novedad 1</div>
+      <div class="item">Novedad 2</div>
+      <div class="item">Novedad 3</div>
     </div>
   </section>
 
-  <section id="descubri">
-    <h2>Descubrí</h2>
-    <div class="category-carousel">
-      <img src="https://via.placeholder.com/200x150?text=Nuevos" alt="Nuevos">
-      <img src="https://via.placeholder.com/200x150?text=Personalizables" alt="Personalizables">
-      <img src="https://via.placeholder.com/200x150?text=Edici%C3%B3n+Limitada" alt="Edición Limitada">
-    </div>
-  </section>
+  <a id="whatsapp" href="https://wa.me/5491123456789" target="_blank">💬</a>
 
-  <footer style="background-color: #F2F2F2; padding: 2rem; text-align: center;">
-    <div style="margin-bottom: 1rem;">
-      <h3>Seguinos</h3>
-      <a href="https://www.linkedin.com" target="_blank" style="margin: 0 10px;">🔗 LinkedIn</a>
-      <a href="https://www.instagram.com" target="_blank" style="margin: 0 10px;">📸 Instagram</a>
-      <a href="https://www.facebook.com" target="_blank" style="margin: 0 10px;">📘 Facebook</a>
+  <footer>
+    <div class="footer-section">
+      <strong>Seguinos</strong>
+      <a href="https://www.instagram.com" target="_blank">📷 Instagram</a>
+      <a href="https://www.facebook.com" target="_blank">📘 Facebook</a>
+      <a href="https://www.linkedin.com" target="_blank">💼 LinkedIn</a>
     </div>
-    <div>
-      <h3>Contactanos</h3>
-      <p>📞 +54 9 11 7098-3414</p>
-      <p>📧 vcmmarking@gmail.com</p>
+
+    <div class="footer-section">
+      <strong>Contactanos</strong>
+      <span>📞 +54 9 11 2345-6789</span>
+      <a href="mailto:vcmmarking@gmail.com">📧 vcmmarking@gmail.com</a>
     </div>
   </footer>
 
   <script>
-    const searchBar = document.getElementById('searchBar');
-    const suggestions = document.getElementById('suggestions');
-    const submenu = document.getElementById('submenu');
-
-    function showSuggestions() {
-      suggestions.style.display = 'block';
+    // Carrusel infinito automático
+    function autoScrollCarousel(carouselId) {
+      const carousel = document.getElementById(carouselId);
+      let scrollAmount = 0;
+      setInterval(() => {
+        scrollAmount += 1;
+        if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
+          scrollAmount = 0;
+        }
+        carousel.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+      }, 30);
     }
 
-    function selectSuggestion(text) {
-      document.getElementById('searchInput').value = text;
-      suggestions.style.display = 'none';
-    }
+    autoScrollCarousel("carouselOfertas");
+    autoScrollCarousel("carouselBuscado");
+    autoScrollCarousel("carouselDescubri");
+    // Animación divertida para la barra de búsqueda
+    const searchInput = document.getElementById("searchInput");
 
-    document.addEventListener('click', function(event) {
-      if (!searchBar.contains(event.target)) {
-        suggestions.style.display = 'none';
-      }
-      if (!submenu.contains(event.target)) {
-        submenu.style.display = 'none';
-      }
+    searchInput.addEventListener("focus", () => {
+      searchInput.style.transition = "all 0.4s ease";
+      searchInput.style.transform = "scale(1.05)";
+      searchInput.style.boxShadow = "0 0 15px rgba(0, 0, 0, 0.3)";
     });
 
-    function toggleSubmenu() {
-      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-    }
+    searchInput.addEventListener("blur", () => {
+      searchInput.style.transform = "scale(1)";
+      searchInput.style.boxShadow = "none";
+    });
 
-    let currentBanner = 0;
-
-    function moveSlide(step, slider) {
-      const slides = document.getElementById('slidesBanners');
-      const total = slides.children.length;
-      currentBanner = (currentBanner + step + total) % total;
-      slides.style.transform = `translateX(-${currentBanner * 100}%)`;
-    }
-
-    setInterval(() => moveSlide(1, 'banners'), 5000);
+    // Cierre del menú de categorías al hacer clic fuera
+    document.addEventListener("click", function (event) {
+      const menu = document.getElementById("categoryMenu");
+      const toggle = document.getElementById("categoryToggle");
+      if (!menu.contains(event.target) && !toggle.contains(event.target)) {
+        menu.style.display = "none";
+      }
+    });
   </script>
-
 </body>
 </html>
