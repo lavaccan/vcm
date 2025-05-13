@@ -61,6 +61,32 @@
       cursor: pointer;
     }
 
+    .submenu {
+      display: none;
+      position: absolute;
+      background-color: #FFFFFF;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      top: 40px;
+      left: 0;
+      min-width: 200px;
+      z-index: 10;
+      border-radius: 10px;
+    }
+
+    .submenu a {
+      color: #333;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .submenu a:hover {
+      color: #F75B68;
+      background-color: #f7f7f7;
+      padding-left: 10px;
+    }
+
     .categories-container {
       position: relative;
     }
@@ -169,24 +195,23 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
-    /* Pie de página */
-    .footer {
-      background-color: #F1F1F1;
-      color: #333;
+    /* Nueva barra gris debajo de los productos */
+    .footer-bar {
+      background-color: #D1D3D4;
+      padding: 1.5rem;
       text-align: center;
-      padding: 2rem 0;
-      margin-top: 30px;
     }
 
-    .footer a {
+    .footer-bar a {
       text-decoration: none;
       color: #333;
-      margin: 0 1rem;
       font-weight: 600;
+      margin: 0 1rem;
+      transition: color 0.3s;
     }
 
-    .footer a:hover {
-      text-decoration: underline;
+    .footer-bar a:hover {
+      color: #F75B68;
     }
   </style>
 </head>
@@ -199,7 +224,16 @@
     </div>
     <nav class="menu">
       <a href="#">Inicio</a>
-      <a href="#">Catálogo</a>
+      <div class="categories-container">
+        <a onclick="toggleSubmenu()">Catálogo</a>
+        <div class="submenu" id="submenu">
+          <a href="#">Termos</a>
+          <a href="#">Mates</a>
+          <a href="#">Bolígrafos</a>
+          <a href="#">Botellas</a>
+          <a href="#">Indumentaria</a>
+        </div>
+      </div>
       <a href="#">Nosotros</a>
       <a href="#">Ayuda</a>
     </nav>
@@ -215,9 +249,9 @@
   <div class="slider" id="slider">
     <button class="arrow left" onclick="moveSlide(-1)">❮</button>
     <div class="slides" id="slides">
-      <img src="https://via.placeholder.com/1200x250/0000FF/FFFFFF?text=Banner+1" alt="Banner 1">
-      <img src="https://via.placeholder.com/1200x250/FF0000/FFFFFF?text=Banner+2" alt="Banner 2">
-      <img src="https://via.placeholder.com/1200x250/00FF00/FFFFFF?text=Banner+3" alt="Banner 3">
+      <img src="https://images.unsplash.com/photo-1558980664-10a5e7470e62" alt="Banner 1">
+      <img src="https://images.unsplash.com/photo-1573812041185-1a801c3a81eb" alt="Banner 2">
+      <img src="https://images.unsplash.com/photo-1615797311616-05dc636d07bb" alt="Banner 3">
     </div>
     <button class="arrow right" onclick="moveSlide(1)">❯</button>
   </div>
@@ -246,20 +280,33 @@
     </div>
   </section>
 
+  <!-- Barra gris con enlaces -->
+  <div class="footer-bar">
+    <a href="#">Ubicación</a>
+    <a href="#">Políticas de privacidad</a>
+    <a href="mailto:contacto@empresa.com">Contáctanos</a>
+    <a href="#">Productos</a>
+  </div>
+
   <!-- Botón de WhatsApp -->
   <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">
     💬
   </a>
 
-  <!-- Pie de página -->
-  <div class="footer">
-    <a href="#">Ubicación</a>
-    <a href="#">Políticas de privacidad</a>
-    <a href="mailto:contacto@vcm.com">Contáctanos</a>
-    <a href="#">Productos</a>
-  </div>
-
   <script>
+    function toggleSubmenu() {
+      const submenu = document.getElementById('submenu');
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function(event) {
+      const submenu = document.getElementById('submenu');
+      const categories = document.querySelector('.categories-container');
+      if (!categories.contains(event.target)) {
+        submenu.style.display = 'none';
+      }
+    });
+
     let currentSlide = 0;
     const slides = document.getElementById('slides');
     const totalSlides = slides.children.length;
