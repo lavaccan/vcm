@@ -61,32 +61,6 @@
       text-decoration: underline;
     }
 
-    .submenu {
-      display: none;
-      position: absolute;
-      background-color: #FFFFFF;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      top: 40px;
-      left: 0;
-      min-width: 200px;
-      z-index: 10;
-      border-radius: 10px;
-    }
-
-    .submenu a {
-      color: #333;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .submenu a:hover {
-      color: #F75B68;
-      background-color: #f7f7f7;
-      padding-left: 10px;
-    }
-
     .categories-container {
       position: relative;
     }
@@ -143,6 +117,36 @@
       z-index: 1000;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
+
+    .product {
+      background-color: #f7f7f7;
+      padding: 1rem;
+      margin: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .cart-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding: 1rem 0;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
   </style>
 </head>
 <body>
@@ -184,6 +188,19 @@
     </div>
   </div>
 
+  <!-- Productos -->
+  <div class="product" data-name="Termo X" data-price="1000">
+    <h2>Termo X</h2>
+    <p>Precio: $1000</p>
+    <button onclick="addToCart('Termo X', 1000)">Agregar al carrito</button>
+  </div>
+
+  <div class="product" data-name="Mate Y" data-price="800">
+    <h2>Mate Y</h2>
+    <p>Precio: $800</p>
+    <button onclick="addToCart('Mate Y', 800)">Agregar al carrito</button>
+  </div>
+
   <!-- Botón de WhatsApp -->
   <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">
     💬
@@ -207,6 +224,12 @@
       document.cookie = "selectedCategory=" + encodeURIComponent(category) + "; path=/";
     }
 
+    function addToCart(productName, productPrice) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push({ name: productName, price: productPrice });
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
     // Carrusel automático
     let currentSlide = 0;
     const slides = document.querySelector('.slides');
@@ -217,6 +240,11 @@
       slides.style.transform = `translateX(-${currentSlide * 100}%)`;
     }, 4000);
   </script>
+
+</body>
+</html>
+
+<!-- Página del carrito -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -225,12 +253,7 @@
   <title>Carrito de Compras - VCM</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* Estilos para la página del carrito */
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: #f9f9f9;
@@ -264,3 +287,32 @@
     .cart-item:last-child {
       border-bottom: none;
     }
+  </style>
+</head>
+<body>
+
+  <h1>Tu Carrito</h1>
+
+  <div class="cart-container" id="cartContainer"></div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartContainer = document.getElementById('cartContainer');
+
+    if (cart.length === 0) {
+      cartContainer.innerHTML = '<p>Tu carrito está vacío.</p>';
+    } else {
+      cart.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('cart-item');
+        itemDiv.innerHTML = `
+          <p>${item.name}</p>
+          <p>$${item.price}</p>
+        `;
+        cartContainer.appendChild(itemDiv);
+      });
+    }
+  </script>
+
+</body>
+</html>
