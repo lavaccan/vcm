@@ -21,7 +21,7 @@
     header {
       background-color: #F75B68;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
       color: white;
@@ -30,23 +30,18 @@
       top: 0;
       z-index: 100;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      gap: 2rem;
     }
 
     .logo {
       font-weight: 700;
       font-size: 1.5rem;
-      margin-right: auto;
-    }
-
-    .logo a {
-      color: white;
-      text-decoration: none;
+      cursor: pointer;
     }
 
     .search-bar {
       position: relative;
-      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 400px;
     }
 
     .search-bar input {
@@ -56,32 +51,20 @@
       font-size: 1rem;
       color: #777;
       background-color: #F2F2F2;
-      width: 250px;
-      transition: width 0.4s ease;
+      width: 100%;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .search-bar input:focus {
-      width: 400px;
       outline: none;
+      background-color: #FFF;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-    .cart-icon {
-      font-size: 1.5rem;
-      color: white;
-      text-decoration: none;
-    }
-
-    .category-bar {
-      background-color: #F75B68;
-      padding: 1rem 2rem;
+    .menu {
       display: flex;
-      gap: 2rem;
-      margin-top: 70px;
-    }
-
-    .categories-container {
-      position: relative;
+      gap: 1.2rem;
+      margin-right: 2rem;
     }
 
     .menu a {
@@ -117,12 +100,40 @@
       padding-left: 10px;
     }
 
+    .categories-container {
+      position: relative;
+    }
+
+    .cart-icon {
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      border-radius: 50%;
+      padding: 15px;
+      color: white;
+      font-size: 24px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
+
+    .whatsapp-button:hover {
+      background-color: #128C7E;
+      cursor: pointer;
+    }
+
     .hero {
       background-color: #F75B68;
       color: white;
       text-align: center;
       padding: 2rem;
-      margin-top: 20px;
+      margin-top: 70px;
     }
 
     .slider {
@@ -166,20 +177,31 @@
     .arrow.right {
       right: 10px;
     }
+
+    .category-carousel {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+
+    .category-carousel img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo"><a href="index.html">VCM</a></div>
+    <div class="logo" onclick="window.location.href='index.html'">VCM</div>
     <div class="search-bar">
-      <input type="text" placeholder="Buscar productos o categorías" />
+      <input type="text" id="search-input" placeholder="Buscar productos o categorías"/>
     </div>
-    <a class="cart-icon" href="carrito.html" title="Ver carrito">🛒</a>
-  </header>
-
-  <nav class="category-bar">
-    <div class="menu">
+    <nav class="menu">
       <a href="#">Inicio</a>
       <div class="categories-container">
         <a onclick="toggleSubmenu()">Catálogo</a>
@@ -193,80 +215,92 @@
       </div>
       <a href="#">Nosotros</a>
       <a href="#">Ayuda</a>
-    </div>
-  </nav>
+    </nav>
+    <a class="cart-icon" href="carrito.html" title="Ver carrito">🛒</a>
+  </header>
 
   <section class="hero">
     <h1>Bienvenidos a VCM</h1>
     <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
 
-  <!-- Carrusel -->
-  <div class="slider" id="slider">
-    <button class="arrow left" onclick="moveSlide(-1)">❮</button>
-    <div class="slides" id="slides">
-      <img src="https://images.unsplash.com/photo-1558980664-10a5e7470e62" alt="Banner 1">
-      <img src="https://images.unsplash.com/photo-1573812041185-1a801c3a81eb" alt="Banner 2">
-      <img src="https://images.unsplash.com/photo-1615797311616-05dc636d07bb" alt="Banner 3">
+  <!-- Botón de WhatsApp -->
+  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank">📲</a>
+  <!-- Carrusel de Banners -->
+  <section class="slider" id="bannerSlider">
+    <div class="slides" id="slidesBanners">
+      <img src="https://via.placeholder.com/1200x400?text=Banner+1" alt="Banner 1">
+      <img src="https://via.placeholder.com/1200x400?text=Banner+2" alt="Banner 2">
+      <img src="https://via.placeholder.com/1200x400?text=Banner+3" alt="Banner 3">
     </div>
-    <button class="arrow right" onclick="moveSlide(1)">❯</button>
-  </div>
-  <!-- Ofertas destacadas -->
-  <section style="padding: 2rem;">
-    <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">🎯 Ofertas destacadas</h2>
-    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
-      <div style="width: 200px; border: 1px solid #eee; border-radius: 10px; padding: 1rem; text-align: center; transition: transform 0.3s;">
-        <img src="https://images.unsplash.com/photo-1611415513540-9fa7cda5ff1b" alt="Producto 1" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px;">
-        <h3 style="margin-top: 0.5rem;">Termo Clásico</h3>
-        <p style="color: #F75B68; font-weight: bold;">$5.999</p>
-      </div>
-      <div style="width: 200px; border: 1px solid #eee; border-radius: 10px; padding: 1rem; text-align: center; transition: transform 0.3s;">
-        <img src="https://images.unsplash.com/photo-1607082350598-bacb56b0227c" alt="Producto 2" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px;">
-        <h3 style="margin-top: 0.5rem;">Mate Imperial</h3>
-        <p style="color: #F75B68; font-weight: bold;">$4.500</p>
-      </div>
-      <div style="width: 200px; border: 1px solid #eee; border-radius: 10px; padding: 1rem; text-align: center; transition: transform 0.3s;">
-        <img src="https://images.unsplash.com/photo-1583573444203-803dbfcd26c4" alt="Producto 3" style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px;">
-        <h3 style="margin-top: 0.5rem;">Bolígrafo Metálico</h3>
-        <p style="color: #F75B68; font-weight: bold;">$1.200</p>
-      </div>
+    <button class="arrow left" onclick="moveSlide(-1, 'banners')">❮</button>
+    <button class="arrow right" onclick="moveSlide(1, 'banners')">❯</button>
+  </section>
+
+  <!-- Carrusel Lo Más Buscado -->
+  <section id="masBuscados">
+    <h2>Lo Más Buscado</h2>
+    <div class="category-carousel" id="carouselMasBuscados">
+      <img src="https://via.placeholder.com/200x150?text=Mates" alt="Mate">
+      <img src="https://via.placeholder.com/200x150?text=Termos" alt="Termo">
+      <img src="https://via.placeholder.com/200x150?text=Botellas" alt="Botella">
+      <img src="https://via.placeholder.com/200x150?text=Indumentaria" alt="Indumentaria">
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer style="background-color: #f2f2f2; padding: 2rem; text-align: center; margin-top: 2rem;">
-    <p>© 2025 VCM Merchandising. Todos los derechos reservados.</p>
-    <p><a href="#" style="text-decoration: none; color: #F75B68;">Política de privacidad</a> | <a href="#" style="text-decoration: none; color: #F75B68;">Términos y condiciones</a></p>
-  </footer>
+  <!-- Carrusel Ofertas Destacadas -->
+  <section id="ofertasDestacadas">
+    <h2>Ofertas Destacadas</h2>
+    <div class="slider" id="sliderOfertasDestacadas">
+      <button class="arrow left" onclick="moveSlide(-1, 'ofertasDestacadas')">❮</button>
+      <div class="slides" id="slidesOfertasDestacadas">
+        <img src="https://via.placeholder.com/300x180?text=Oferta+1" alt="Oferta 1">
+        <img src="https://via.placeholder.com/300x180?text=Oferta+2" alt="Oferta 2">
+        <img src="https://via.placeholder.com/300x180?text=Oferta+3" alt="Oferta 3">
+      </div>
+      <button class="arrow right" onclick="moveSlide(1, 'ofertasDestacadas')">❯</button>
+    </div>
+  </section>
 
-  <!-- Scripts -->
   <script>
-    // Carrusel
-    let currentIndex = 0;
-    const slides = document.getElementById('slides');
-    const totalSlides = slides.children.length;
+    let currentSlideBanners = 0;
+    let currentSlideOfertasDestacadas = 0;
+    let currentSlideMasBuscados = 0;
 
-    function moveSlide(direction) {
-      currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    // Función de movimiento de slides
+    function moveSlide(direction, section) {
+      if (section === 'banners') {
+        const slides = document.getElementById('slidesBanners');
+        const totalSlides = slides.children.length;
+        currentSlideBanners = (currentSlideBanners + direction + totalSlides) % totalSlides;
+        slides.style.transform = `translateX(-${currentSlideBanners * 100}%)`;
+      } else if (section === 'ofertasDestacadas') {
+        const slides = document.getElementById('slidesOfertasDestacadas');
+        const totalSlides = slides.children.length;
+        currentSlideOfertasDestacadas = (currentSlideOfertasDestacadas + direction + totalSlides) % totalSlides;
+        slides.style.transform = `translateX(-${currentSlideOfertasDestacadas * 100}%)`;
+      }
     }
 
-    // Menú categorías
+    // Desplegar categorías
     function toggleSubmenu() {
-      const submenu = document.getElementById("submenu");
-      submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+      const submenu = document.getElementById('submenu');
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Hover animaciones en ofertas destacadas
-    const ofertas = document.querySelectorAll("section div > div");
-    ofertas.forEach(oferta => {
-      oferta.addEventListener("mouseenter", () => {
-        oferta.style.transform = "scale(1.05)";
-      });
-      oferta.addEventListener("mouseleave", () => {
-        oferta.style.transform = "scale(1)";
-      });
+    // Cerrar categorías al hacer clic fuera
+    window.addEventListener('click', function(event) {
+      const submenu = document.getElementById('submenu');
+      const categoriesContainer = document.querySelector('.categories-container');
+      if (!categoriesContainer.contains(event.target)) {
+        submenu.style.display = 'none';
+      }
     });
+
+    // Función automática para el carrusel de banners
+    setInterval(function() {
+      moveSlide(1, 'banners');
+    }, 3000);
   </script>
 
 </body>
