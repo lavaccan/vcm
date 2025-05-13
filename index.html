@@ -146,72 +146,6 @@
     .arrow.right {
       right: 10px;
     }
-
-    .product-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-    }
-
-    .product-card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .product-card h3 {
-      font-size: 1rem;
-      padding: 1rem;
-    }
-
-    .whatsapp-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 30px;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .footer-bar {
-      background-color: #D1D3D4;
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .footer-bar a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-      margin: 0 1rem;
-      transition: color 0.3s;
-    }
-
-    .footer-bar a:hover {
-      color: #F75B68;
-    }
   </style>
 </head>
 <body>
@@ -224,7 +158,7 @@
     <nav class="menu">
       <a href="#">Inicio</a>
       <div class="categories-container">
-        <a onclick="toggleSubmenu()">Ofertas Destacadas</a>
+        <a onclick="toggleSubmenu()">Catálogo</a>
         <div class="submenu" id="submenu">
           <a href="#">Termos</a>
           <a href="#">Mates</a>
@@ -244,92 +178,59 @@
     <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
 
-  <!-- Carrusel -->
-  <div class="slider" id="slider">
-    <button class="arrow left" onclick="moveSlide(-1)">❮</button>
-    <div class="slides" id="slides">
-      <img src="https://images.unsplash.com/photo-1558980664-10a5e7470e62" alt="Banner 1">
-      <img src="https://images.unsplash.com/photo-1573812041185-1a801c3a81eb" alt="Banner 2">
-      <img src="https://images.unsplash.com/photo-1615797311616-05dc636d07bb" alt="Banner 3">
-    </div>
-    <button class="arrow right" onclick="moveSlide(1)">❯</button>
-  </div>
-
-  <!-- Ofertas destacadas -->
-  <section class="product-list" id="ofertasDestacadas">
+  <!-- Carrusel Ofertas Destacadas -->
+  <section id="ofertasDestacadas">
     <h2>Ofertas Destacadas</h2>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Termo" alt="Termo">
-      <h3>Termo personalizado</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Mate" alt="Mate">
-      <h3>Mate clásico</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Bolígrafo" alt="Bolígrafo">
-      <h3>Bolígrafo corporativo</h3>
+    <div class="slider" id="sliderOfertasDestacadas">
+      <button class="arrow left" onclick="moveSlide(-1, 'ofertasDestacadas')">❮</button>
+      <div class="slides" id="slidesOfertasDestacadas">
+        <img src="https://via.placeholder.com/300x180?text=Oferta+1" alt="Oferta 1">
+        <img src="https://via.placeholder.com/300x180?text=Oferta+2" alt="Oferta 2">
+        <img src="https://via.placeholder.com/300x180?text=Oferta+3" alt="Oferta 3">
+      </div>
+      <button class="arrow right" onclick="moveSlide(1, 'ofertasDestacadas')">❯</button>
     </div>
   </section>
   <!-- Lo Más Buscado -->
-  <section class="product-list" id="loMasBuscado">
+  <section id="loMasBuscado">
     <h2>Lo Más Buscado</h2>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Mates" alt="Mate">
-      <h3>Mate con diseño único</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Termo" alt="Termo">
-      <h3>Termo elegante</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Botellas" alt="Botella">
-      <h3>Botella térmica</h3>
+    <div class="slider" id="sliderLoMasBuscado">
+      <button class="arrow left" onclick="moveSlide(-1, 'loMasBuscado')">❮</button>
+      <div class="slides" id="slidesLoMasBuscado">
+        <img src="https://via.placeholder.com/300x180?text=Termo+1" alt="Termo 1">
+        <img src="https://via.placeholder.com/300x180?text=Termo+2" alt="Termo 2">
+        <img src="https://via.placeholder.com/300x180?text=Termo+3" alt="Termo 3">
+      </div>
+      <button class="arrow right" onclick="moveSlide(1, 'loMasBuscado')">❯</button>
     </div>
   </section>
 
-  <!-- Botón de WhatsApp -->
-  <a href="https://wa.me/1234567890" class="whatsapp-button" target="_blank">
-    💬
-  </a>
+  <!-- Barra gris con enlaces -->
+  <div class="footer-bar">
+    <a href="#">Términos y condiciones</a>
+    <a href="#">Política de privacidad</a>
+    <a href="#">Contáctanos</a>
+  </div>
 
-  <footer class="footer-bar">
-    <a href="#">Política de Privacidad</a>
-    <a href="#">Términos y Condiciones</a>
-    <a href="#">Contacto</a>
-  </footer>
+  <a href="https://wa.me/549XXXXXXXXX" class="whatsapp-button" target="_blank">📲</a>
 
   <script>
-    // Carrusel infinito
-    let currentIndex = 0;
-    const slides = document.getElementById('slides');
-    const slideCount = slides.children.length;
+    let currentSlideOfertasDestacadas = 0;
+    let currentSlideLoMasBuscado = 0;
 
-    function moveSlide(direction) {
-      currentIndex = (currentIndex + direction) % slideCount;
-      if (currentIndex < 0) {
-        currentIndex = slideCount - 1;
+    function moveSlide(direction, section) {
+      if (section === 'ofertasDestacadas') {
+        const slides = document.getElementById('slidesOfertasDestacadas');
+        const totalSlides = slides.children.length;
+        currentSlideOfertasDestacadas = (currentSlideOfertasDestacadas + direction + totalSlides) % totalSlides;
+        slides.style.transform = `translateX(-${currentSlideOfertasDestacadas * 100}%)`;
+      } else if (section === 'loMasBuscado') {
+        const slides = document.getElementById('slidesLoMasBuscado');
+        const totalSlides = slides.children.length;
+        currentSlideLoMasBuscado = (currentSlideLoMasBuscado + direction + totalSlides) % totalSlides;
+        slides.style.transform = `translateX(-${currentSlideLoMasBuscado * 100}%)`;
       }
-      slides.style.transform = `translateX(-${100 * currentIndex}%)`;
     }
-
-    // Hacer que el carrusel sea infinito
-    setInterval(() => {
-      moveSlide(1);
-    }, 3000);
-
-    // Mostrar/ocultar submenú
-    function toggleSubmenu() {
-      const submenu = document.getElementById('submenu');
-      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // Cerrar submenú al hacer clic fuera
-    document.addEventListener('click', function (event) {
-      if (!event.target.closest('.categories-container')) {
-        document.getElementById('submenu').style.display = 'none';
-      }
-    });
   </script>
 
 </body>
