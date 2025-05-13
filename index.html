@@ -37,6 +37,12 @@
       font-size: 1.5rem;
     }
 
+    .search-bar {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+    }
+
     .search-bar input {
       padding: 0.6rem 1rem;
       border-radius: 20px;
@@ -44,8 +50,14 @@
       font-size: 1rem;
       color: #777;
       background-color: #F2F2F2;
-      width: 400px;
+      width: 100%;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      background-color: #FFF;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .menu {
@@ -153,7 +165,7 @@
   <header>
     <div class="logo">VCM</div>
     <div class="search-bar">
-      <input type="text" placeholder="Buscar productos o categorías" />
+      <input type="text" id="search-input" placeholder="Buscar productos o categorías"/>
     </div>
     <nav class="menu">
       <a href="#">Inicio</a>
@@ -177,6 +189,16 @@
     <h1>Bienvenidos a VCM</h1>
     <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
+  <!-- Carrusel de Banners -->
+  <section class="slider" id="bannerSlider">
+    <div class="slides" id="slidesBanners">
+      <img src="https://via.placeholder.com/1200x400?text=Banner+1" alt="Banner 1">
+      <img src="https://via.placeholder.com/1200x400?text=Banner+2" alt="Banner 2">
+      <img src="https://via.placeholder.com/1200x400?text=Banner+3" alt="Banner 3">
+    </div>
+    <button class="arrow left" onclick="moveSlide(-1, 'banners')">❮</button>
+    <button class="arrow right" onclick="moveSlide(1, 'banners')">❯</button>
+  </section>
 
   <!-- Carrusel Ofertas Destacadas -->
   <section id="ofertasDestacadas">
@@ -191,45 +213,28 @@
       <button class="arrow right" onclick="moveSlide(1, 'ofertasDestacadas')">❯</button>
     </div>
   </section>
-  <!-- Lo Más Buscado -->
-  <section id="loMasBuscado">
-    <h2>Lo Más Buscado</h2>
-    <div class="slider" id="sliderLoMasBuscado">
-      <button class="arrow left" onclick="moveSlide(-1, 'loMasBuscado')">❮</button>
-      <div class="slides" id="slidesLoMasBuscado">
-        <img src="https://via.placeholder.com/300x180?text=Termo+1" alt="Termo 1">
-        <img src="https://via.placeholder.com/300x180?text=Termo+2" alt="Termo 2">
-        <img src="https://via.placeholder.com/300x180?text=Termo+3" alt="Termo 3">
-      </div>
-      <button class="arrow right" onclick="moveSlide(1, 'loMasBuscado')">❯</button>
-    </div>
-  </section>
-
-  <!-- Barra gris con enlaces -->
-  <div class="footer-bar">
-    <a href="#">Términos y condiciones</a>
-    <a href="#">Política de privacidad</a>
-    <a href="#">Contáctanos</a>
-  </div>
-
-  <a href="https://wa.me/549XXXXXXXXX" class="whatsapp-button" target="_blank">📲</a>
 
   <script>
+    let currentSlideBanners = 0;
     let currentSlideOfertasDestacadas = 0;
-    let currentSlideLoMasBuscado = 0;
 
     function moveSlide(direction, section) {
-      if (section === 'ofertasDestacadas') {
+      if (section === 'banners') {
+        const slides = document.getElementById('slidesBanners');
+        const totalSlides = slides.children.length;
+        currentSlideBanners = (currentSlideBanners + direction + totalSlides) % totalSlides;
+        slides.style.transform = `translateX(-${currentSlideBanners * 100}%)`;
+      } else if (section === 'ofertasDestacadas') {
         const slides = document.getElementById('slidesOfertasDestacadas');
         const totalSlides = slides.children.length;
         currentSlideOfertasDestacadas = (currentSlideOfertasDestacadas + direction + totalSlides) % totalSlides;
         slides.style.transform = `translateX(-${currentSlideOfertasDestacadas * 100}%)`;
-      } else if (section === 'loMasBuscado') {
-        const slides = document.getElementById('slidesLoMasBuscado');
-        const totalSlides = slides.children.length;
-        currentSlideLoMasBuscado = (currentSlideLoMasBuscado + direction + totalSlides) % totalSlides;
-        slides.style.transform = `translateX(-${currentSlideLoMasBuscado * 100}%)`;
       }
+    }
+
+    function toggleSubmenu() {
+      const submenu = document.getElementById('submenu');
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
   </script>
 
