@@ -1,264 +1,325 @@
-/* estilos.css */
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VCM - Catálogo de Merchandising</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f8f8f8;
-  color: #333;
-}
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #FFFFFF;
+      color: #333;
+    }
 
-.topbar {
-  background-color: #ff6b6b;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #fff;
-}
+    header {
+      background-color: #F75B68;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      color: white;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-.logo {
-  font-size: 1.5em;
-  font-weight: bold;
-}
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
 
-.search {
-  flex: 1;
-  margin: 0 20px;
-  padding: 10px;
-  border-radius: 20px;
-  border: none;
-  max-width: 500px;
-}
+    .search-bar input {
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      border: none;
+      font-size: 1rem;
+      color: #777;
+      background-color: #F2F2F2;
+      width: 400px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-.actions button {
-  margin-left: 10px;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
+    .menu {
+      display: flex;
+      gap: 1.2rem;
+      margin-right: 2rem;
+    }
 
-.actions .cta {
-  background-color: white;
-  color: #ff6b6b;
-  font-weight: bold;
-}
+    .menu a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-.main-nav {
-  background-color: #fff;
-  padding: 10px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+    .submenu {
+      display: none;
+      position: absolute;
+      background-color: #FFFFFF;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      top: 40px;
+      left: 0;
+      min-width: 200px;
+      z-index: 10;
+      border-radius: 10px;
+    }
 
-.main-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-}
+    .submenu a {
+      color: #333;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
 
-.main-nav li {
-  margin: 0 15px;
-}
+    .submenu a:hover {
+      color: #F75B68;
+      background-color: #f7f7f7;
+      padding-left: 10px;
+    }
 
-.main-nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-}
+    .categories-container {
+      position: relative;
+    }
 
-.carousel {
-  position: relative;
-  overflow: hidden;
-  background-color: #eee;
-}
+    .cart-icon {
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+    }
 
-.slides {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
+    .hero {
+      background-color: #F75B68;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 70px;
+    }
 
-.slide {
-  min-width: 100%;
-  position: relative;
-}
+    .slider {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 250px;
+      margin-top: 20px;
+    }
 
-.slide img {
-  width: 100%;
-  display: block;
-  height: auto;
-}
+    .slides {
+      display: flex;
+      transition: transform 1s ease-in-out;
+      width: 300%;
+    }
 
-.caption {
-  position: absolute;
-  bottom: 20%;
-  left: 5%;
-  color: white;
-  text-shadow: 0 0 5px rgba(0,0,0,0.5);
-}
+    .slides img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
 
-.caption h1 {
-  font-size: 2.5em;
-  margin: 0;
-}
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.3);
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 10;
+    }
 
-.caption h2 {
-  font-size: 1.2em;
-  margin: 0;
-  letter-spacing: 2px;
-}
+    .arrow.left {
+      left: 10px;
+    }
 
-.caption p {
-  margin: 5px 0;
-}
+    .arrow.right {
+      right: 10px;
+    }
 
-.caption .sub {
-  font-style: italic;
-  font-size: 0.9em;
-}
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
 
-.dots {
-  text-align: center;
-  margin: 10px 0;
-}
+    .product-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
 
-.dot {
-  height: 10px;
-  width: 10px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  margin: 0 5px;
-  transition: background-color 0.3s;
-}
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
 
-.dot.active {
-  background-color: #ff6b6b;
-}
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
 
-.ofertas {
-  padding: 40px 20px;
-  background-color: #fff;
-}
+    .product-card h3 {
+      font-size: 1rem;
+      padding: 1rem;
+    }
 
-.ofertas h2 {
-  text-align: center;
-  margin-bottom: 30px;
-}
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 30px;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
 
-.productos {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 20px;
-}
+    /* Nueva barra gris debajo de los productos */
+    .footer-bar {
+      background-color: #D1D3D4;
+      padding: 1.5rem;
+      text-align: center;
+    }
 
-.producto {
-  background: #fafafa;
-  padding: 10px;
-  border-radius: 12px;
-  width: 200px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+    .footer-bar a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      margin: 0 1rem;
+      transition: color 0.3s;
+    }
 
-.etiqueta {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.75em;
-  margin: 5px 0;
-  color: white;
-}
+    .footer-bar a:hover {
+      color: #F75B68;
+    }
+  </style>
+</head>
+<body>
 
-.etiqueta.verde {
-  background-color: #2ecc71;
-}
+  <header>
+    <div class="logo">VCM</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar productos o categorías" />
+    </div>
+    <nav class="menu">
+      <a href="#">Inicio</a>
+      <div class="categories-container">
+        <a onclick="toggleSubmenu()">Catálogo</a>
+        <div class="submenu" id="submenu">
+          <a href="#">Termos</a>
+          <a href="#">Mates</a>
+          <a href="#">Bolígrafos</a>
+          <a href="#">Botellas</a>
+          <a href="#">Indumentaria</a>
+        </div>
+      </div>
+      <a href="#">Nosotros</a>
+      <a href="#">Ayuda</a>
+    </nav>
+    <a class="cart-icon" href="carrito.html" title="Ver carrito">🛒</a>
+  </header>
 
-.etiqueta.celeste {
-  background-color: #3498db;
-}
+  <section class="hero">
+    <h1>Bienvenidos a VCM</h1>
+    <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
+  </section>
 
-.partner-call {
-  background-color: #ff6b6b;
-  color: white;
-  padding: 40px 20px;
-  text-align: center;
-}
+  <!-- Carrusel -->
+  <div class="slider" id="slider">
+    <button class="arrow left" onclick="moveSlide(-1)">❮</button>
+    <div class="slides" id="slides">
+      <img src="https://images.unsplash.com/photo-1558980664-10a5e7470e62" alt="Banner 1">
+      <img src="https://images.unsplash.com/photo-1573812041185-1a801c3a81eb" alt="Banner 2">
+      <img src="https://images.unsplash.com/photo-1615797311616-05dc636d07bb" alt="Banner 3">
+    </div>
+    <button class="arrow right" onclick="moveSlide(1)">❯</button>
+  </div>
 
-.partner-call h2 {
-  margin-bottom: 20px;
-}
+  <!-- Productos -->
+  <section class="product-list">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x180?text=Termo" alt="Termo">
+      <h3>Termo personalizado</h3>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x180?text=Mate" alt="Mate">
+      <h3>Mate clásico</h3>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x180?text=Bolígrafo" alt="Bolígrafo">
+      <h3>Bolígrafo corporativo</h3>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x180?text=Botella" alt="Botella">
+      <h3>Botella deportiva</h3>
+    </div>
+    <div class="product-card">
+      <img src="https://via.placeholder.com/300x180?text=Indumentaria" alt="Indumentaria">
+      <h3>Remera estampada</h3>
+    </div>
+  </section>
 
-.partner-actions button {
-  background: white;
-  color: #ff6b6b;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-right: 10px;
-  font-weight: bold;
-}
+  <!-- Barra gris con enlaces -->
+  <div class="footer-bar">
+    <a href="#">Ubicación</a>
+    <a href="#">Políticas de privacidad</a>
+    <a href="mailto:contacto@empresa.com">Contáctanos</a>
+    <a href="#">Productos</a>
+  </div>
 
-.partner-actions a {
-  color: white;
-  text-decoration: underline;
-}
+  <!-- Botón de WhatsApp -->
+  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">
+    💬
+  </a>
 
-.footer {
-  background: #333;
-  color: white;
-  padding: 40px 20px 20px 20px;
-}
+  <script>
+    function toggleSubmenu() {
+      const submenu = document.getElementById('submenu');
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    }
 
-.footer-top {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 20px;
-}
+    document.addEventListener('click', function(event) {
+      const submenu = document.getElementById('submenu');
+      const categories = document.querySelector('.categories-container');
+      if (!categories.contains(event.target)) {
+        submenu.style.display = 'none';
+      }
+    });
 
-.logo-footer {
-  font-size: 1.8em;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+    let currentSlide = 0;
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
 
-.newsletter input {
-  padding: 8px;
-  border-radius: 6px;
-  border: none;
-  margin-top: 10px;
-  width: 100%;
-}
+    function moveSlide(direction) {
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
 
-.newsletter button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background-color: #ff6b6b;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-}
+    setInterval(() => {
+      moveSlide(1);
+    }, 6000);
+  </script>
 
-.social-contact a {
-  color: #ff6b6b;
-  text-decoration: none;
-  margin-right: 10px;
-}
-
-.footer-bottom {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 0.85em;
-  color: #ccc;
-}
-
-.footer-bottom a {
-  color: #ccc;
-  margin-right: 10px;
-  text-decoration: underline;
-}
+</body>
+</html>
