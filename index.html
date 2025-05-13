@@ -6,17 +6,8 @@
   <title>VCM - Catálogo de Merchandising</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #FFFFFF;
-      color: #333;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Montserrat', sans-serif; background-color: #FFFFFF; color: #333; }
 
     header {
       background-color: #F75B68;
@@ -32,11 +23,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-    }
-
+    .logo { font-weight: 700; font-size: 1.5rem; }
     .search-bar input {
       padding: 0.6rem 1rem;
       border-radius: 20px;
@@ -105,7 +92,7 @@
       margin-top: 70px;
     }
 
-    .slider {
+    .slider, .category-carousel {
       position: relative;
       overflow: hidden;
       width: 100%;
@@ -113,13 +100,13 @@
       margin-top: 20px;
     }
 
-    .slides {
+    .slides, .category-slides {
       display: flex;
       transition: transform 1s ease-in-out;
-      width: 300%;
+      width: max-content;
     }
 
-    .slides img {
+    .slides img, .category-slides .product-card {
       width: 100%;
       height: 250px;
       object-fit: cover;
@@ -139,19 +126,13 @@
       z-index: 10;
     }
 
-    .arrow.left {
-      left: 10px;
-    }
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
 
-    .arrow.right {
-      right: 10px;
-    }
-
-    .product-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
+    .category-title {
+      margin: 2rem 1rem 0.5rem 1rem;
+      font-size: 1.3rem;
+      font-weight: bold;
     }
 
     .product-card {
@@ -160,6 +141,8 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       transition: transform 0.3s;
+      width: 200px;
+      margin-right: 1rem;
     }
 
     .product-card:hover {
@@ -175,6 +158,24 @@
     .product-card h3 {
       font-size: 1rem;
       padding: 1rem;
+    }
+
+    .footer-bar {
+      background-color: #D1D3D4;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .footer-bar a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      margin: 0 1rem;
+      transition: color 0.3s;
+    }
+
+    .footer-bar a:hover {
+      color: #F75B68;
     }
 
     .whatsapp-button {
@@ -193,25 +194,6 @@
       font-size: 30px;
       z-index: 1000;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Nueva barra gris debajo de los productos */
-    .footer-bar {
-      background-color: #D1D3D4;
-      padding: 1.5rem;
-      text-align: center;
-    }
-
-    .footer-bar a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-      margin: 0 1rem;
-      transition: color 0.3s;
-    }
-
-    .footer-bar a:hover {
-      color: #F75B68;
     }
   </style>
 </head>
@@ -245,8 +227,8 @@
     <p>Explorá nuestro catálogo de merchandising único y exclusivo.</p>
   </section>
 
-  <!-- Carrusel -->
-  <div class="slider" id="slider">
+  <!-- Carrusel principal -->
+  <div class="slider" id="mainSlider">
     <button class="arrow left" onclick="moveSlide(-1)">❮</button>
     <div class="slides" id="slides">
       <img src="https://images.unsplash.com/photo-1558980664-10a5e7470e62" alt="Banner 1">
@@ -256,31 +238,32 @@
     <button class="arrow right" onclick="moveSlide(1)">❯</button>
   </div>
 
-  <!-- Productos -->
-  <section class="product-list">
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Termo" alt="Termo">
-      <h3>Termo personalizado</h3>
+  <!-- Carruseles por categoría -->
+  <div id="categorias">
+    <h2 class="category-title">Termos</h2>
+    <div class="category-carousel" data-index="0">
+      <button class="arrow left" onclick="moveCategorySlide(this, -1)">❮</button>
+      <div class="category-slides">
+        <div class="product-card"><img src="https://via.placeholder.com/200x180?text=Termo+1"><h3>Termo 1</h3></div>
+        <div class="product-card"><img src="https://via.placeholder.com/200x180?text=Termo+2"><h3>Termo 2</h3></div>
+        <div class="product-card"><img src="https://via.placeholder.com/200x180?text=Termo+3"><h3>Termo 3</h3></div>
+      </div>
+      <button class="arrow right" onclick="moveCategorySlide(this, 1)">❯</button>
     </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Mate" alt="Mate">
-      <h3>Mate clásico</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Bolígrafo" alt="Bolígrafo">
-      <h3>Bolígrafo corporativo</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Botella" alt="Botella">
-      <h3>Botella deportiva</h3>
-    </div>
-    <div class="product-card">
-      <img src="https://via.placeholder.com/300x180?text=Indumentaria" alt="Indumentaria">
-      <h3>Remera estampada</h3>
-    </div>
-  </section>
 
-  <!-- Barra gris con enlaces -->
+    <h2 class="category-title">Mates</h2>
+    <div class="category-carousel" data-index="0">
+      <button class="arrow left" onclick="moveCategorySlide(this, -1)">❮</button>
+      <div class="category-slides">
+        <div class="product-card"><img src="https://via.placeholder.com/200x180?text=Mate+1"><h3>Mate 1</h3></div>
+        <div class="product-card"><img src="https://via.placeholder.com/200x180?text=Mate+2"><h3>Mate 2</h3></div>
+        <div class="product-card"><img src="https://via.placeholder.com/200x180?text=Mate+3"><h3>Mate 3</h3></div>
+      </div>
+      <button class="arrow right" onclick="moveCategorySlide(this, 1)">❯</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <div class="footer-bar">
     <a href="#">Ubicación</a>
     <a href="#">Políticas de privacidad</a>
@@ -288,10 +271,8 @@
     <a href="#">Productos</a>
   </div>
 
-  <!-- Botón de WhatsApp -->
-  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">
-    💬
-  </a>
+  <!-- WhatsApp -->
+  <a href="https://wa.me/+5491170983414" class="whatsapp-button" target="_blank" title="Envíanos un mensaje por WhatsApp">💬</a>
 
   <script>
     function toggleSubmenu() {
@@ -307,6 +288,7 @@
       }
     });
 
+    // Carrusel principal
     let currentSlide = 0;
     const slides = document.getElementById('slides');
     const totalSlides = slides.children.length;
@@ -316,9 +298,20 @@
       slides.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
 
-    setInterval(() => {
-      moveSlide(1);
-    }, 6000);
+    setInterval(() => { moveSlide(1); }, 6000);
+
+    // Carruseles por categoría
+    function moveCategorySlide(button, direction) {
+      const carousel = button.closest('.category-carousel');
+      const slides = carousel.querySelector('.category-slides');
+      const cards = slides.children;
+      const total = cards.length;
+      let index = parseInt(carousel.getAttribute('data-index'), 10);
+
+      index = (index + direction + total) % total;
+      carousel.setAttribute('data-index', index);
+      slides.style.transform = `translateX(-${index * (cards[0].offsetWidth + 16)}px)`;
+    }
   </script>
 
 </body>
