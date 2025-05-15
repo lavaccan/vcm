@@ -1,302 +1,532 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VCM - Catálogo de Merchandising</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VCM Marking – Catálogo de merchandising</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --color-principal: #F14D68;
+      --color-secundario: #fff;
+      --color-gris: #f8f9fa;
+      --texto-oscuro: #222;
+      --texto-claro: #fff;
+      --gris-sec: #888;
+      --sombra: 0 3px 15px #0001;
+      --borde-banner: #fef1f6;
     }
+    body { margin:0; font-family:'Nunito Sans',Arial,sans-serif; background:#fff; color:var(--texto-oscuro); }
+    img { max-width:100%; display:block; }
+    a { color:var(--color-principal); text-decoration:none; transition:.2s; }
+    a:hover { text-decoration:underline; }
 
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #FFFFFF;
-      color: #333;
-    }
-
-    header {
-      background-color: #F75B68;
+    /* NAVBAR NIVEL UNO */
+    .nivel-uno {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      color: white;
-      position: fixed;
-      width: 100%;
+      justify-content: space-between;
+      background: #fff;
+      height: 84px;
+      padding: 0 40px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 999;
+      gap: 22px;
     }
-
+    .navbar-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
     .logo {
+      height: 48px;
+      min-width: 44px;
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .logo-sec {
+      height: 44px;
+      width: auto;
+      margin-left: 12px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
       font-weight: 700;
-      font-size: 1.5rem;
-      cursor: pointer;
+      letter-spacing: 2px;
+      color: #212121;
+      white-space: nowrap;
+      display: inline-block;
+      vertical-align: middle;
     }
-
     .search-bar {
+      display: flex;
+      align-items: center;
+      flex: 1 1 0%;
+      margin: 0 24px;
+      max-width: 580px;
+      min-width: 320px;
       position: relative;
-      width: 100%;
-      max-width: 400px;
-      transition: all 0.3s ease;
+      background: #f6f6f6;
+      border-radius: 30px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      height: 46px;
     }
-
     .search-bar input {
-      padding: 0.6rem 1rem;
-      border-radius: 20px;
+      flex: 1;
       border: none;
-      font-size: 1rem;
-      color: #333; /* Letras negras */
-      background-color: #F2F2F2;
-      width: 100%;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .search-bar input:focus {
+      background: transparent;
+      padding: 0 48px 0 22px;
       outline: none;
-      background-color: #FFF;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      width: 100%;
+      font-size: 1.08rem;
+      height: 44px;
+      border-radius: 30px;
     }
-
-    .search-suggestions {
-      display: none;
-      position: absolute;
-      background-color: white;
-      width: 100%;
-      top: 110%;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      z-index: 20;
-      padding: 0.5rem 0;
-    }
-
-    .search-suggestions div {
-      padding: 0.5rem 1rem;
+    .search-bar .search-btn {
+      border: none;
+      background: none;
       cursor: pointer;
-    }
-
-    .search-suggestions div:hover {
-      background-color: #f2f2f2;
-    }
-
-    .menu {
-      display: flex;
-      gap: 1.2rem;
-      margin-right: 2rem;
-    }
-
-    .menu a {
-      text-decoration: none;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .submenu {
-      display: none;
       position: absolute;
-      background-color: #FFFFFF;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      top: 40px;
-      left: 0;
-      min-width: 200px;
-      z-index: 10;
-      border-radius: 10px;
-    }
-
-    .submenu a {
-      color: #333;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .submenu a:hover {
-      color: #F75B68;
-      background-color: #f7f7f7;
-      padding-left: 10px;
-    }
-
-    .categories-container {
-      position: relative;
-    }
-
-    .whatsapp-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25D366;
-      border-radius: 50%;
-      padding: 15px;
-      color: white;
-      font-size: 24px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      z-index: 100;
-    }
-
-    .whatsapp-button:hover {
-      background-color: #128C7E;
-      cursor: pointer;
-    }
-
-    .hero {
-      background-color: #F75B68;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 70px;
-    }
-
-    .slider {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 250px;
-      margin-top: 20px;
-    }
-
-    .slides {
-      display: flex;
-      transition: transform 1s ease-in-out;
-      width: 300%;
-    }
-
-    .slides img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .arrow {
-      position: absolute;
+      right: 14px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 2rem;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.3);
-      border: none;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .arrow.left {
-      left: 10px;
-    }
-
-    .arrow.right {
-      right: 10px;
-    }
-
-    .category-carousel {
+      padding: 0;
       display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-      padding: 1rem;
-      overflow-x: auto;
+      align-items: center;
+      justify-content: center;
+    }
+    .search-bar .search-icon {
+      width: 25px;
+      height: 25px;
+      color: #999;
+    }
+    .search-history {
+      position: absolute;
+      top: 44px;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      z-index: 10;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 210px;
+      overflow-y: auto;
+      display: none;
+    }
+    .search-history li {
+      padding: 10px 18px;
+      cursor: pointer;
+      border-bottom: 1px solid #f2f2f2;
+      font-size: 1rem;
+    }
+    .search-history li:last-child {
+      border-bottom: none;
+    }
+    .search-history li:hover {
+      background: #e6e6e6;
+    }
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-left: 14px;
+      height: 100%;
+      list-style: none;
+      padding: 0;
+    }
+    .navbar-menu li {
+      position: relative;
+      list-style: none;
+    }
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      font: inherit;
+      color: #212121;
+      font-size: 1.08rem;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 11px 14px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown:hover > .mega-menu,
+    .dropdown:focus-within > .mega-menu {
+      display: grid;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mega-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 390px;
+      background: #fff;
+      box-shadow: 0 3px 18px rgba(0,0,0,0.10);
+      padding: 22px 22px 18px 22px;
+      border-radius: 0 0 18px 18px;
+      z-index: 20;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      min-width: 330px;
+      min-height: max-content;
+      transition: opacity 0.2s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .mega-menu .column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .mega-menu a {
+      color: #464646;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 5px 0;
+      border-radius: 6px;
+      transition: background 0.13s;
+    }
+    .mega-menu a:hover {
+      background: #e8e8e8;
+    }
+    @media (max-width: 991px) {
+      .nivel-uno {
+        flex-direction: column;
+        height: auto;
+        padding: 18px 7vw 10px 7vw;
+        gap: 16px;
+      }
+      .navbar-group {
+        margin-bottom: 8px;
+      }
+      .search-bar {
+        margin: 0;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
+      .navbar-menu {
+        gap: 9px;
+        margin-left: 0;
+      }
     }
 
-    .category-carousel img {
-      width: 200px;
-      height: 150px;
-      object-fit: cover;
-      flex-shrink: 0;
+    /* Carousel flechas transparentes */
+    .carousel-btn {
+      position:absolute; top:50%; transform:translateY(-50%); background:transparent;
+      border:none; color:#fff; font-size:1.7rem; border-radius:50%; width:38px; height:38px;
+      opacity: 0.18; /* Totalmente transparente */
+      cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center;
+      transition:.18s; box-shadow:none;
+    }
+    .carousel-btn:hover,
+    .carousel-btn:focus { opacity:0.35; background:transparent; }
+    .carousel-btn.prev { left:8px; }
+    .carousel-btn.next { right:8px; }
+    /* Carousel resto y página igual que antes */
+    .banner-carousel { position:relative; width:100%; max-width:1250px; margin:32px auto 0 auto; overflow:hidden; border-radius:22px; background:var(--borde-banner); }
+    .banner-inner { display:flex; transition:transform 0.65s cubic-bezier(.6,.1,.2,1); }
+    .banner-img {
+      min-width:100%; height:270px; object-fit:cover; background:#eee;
+      border-radius:22px;
+    }
+    .carousel-indicators {
+      display:flex; gap:7px; position:absolute; bottom:24px; left:50%; transform:translateX(-50%); z-index:3;
+    }
+    .carousel-indicators span {
+      display:block; width:13px; height:13px; border-radius:50%; background:#fff6; border:2.5px solid var(--color-principal);
+      cursor:pointer;
+    }
+    .carousel-indicators .active { background:var(--color-principal); }
+    /* CLAIM y productos igual que antes */
+    .hero-claim {
+      max-width:1250px; margin:36px auto 0 auto; text-align:center; color:var(--color-principal);
+      font-size:2.22rem; letter-spacing:.5px; font-weight:500; margin-bottom:16px; }
+    .product-section { max-width:1250px; margin:34px auto 0 auto; padding:0 5vw; }
+    .catalog-title { font-size:1.45rem; color:var(--color-principal); font-weight:bold; margin-bottom:18px; letter-spacing:1.5px; text-align:left; }
+    .product-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(225px,1fr)); gap:30px; }
+    .product-card {
+      background:var(--color-secundario); border-radius:16px; padding:17px 12px 15px 12px;
+      box-shadow:0 2px 22px #0000000c; border:1.5px solid #f9d6dd; display:flex; flex-direction:column; align-items:center; transition:.18s; position:relative;
+    }
+    .product-card img { width:100%; height:145px; object-fit:contain; background:#ffe5f0; border-radius:10px; margin-bottom:10px; }
+    .product-name { color:#1b1b1b; font-weight:600; margin-bottom:12px; font-size:1.09rem; text-align:center; min-height:38px; }
+    .product-btn {
+      background:var(--color-principal); color:#fff; font-weight:600; padding:8px 18px; border-radius:7px; border:none;
+      cursor:pointer; font-size:1rem; letter-spacing:.7px; transition:background .16s, color .16s; box-shadow:0 2px 10px #0001;
+    }
+    .product-btn:hover { background:#d9274e; }
+    /* PRODUCT MODAL igual que antes */
+    .modal-bg { display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:#f4698c44; z-index:2022; align-items:center; justify-content:center; }
+    .modal-bg.active { display:flex; }
+    .modal-card { background:#fff; border-radius:18px; max-width:95vw; width:370px; padding:32px 25px 20px 25px; box-shadow:var(--sombra); text-align:center; position:relative; }
+    .modal-card img { height:112px; object-fit:contain; margin-bottom:18px; }
+    .modal-close { position:absolute; top:14px; right:14px; background:none; border:none; font-size:1.6rem; color:var(--color-principal); cursor:pointer; }
+    /* FOOTER actualizado */
+    .footer { border-top:1px solid #eee; background:#fff; padding:18px 7vw 13px 7vw; font-size:1.01rem; color:#222; display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:46px; }
+    .footer-qr { width:34px; vertical-align:middle; margin-right:10px; }
+    .footer-links { display:flex; gap:17px; align-items:center; margin-bottom:4px; }
+    .footer-contacto {
+      display:flex;
+      gap:18px;
+      align-items:center;
+      margin-bottom:4px;
+      margin-top:2px;
+      flex-wrap:wrap;
+    }
+    .footer-contacto a {
+      color:var(--color-principal);
+      display:flex;
+      align-items:center;
+      gap:7px;
+      font-weight:500;
+      font-size:1.01rem;
+      text-decoration:none;
+      transition:color .18s;
+    }
+    .footer-contacto a:hover { color:#d9274e; }
+    .footer-contacto svg { vertical-align:middle; }
+    @media (max-width:900px) {
+      .hero-claim { font-size:1.19rem; }
+    }
+    @media (max-width:600px) {
+      .banner-carousel, .product-section, .hero-claim { max-width:99vw; padding:0 2vw; }
+      .banner-img { height:180px; }
+      .catalog-title { font-size:1.15rem; }
+      .mega-menu { min-width:96vw; width:96vw; left:0; }
+      .nivel-uno { padding: 10px 2vw; }
+      .search-bar { min-width: 0; }
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <div class="logo" onclick="window.location.href='index.html'">VCM</div>
-    <div class="search-bar" id="searchBar">
-      <input type="text" id="searchInput" placeholder="Buscar productos o categorías" onfocus="showSuggestions()"/>
-      <div class="search-suggestions" id="suggestions">
-        <div onclick="selectSuggestion('Mates')">Mates</div>
-        <div onclick="selectSuggestion('Termos')">Termos</div>
-        <div onclick="selectSuggestion('Botellas')">Botellas</div>
-        <div onclick="selectSuggestion('Remeras')">Remeras</div>
-      </div>
+  <!-- NAVBAR NIVEL UNO -->
+  <nav class="navbar nivel-uno">
+    <div class="navbar-group">
+      <img src="uploads/logo_jpg.png" alt="Logo de la empresa" class="logo" />
+      <span class="brand">VCM</span>
     </div>
-    <nav class="menu">
-      <a href="#">Inicio</a>
-      <div class="categories-container">
-        <a onclick="toggleSubmenu()">Catálogo</a>
-        <div class="submenu" id="submenu">
-          <a href="#">Termos</a>
-          <a href="#">Mates</a>
-          <a href="#">Bolígrafos</a>
-          <a href="#">Botellas</a>
-          <a href="#">Indumentaria</a>
+    <form class="search-bar" id="searchForm" autocomplete="off">
+      <input type="text" id="searchInput" placeholder="" />
+      <button type="submit" class="search-btn" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="search-icon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+      <ul class="search-history" id="searchHistory"></ul>
+    </form>
+    <ul class="navbar-menu">
+      <li class="dropdown"><a class="dropdown-toggle" id="categoriasBtn" href="#">Categorías</a>
+        <div class="mega-menu">
+          <div class="column">
+            <a href="#">Bolígrafos</a>
+            <a href="#">Camisetas</a>
+            <a href="#">Libretas</a>
+            <a href="#">Tazas</a>
+          </div>
+          <div class="column">
+            <a href="#">Gorras</a>
+            <a href="#">Llaveros</a>
+            <a href="#">Botellas</a>
+            <a href="#">USB</a>
+          </div>
+          <div class="column">
+            <a href="#">Mochilas</a>
+            <a href="#">Lanyards</a>
+            <a href="#">Sombrillas</a>
+            <a href="#">Más</a>
+          </div>
         </div>
+      </li>
+      <li><a href="#footer-contacto">Contacto</a></li>
+    </ul>
+  </nav>
+  <!-- NAVBAR END -->
+
+  <!-- BANNER/CAROUSEL -->
+  <section class="banner-carousel" id="banner-carousel">
+    <button class="carousel-btn prev" onclick="changeBanner(-1)">&#8592;</button>
+    <div class="banner-inner" id="banner-inner">
+      <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80" class="banner-img" alt="Banner 1">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" class="banner-img" alt="Banner 2">
+      <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" class="banner-img" alt="Banner 3">
+    </div>
+    <button class="carousel-btn next" onclick="changeBanner(1)">&#8594;</button>
+    <div class="carousel-indicators" id="banner-dots"></div>
+  </section>
+  <!-- HERO CLAIM -->
+  <section class="hero-claim">Simple y fácil</section>
+  <!-- PRODUCT SECTION -->
+  <main class="product-section">
+    <div class="catalog-title">Productos destacados</div>
+    <div class="product-grid" id="product-grid">
+      <!-- Ejemplo de productos -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1526178613658-3e7e6f112de4?auto=format&fit=crop&w=400&q=80" alt="Vaso térmico aluminio">
+        <div class="product-name">Vaso térmico aluminio</div>
+        <button class="product-btn" onclick="openModal(0)">Ver más</button>
       </div>
-      <a href="#">Nosotros</a>
-      <a href="#">Ayuda</a>
-    </nav>
-  </header>
-  <section class="hero">
-    <h1>Bienvenidos a VCM</h1>
-  </section>
-
-  <a href="https://wa.me/+54911731904180" class="whatsapp-button" target="_blank">📲</a>
-
-  <section class="slider" id="bannerSlider">
-    <div class="slides" id="slidesBanners">
-      <img src="https://via.placeholder.com/1200x400?text=Banner+1" alt="Banner 1">
-      <img src="https://via.placeholder.com/1200x400?text=Banner+2" alt="Banner 2">
-      <img src="https://via.placeholder.com/1200x400?text=Banner+3" alt="Banner 3">
-    </div>
-    <button class="arrow left" onclick="moveSlide(-1, 'banners')">❮</button>
-    <button class="arrow right" onclick="moveSlide(1, 'banners')">❯</button>
-  </section>
-  <section id="ofertasDestacadas">
-    <h2>Ofertas Destacadas</h2>
-    <div class="slider" id="sliderOfertasDestacadas">
-      <button class="arrow left" onclick="moveSlide(-1, 'ofertasDestacadas')">❮</button>
-      <div class="slides" id="slidesOfertasDestacadas">
-        <img src="https://via.placeholder.com/300x180?text=Oferta+1" alt="Oferta 1">
-        <img src="https://via.placeholder.com/300x180?text=Oferta+2" alt="Oferta 2">
-        <img src="https://via.placeholder.com/300x180?text=Oferta+3" alt="Oferta 3">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1519567241046-7fcc5c23fa54?auto=format&fit=crop&w=400&q=80" alt="Cargador portátil">
+        <div class="product-name">Cargador portátil</div>
+        <button class="product-btn" onclick="openModal(1)">Ver más</button>
       </div>
-      <button class="arrow right" onclick="moveSlide(1, 'ofertasDestacadas')">❯</button>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Bolígrafo ecológico">
+        <div class="product-name">Bolígrafo ecológico</div>
+        <button class="product-btn" onclick="openModal(2)">Ver más</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" alt="Auriculares bluetooth">
+        <div class="product-name">Auriculares bluetooth</div>
+        <button class="product-btn" onclick="openModal(3)">Ver más</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?auto=format&fit=crop&w=400&q=80" alt="Mochila antirrobo">
+        <div class="product-name">Mochila antirrobo</div>
+        <button class="product-btn" onclick="openModal(4)">Ver más</button>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1519121786635-1ab9933dba48?auto=format&fit=crop&w=400&q=80" alt="Campera polar">
+        <div class="product-name">Campera polar</div>
+        <button class="product-btn" onclick="openModal(5)">Ver más</button>
+      </div>
     </div>
-  </section>
-  <section id="loMasBuscado">
-    <h2>Lo Más Buscado</h2>
-    <div class="category-carousel" id="carouselBuscado">
-      <img src="https://via.placeholder.com/200x150?text=Mates" alt="Mates">
-      <img src="https://via.placeholder.com/200x150?text=Bombillas" alt="Bombillas">
-      <img src="https://via.placeholder.com/200x150?text=Termos" alt="Termos">
-      <img src="https://via.placeholder.com/200x150?text=Sets+Materos" alt="Sets Materos">
-    </div>
-  </section>
+  </main>
 
-  <section id="descubri">
-    <h2>Descubrí</h2>
-    <div class="category-carousel" id="carouselDescubri">
-      <img src="https://via.placeholder.com/200x150?text=Nuevo+1" alt="Nuevo 1">
-      <img src="https://via.placeholder.com/200x150?text=Nuevo+2" alt="Nuevo 2">
-      <img src="https://via.placeholder.com/200x150?text=Nuevo+3" alt="Nuevo 3">
-      <img src="https://via.placeholder.com/200x150?text=Nuevo+4" alt="Nuevo 4">
+  <!-- PRODUCT MODAL -->
+  <div class="modal-bg" id="product-modal">
+    <div class="modal-card" id="modal-card">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <img id="modal-img" src="" alt="Producto" />
+      <div id="modal-title" style="font-weight:bold;margin-bottom:12px;"></div>
+      <div id="modal-desc" style="margin-bottom:14px; color:#666;">
+        Producto de excelente calidad, personalizable y con entrega inmediata. Solicita tu cotización para más detalles.
+      </div>
+      <button class="product-btn" onclick="closeModal()">Cerrar</button>
     </div>
-  </section>
+  </div>
 
-  <!-- Pie de página -->
-  <footer style="background-color:#f1f1f1; padding: 2rem; margin-top: 2rem; text-align: center;">
-    <div style="margin-bottom: 1rem;">
-      <strong>Seguinos</strong><br />
-      <a href="https://linkedin.com" target="_blank">🔗 LinkedIn</a> |
-      <a href="https://instagram.com" target="_blank">📸 Instagram</a> |
-      <a href="https://facebook.com" target="_blank">📘 Facebook</a>
+  <!-- FOOTER -->
+  <footer class="footer" id="footer-contacto">
+    <div class="footer-links">
+      <img class="footer-qr" src="https://ext.same-assets.com/4153064505/2777117028.jpeg" alt="QR info" />
+      <a href="#">Términos y condiciones</a>
     </div>
-    <div>
-      📧 <a href="mailto:vcmmarking@gmail.com">vcmmarking@gmail.com</a>
+    <!-- CONTACTO PIE DE PÁGINA -->
+    <div class="footer-contacto">
+      <a href="mailto:vcmmarrking@gmail.com">
+        <svg width="21" height="21" fill="none" stroke="#F14D68" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><polyline points="2,4 12,14 22,4"/></svg>
+        vcmmarrking@gmail.com
+      </a>
+      <a href="https://wa.me/TU_NUMERO" target="_blank">
+        <!-- PARA CAMBIAR EL NÚMERO: Edita TU_NUMERO por el tuyo (ejemplo: 5491123456789) -->
+        <svg width="23" height="23" viewBox="0 0 32 32" fill="none"><path d="M16 1A15 15 0 0 0 1 16c0 2.65.7 5.19 2.05 7.41L1 31l7.75-2.02A15 15 0 1 0 16 1Zm0 27.61a13 13 0 0 1-6.62-1.78l-.48-.28-4.61 1.2 1.23-4.47-.31-.51A12.97 12.97 0 1 1 29 16c0 7.17-5.84 13-13 13.01Zm7.36-9.84c-.4-.2-2.38-1.18-2.75-1.32-.37-.14-.65-.2-.93.21-.28.4-1.07 1.32-1.32 1.59-.24.26-.48.29-.88.1a10.38 10.38 0 0 1-3.01-1.87 11.04 11.04 0 0 1-2.13-2.62c-.22-.38-.02-.57.17-.74.18-.18.39-.46.59-.68.2-.22.26-.37.4-.6.14-.24.07-.44-.04-.63-.1-.2-.93-2.25-1.27-3.08-.33-.8-.68-.68-.93-.69H8.5c-.26 0-.66.1-1 .48-.34.37-1.3 1.26-1.3 3.05 0 .44.07.88.21 1.28.34.96 1.24 2.92 2.87 4.57C13.1 22.11 15.29 23 17.51 23c1.17 0 2.27-.29 3.05-.52.65-.19 1.22-.85 1.39-1.66.18-.81.18-1.53.04-1.73-.13-.2-.37-.31-.63-.42Z" fill="#F14D68"/></svg>
+        WhatsApp empresa
+      </a>
+    </div>
+    <div style="font-size:.98rem;color:#aaa;">Copyright © 2025 | Todos los derechos reservados por VCM Marking · v7.1.0
     </div>
   </footer>
+
+  <script>
+    // --- Banner Carousel ---
+    const banners = document.querySelectorAll('.banner-img');
+    let bannerIndex = 0;
+    const bannerInner = document.getElementById('banner-inner');
+    const bannerDots = document.getElementById('banner-dots');
+    function updateBanner() {
+      bannerInner.style.transform = 'translateX(' + (-bannerIndex * 100) + '%)';
+      Array.from(bannerDots.children).forEach((dot, idx)=>{ dot.className = (idx===bannerIndex)?'active':''; });
+    }
+    function changeBanner(dir) {
+      bannerIndex = (bannerIndex+dir+banners.length)%banners.length;
+      updateBanner();
+    }
+    function gotoBanner(idx){ bannerIndex=idx; updateBanner(); }
+    // dots
+    bannerDots.innerHTML = '';
+    for(let i=0;i<banners.length;i++) {
+      const dot=document.createElement('span');
+      dot.onclick=()=>gotoBanner(i); bannerDots.appendChild(dot);
+    }
+    updateBanner();
+    // auto slide
+    setInterval(()=>{ changeBanner(1); }, 6500);
+
+    // --- Product Modal ---
+    const productoData = [
+      { title:'Vaso térmico aluminio', img:'https://images.unsplash.com/photo-1526178613658-3e7e6f112de4?auto=format&fit=crop&w=400&q=80' },
+      { title:'Cargador portátil', img:'https://images.unsplash.com/photo-1519567241046-7fcc5c23fa54?auto=format&fit=crop&w=400&q=80' },
+      { title:'Bolígrafo ecológico', img:'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80' },
+      { title:'Auriculares bluetooth', img:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80' },
+      { title:'Mochila antirrobo', img:'https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?auto=format&fit=crop&w=400&q=80' },
+      { title:'Campera polar', img:'https://images.unsplash.com/photo-1519121786635-1ab9933dba48?auto=format&fit=crop&w=400&q=80' },
+    ];
+    function openModal(idx){
+      document.getElementById('modal-img').src = productoData[idx].img;
+      document.getElementById('modal-title').innerText = productoData[idx].title;
+      document.getElementById('product-modal').classList.add('active');
+    }
+    function closeModal(){
+      document.getElementById('product-modal').classList.remove('active');
+    }
+    document.getElementById('product-modal').onclick = function(e){
+      if(e.target==this) closeModal();
+    };
+
+    // --- solo JS para búsqueda, historial y accesibilidad ---
+    const searchInput = document.getElementById('searchInput');
+    const searchForm = document.getElementById('searchForm');
+    const searchHistoryList = document.getElementById('searchHistory');
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+    if (!searchHistory.length) {
+      searchHistory = [
+        "Vaso térmico aluminio",
+        "Auriculares bluetooth",
+        "Campera polar",
+        "Mochila antirrobo"
+      ];
+    }
+    function renderHistory(s = "") {
+      const filtered = searchHistory.filter(x => x.toLowerCase().includes(s.toLowerCase()));
+      if (!filtered.length) {
+        searchHistoryList.style.display = 'none';
+        return;
+      }
+      searchHistoryList.innerHTML = filtered
+        .map(item => `<li>${item}</li>`)
+        .join('');
+      searchHistoryList.style.display = 'block';
+    }
+    searchInput.addEventListener('focus', () => renderHistory(searchInput.value));
+    searchInput.addEventListener('input', e => renderHistory(e.target.value));
+    searchInput.addEventListener('blur', () => setTimeout(() => searchHistoryList.style.display = 'none', 150));
+    searchHistoryList.addEventListener('mousedown', e => {
+      if (e.target.tagName === 'LI') {
+        searchInput.value = e.target.textContent;
+        searchHistoryList.style.display = 'none';
+      }
+    });
+    searchForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const val = searchInput.value.trim();
+      if (val && !searchHistory.includes(val)) {
+        searchHistory.unshift(val);
+        if (searchHistory.length > 12) searchHistory = searchHistory.slice(0, 12);
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+      }
+      searchHistoryList.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
