@@ -7,6 +7,143 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
   <style>
+   #login-modal .modal-card {
+  background: #fff;
+  border-radius: 18px;
+  max-width: 95vw;
+  width: 350px;
+  padding: 32px 25px 20px 25px;
+  box-shadow: 0 8px 32px #f14d6840, 0 2px 12px #0001;
+  text-align: center;
+  position: relative;
+  animation: popupIn 0.35s cubic-bezier(.6,-0.28,.74,.05);
+  border: 2px solid var(--color-principal, #F14D68);
+}
+#login-modal .modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--color-principal);
+  cursor: pointer;
+  transition: color 0.18s, transform 0.18s;
+}
+#login-modal .modal-close:hover {
+  color: #d9274e;
+  transform: rotate(90deg) scale(1.2);
+}
+#login-modal input {
+  width: 90%;
+  padding: 9px 10px;
+  border-radius: 7px;
+  border: 1.5px solid #f3b7c3;
+  margin-bottom: 13px;
+  font-size: 1rem;
+  transition: border 0.18s, box-shadow 0.18s;
+  margin-left: auto;
+  margin-right: auto;
+}
+#login-modal input:focus {
+  border: 1.5px solid var(--color-principal);
+  box-shadow: 0 0 0 2px #f14d6822;
+  outline: none;
+}
+#login-modal button.product-btn {
+  background: var(--color-principal);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 0;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: .7px;
+  transition: background .16s, color .16s, transform .18s;
+  box-shadow: 0 2px 10px #f14d6822;
+}
+#login-modal button.product-btn:hover {
+  background: #d9274e;
+  transform: translateY(-2px) scale(1.04);
+}
+#register-modal.modal-bg {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(241,77,104,0.13);
+  z-index: 2022;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInBg 0.3s;
+}
+#register-modal.modal-bg[style*="flex"] {
+  display: flex !important;
+}
+#register-modal .modal-card {
+  background: #fff;
+  border-radius: 18px;
+  max-width: 95vw;
+  width: 350px;
+  padding: 32px 25px 20px 25px;
+  box-shadow: 0 8px 32px #f14d6840, 0 2px 12px #0001;
+  text-align: center;
+  position: relative;
+  animation: popupIn 0.35s cubic-bezier(.6,-0.28,.74,.05);
+  border: 2px solid var(--color-principal, #F14D68);
+}
+#register-modal .modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--color-principal);
+  cursor: pointer;
+  transition: color 0.18s, transform 0.18s;
+}
+#register-modal .modal-close:hover {
+  color: #d9274e;
+  transform: rotate(90deg) scale(1.2);
+}
+#register-modal input {
+  width: 90%;
+  padding: 9px 10px;
+  border-radius: 7px;
+  border: 1.5px solid #f3b7c3;
+  margin-bottom: 13px;
+  font-size: 1rem;
+  transition: border 0.18s, box-shadow 0.18s;
+}
+#register-modal input:focus {
+  border: 1.5px solid var(--color-principal);
+  box-shadow: 0 0 0 2px #f14d6822;
+  outline: none;
+}
+#register-modal button.product-btn {
+  background: var(--color-principal);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 0;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: .7px;
+  transition: background .16s, color .16s, transform .18s;
+  box-shadow: 0 2px 10px #f14d6822;
+}
+#register-modal button.product-btn:hover {
+  background: #d9274e;
+  transform: translateY(-2px) scale(1.04);
+}
+@keyframes popupIn {
+  0% { transform: scale(0.7) translateY(60px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+@keyframes fadeInBg {
+  0% { background: rgba(241,77,104,0); }
+  100% { background: rgba(241,77,104,0.13); }
+}
     :root {
       --color-principal: #F14D68;
       --color-secundario: #fff;
@@ -17,6 +154,50 @@
       --sombra: 0 3px 15px #0001;
       --borde-banner: #fef1f6;
     }
+    /* ...otros estilos arriba... */
+
+.navbar-auth {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-left: 18px;
+}
+.auth-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #fff;
+  color: var(--color-principal);
+  border: 2px solid var(--color-principal);
+  border-radius: 22px;
+  padding: 7px 18px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 
+    background 0.22s,
+    color 0.22s,
+    box-shadow 0.22s,
+    transform 0.18s;
+  box-shadow: 0 2px 12px #f14d681a;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+.auth-btn:hover, .auth-btn:focus {
+  background: var(--color-principal);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 18px #f14d6844;
+}
+.auth-icon {
+  font-size: 1.25em;
+  transition: transform 0.22s;
+}
+.auth-btn:hover .auth-icon,
+.auth-btn:focus .auth-icon {
+  transform: rotate(-12deg) scale(1.18);
+}
     body { margin:0; font-family:'Nunito Sans',Arial,sans-serif; background:#fff; color:var(--texto-oscuro); }
     img { max-width:100%; display:block; }
     a { color:var(--color-principal); text-decoration:none; transition:.2s; }
@@ -73,7 +254,7 @@
       max-width: 580px;
       min-width: 320px;
       position: relative;
-      background: #f6f6f6;
+      background: rgba(0,0,0,0.10); /* Fondo gris sutil y visible */
       border-radius: 30px;
       box-shadow: 0 1px 6px rgba(0,0,0,0.06);
       height: 46px;
@@ -223,17 +404,44 @@
     }
 
     /* Carousel flechas transparentes */
-    .carousel-btn {
-      position:absolute; top:50%; transform:translateY(-50%); background:transparent;
-      border:none; color:#fff; font-size:1.7rem; border-radius:50%; width:38px; height:38px;
-      opacity: 0.18; /* Totalmente transparente */
-      cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center;
-      transition:.18s; box-shadow:none;
-    }
-    .carousel-btn:hover,
-    .carousel-btn:focus { opacity:0.35; background:transparent; }
-    .carousel-btn.prev { left:8px; }
-    .carousel-btn.next { right:8px; }
+    .banner-carousel .carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.38); /* Negro tenue */
+  color: #fff;
+  font-size: 1.7rem;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s, background 0.18s, color 0.18s, box-shadow 0.18s;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px #0002;
+  outline: none;
+}
+.banner-carousel:hover .carousel-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+.banner-carousel .carousel-btn:hover {
+  background: rgba(0,0,0,0.60);
+  color: #fff;
+  box-shadow: 0 4px 18px #0003;
+}
+.banner-carousel .carousel-btn:focus {
+  outline: none;
+  background: rgba(0,0,0,0.60);
+  color: #fff;
+  box-shadow: 0 4px 18px #0003;
+}
+.banner-carousel .carousel-btn.prev { left: 18px; }
+.banner-carousel .carousel-btn.next { right: 18px; }
     /* Carousel resto y página igual que antes */
     .banner-carousel { position:relative; width:100%; max-width:1250px; margin:32px auto 0 auto; overflow:hidden; border-radius:22px; background:var(--borde-banner); }
     .banner-inner { display:flex; transition:transform 0.65s cubic-bezier(.6,.1,.2,1); }
@@ -309,47 +517,162 @@
       .search-bar { min-width: 0; }
     }
   </style>
+  <!-- Popup de Registro -->
+<div id="register-modal" class="modal-bg" style="display:none;">
+  <div class="modal-card" style="max-width:350px;">
+    <button class="modal-close" onclick="closeRegister()">&times;</button>
+    <h2 style="margin-bottom:18px;color:var(--color-principal);font-size:1.3rem;">Registrarse</h2>
+    <form id="registerForm" onsubmit="event.preventDefault(); alert('¡Registro simulado!'); closeRegister();">
+      <input type="text" placeholder="Nombre de usuario" required style="margin-bottom:10px;">
+      <input type="email" placeholder="Email" required style="margin-bottom:10px;">
+      <input type="password" placeholder="Contraseña" required style="margin-bottom:10px;">
+      <button type="submit" class="product-btn" style="width:100%;">Registrarse</button>
+    </form>
+  </div>
+</div>
+<script>
+  // Mostrar y ocultar el modal de registro
+  function openAuth(tab) {
+    if(tab === 'register') {
+      document.getElementById('register-modal').style.display = 'flex';
+    }
+    // Si tienes login, aquí puedes abrir el modal de login
+  }
+  function closeRegister() {
+    document.getElementById('register-modal').style.display = 'none';
+  }
+  // Cerrar modal al hacer click fuera
+  document.addEventListener('click', function(e) {
+    const modal = document.getElementById('register-modal');
+    if (modal && modal.style.display === 'flex' && e.target === modal) closeRegister();
+  });
+</script> 
 </head>
+<!-- Popup de Login -->
+<div id="login-modal" class="modal-bg" style="display:none;">
+  <div class="modal-card" style="max-width:350px;">
+    <button class="modal-close" onclick="closeLogin()">&times;</button>
+    <h2 style="margin-bottom:18px;color:var(--color-principal);font-size:1.3rem;">Iniciar sesión</h2>
+    <form id="loginForm" onsubmit="loginUser(event)">
+      <input type="email" id="loginEmail" placeholder="Email" required style="margin-bottom:10px;">
+      <input type="password" id="loginPassword" placeholder="Contraseña" required style="margin-bottom:10px;">
+      <button type="submit" class="product-btn" style="width:100%;">Iniciar sesión</button>
+    </form>
+  </div>
+</div><script>
+  // Mostrar y ocultar el modal de login
+  function openAuth(tab) {
+    if(tab === 'register') {
+      document.getElementById('register-modal').style.display = 'flex';
+      document.getElementById('login-modal').style.display = 'none';
+    }
+    if(tab === 'login') {
+      document.getElementById('login-modal').style.display = 'flex';
+      document.getElementById('register-modal').style.display = 'none';
+    }
+  }
+  function closeRegister() {
+    document.getElementById('register-modal').style.display = 'none';
+  }
+  function closeLogin() {
+    document.getElementById('login-modal').style.display = 'none';
+  }
+  // Cerrar modal al hacer click fuera
+  document.addEventListener('click', function(e) {
+    const regModal = document.getElementById('register-modal');
+    const logModal = document.getElementById('login-modal');
+    if (regModal && regModal.style.display === 'flex' && e.target === regModal) closeRegister();
+    if (logModal && logModal.style.display === 'flex' && e.target === logModal) closeLogin();
+  });
+
+  // Guardar datos de registro en localStorage
+  document.getElementById('registerForm').onsubmit = function(e) {
+    e.preventDefault();
+    const name = this.querySelector('input[type="text"]').value;
+    const email = this.querySelector('input[type="email"]').value;
+    const pass = this.querySelector('input[type="password"]').value;
+    localStorage.setItem('userName', name);
+    localStorage.setItem('userEmail', email);
+    localStorage.setItem('userPass', pass);
+    alert('¡Registro exitoso!');
+    closeRegister();
+  };
+
+  // Login: validar y mostrar bienvenida
+  function loginUser(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value;
+  const pass = document.getElementById('loginPassword').value;
+  const regEmail = localStorage.getItem('userEmail');
+  const regPass = localStorage.getItem('userPass');
+  const regName = localStorage.getItem('userName');
+  if(email === regEmail && pass === regPass) {
+    closeLogin();
+    // Mostrar mensaje de bienvenida en la página
+    const welcome = document.getElementById('welcome-message');
+    welcome.textContent = '¡Bienvenido/a, ' + regName + '!';
+    welcome.style.display = 'block';
+  } else {
+    alert('Email o contraseña incorrectos.');
+  }
+}
+</script>
 <body>
+    <!-- Mensaje de bienvenida -->
+  <div id="welcome-message" style="display:none; text-align:center; background:#f9e6ea; color:#d9274e; font-size:1.15rem; font-weight:600; padding:12px 0 8px 0; letter-spacing:.5px;"></div>
   <!-- NAVBAR NIVEL UNO -->
   <nav class="navbar nivel-uno">
-    <div class="navbar-group">
+  <div class="navbar-group">
+    <a href="index.html">
       <img src="uploads/logo_jpg.png" alt="Logo de la empresa" class="logo" />
-      <span class="brand">VCM</span>
-    </div>
-    <form class="search-bar" id="searchForm" autocomplete="off">
-      <input type="text" id="searchInput" placeholder="" />
-      <button type="submit" class="search-btn" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="search-icon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/></svg>
-      </button>
-      <ul class="search-history" id="searchHistory"></ul>
-    </form>
-    <ul class="navbar-menu">
-      <li class="dropdown"><a class="dropdown-toggle" id="categoriasBtn" href="#">Categorías</a>
-        <div class="mega-menu">
-          <div class="column">
-            <a href="#">Bolígrafos</a>
-            <a href="#">Camisetas</a>
-            <a href="#">Libretas</a>
-            <a href="#">Tazas</a>
-          </div>
-          <div class="column">
-            <a href="#">Gorras</a>
-            <a href="#">Llaveros</a>
-            <a href="#">Botellas</a>
-            <a href="#">USB</a>
-          </div>
-          <div class="column">
-            <a href="#">Mochilas</a>
-            <a href="#">Lanyards</a>
-            <a href="#">Sombrillas</a>
-            <a href="#">Más</a>
-          </div>
+    </a>
+    <span class="brand">VCM</span>
+  </div>
+  <form class="search-bar" id="searchForm" autocomplete="off">
+    <input type="text" id="searchInput" placeholder="" />
+    <button type="submit" class="search-btn" tabindex="-1">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="search-icon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/></svg>
+    </button>
+    <ul class="search-history" id="searchHistory"></ul>
+  </form>
+  <div class="navbar-auth">
+  <button class="auth-btn auth-register" onclick="openAuth('register')" title="Registrarse">
+    <span class="auth-icon">📝</span>
+    <span class="auth-text">Registrarse</span>
+  </button>
+  <button class="auth-btn auth-login" onclick="openAuth('login')" title="Iniciar sesión">
+    <span class="auth-icon">🔑</span>
+    <span class="auth-text">Iniciar sesión</span>
+  </button>
+</div>
+</nav>
+<div class="navbar-menu-row" style="display: flex; justify-content: center; width: 100%; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.03); margin-bottom: 10px;">
+  <ul class="navbar-menu" style="margin: 0;">
+    <li class="dropdown"><a class="dropdown-toggle" id="categoriasBtn" href="#">Categorías</a>
+      <div class="mega-menu">
+        <div class="column">
+          <a href="#">Bolígrafos</a>
+          <a href="#">Camisetas</a>
+          <a href="#">Libretas</a>
+          <a href="#">Tazas</a>
         </div>
-      </li>
-      <li><a href="#footer-contacto">Contacto</a></li>
-    </ul>
-  </nav>
+        <div class="column">
+          <a href="#">Gorras</a>
+          <a href="#">Llaveros</a>
+          <a href="#">Botellas</a>
+          <a href="#">USB</a>
+        </div>
+        <div class="column">
+          <a href="#">Mochilas</a>
+          <a href="#">Lanyards</a>
+          <a href="#">Sombrillas</a>
+          <a href="#">Más</a>
+        </div>
+      </div>
+    </li>
+    <li><a href="#footer-contacto">Contacto</a></li>
+  </ul>
+</div>
   <!-- NAVBAR END -->
 
   <!-- BANNER/CAROUSEL -->
