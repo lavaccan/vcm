@@ -463,11 +463,23 @@
       font-size:2.22rem; letter-spacing:.5px; font-weight:500; margin-bottom:16px; }
     .product-section { max-width:1250px; margin:34px auto 0 auto; padding:0 5vw; }
     .catalog-title { font-size:1.45rem; color:var(--color-principal); font-weight:bold; margin-bottom:18px; letter-spacing:1.5px; text-align:left; }
-    .product-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(225px,1fr)); gap:30px; }
-    .product-card {
-      background:var(--color-secundario); border-radius:16px; padding:17px 12px 15px 12px;
-      box-shadow:0 2px 22px #0000000c; border:1.5px solid #f9d6dd; display:flex; flex-direction:column; align-items:center; transition:.18s; position:relative;
-    }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+    gap: 30px;
+}
+  .product-card {
+    background: var(--color-secundario);
+    border-radius: 16px;
+    padding: 17px 12px 15px 12px;
+    box-shadow: 0 2px 22px #0000000c;
+    border: 1.5px solid #f9d6dd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: .18s;
+    position: relative;
+}
     .product-card img { width:100%; height:145px; object-fit:contain; background:#ffe5f0; border-radius:10px; margin-bottom:10px; }
     .product-name { color:#1b1b1b; font-weight:600; margin-bottom:12px; font-size:1.09rem; text-align:center; min-height:38px; }
     .product-btn {
@@ -637,18 +649,19 @@
   </form>
   <div class="navbar-auth">
   <button class="auth-btn auth-register" onclick="openAuth('register')" title="Registrarse">
-    <span class="auth-icon">📝</span>
+    <span class="auth-icon"></span>
     <span class="auth-text">Registrarse</span>
   </button>
   <button class="auth-btn auth-login" onclick="openAuth('login')" title="Iniciar sesión">
-    <span class="auth-icon">🔑</span>
+    <span class="auth-icon"></span>
     <span class="auth-text">Iniciar sesión</span>
   </button>
 </div>
 </nav>
 <div class="navbar-menu-row" style="display: flex; justify-content: center; width: 100%; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.03); margin-bottom: 10px;">
   <ul class="navbar-menu" style="margin: 0;">
-    <li class="dropdown"><a class="dropdown-toggle" id="categoriasBtn" href="#">Categorías</a>
+    <li class="dropdown">
+      <a class="dropdown-toggle" id="categoriasBtn" href="#">Categorías</a>
       <div class="mega-menu">
         <div class="column">
           <a href="#">Bolígrafos</a>
@@ -657,11 +670,10 @@
           <a href="#">Tazas</a>
         </div>
         <div class="column">
-          <a href="#">Gorras</a>
-          <a href="#">Llaveros</a>
-          <a href="#">Botellas</a>
-          <a href="#">USB</a>
-        </div>
+        <a href="#">Gorras</a>
+        <a href="#">Llaveros</a>
+        <a href="#">Botellas</a>
+        <a href="categoria-usb.html">USB</a>        
         <div class="column">
           <a href="#">Mochilas</a>
           <a href="#">Lanyards</a>
@@ -673,7 +685,6 @@
     <li><a href="#footer-contacto">Contacto</a></li>
   </ul>
 </div>
-  <!-- NAVBAR END -->
 
   <!-- BANNER/CAROUSEL -->
   <section class="banner-carousel" id="banner-carousel">
@@ -689,43 +700,19 @@
   <!-- HERO CLAIM -->
   <section class="hero-claim">Simple y fácil</section>
   <!-- PRODUCT SECTION -->
-  <main class="product-section">
+    <main class="product-section">
     <div class="catalog-title">Productos destacados</div>
     <div class="product-grid" id="product-grid">
-      <!-- Ejemplo de productos -->
+      <!-- Producto 1 -->
       <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1526178613658-3e7e6f112de4?auto=format&fit=crop&w=400&q=80" alt="Vaso térmico aluminio">
-        <div class="product-name">Vaso térmico aluminio</div>
+        <img src="URL_IMAGEN" alt="Nombre producto">
+        <div class="product-name">Nombre producto</div>
+        <div class="product-price">$ Precio</div>
         <button class="product-btn" onclick="openModal(0)">Ver más</button>
       </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1519567241046-7fcc5c23fa54?auto=format&fit=crop&w=400&q=80" alt="Cargador portátil">
-        <div class="product-name">Cargador portátil</div>
-        <button class="product-btn" onclick="openModal(1)">Ver más</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Bolígrafo ecológico">
-        <div class="product-name">Bolígrafo ecológico</div>
-        <button class="product-btn" onclick="openModal(2)">Ver más</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" alt="Auriculares bluetooth">
-        <div class="product-name">Auriculares bluetooth</div>
-        <button class="product-btn" onclick="openModal(3)">Ver más</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?auto=format&fit=crop&w=400&q=80" alt="Mochila antirrobo">
-        <div class="product-name">Mochila antirrobo</div>
-        <button class="product-btn" onclick="openModal(4)">Ver más</button>
-      </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1519121786635-1ab9933dba48?auto=format&fit=crop&w=400&q=80" alt="Campera polar">
-        <div class="product-name">Campera polar</div>
-        <button class="product-btn" onclick="openModal(5)">Ver más</button>
-      </div>
+      <!-- Más productos... -->
     </div>
   </main>
-
   <!-- PRODUCT MODAL -->
   <div class="modal-bg" id="product-modal">
     <div class="modal-card" id="modal-card">
