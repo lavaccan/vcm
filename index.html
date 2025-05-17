@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -781,9 +781,8 @@ function renderProductos(filtro = "") {
   const grid = document.getElementById('product-grid');
   grid.innerHTML = "";
   let encontrados = 0;
-  // Mostrar todos los productos si no hay filtro
   productoData.forEach((prod, idx) => {
-    if (filtro.trim() === "" || prod.title.toLowerCase().startsWith(filtro.toLowerCase())) {
+    if (prod.title.toLowerCase().startsWith(filtro.toLowerCase())) { // <-- SOLO AL PRINCIPIO
       grid.innerHTML += `
         <div class="product-card">
           <img src="${prod.img}" alt="${prod.title}">
