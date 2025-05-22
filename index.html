@@ -612,13 +612,13 @@
     const modal = document.getElementById('register-modal');
     if (modal && modal.style.display === 'flex' && e.target === modal) closeRegister();
   });
-  function updateCounter(index, delta) {
-  const countEl = document.getElementById(`count-${index}`);
-  let value = parseInt(countEl.textContent) || 0;
+  function updateCounter(idx, delta) {
+  const valueSpan = document.getElementById(`count-${idx}`);
+  let value = parseInt(valueSpan.textContent) || 0;
   value = Math.max(0, value + delta);
-  countEl.textContent = value;
+  valueSpan.textContent = value;
+  document.getElementById(`btn-minus-${idx}`).disabled = value === 0;
 }
-
 </script> 
 </head>
 <!-- Popup de Login -->
