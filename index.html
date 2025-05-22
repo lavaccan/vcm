@@ -603,6 +603,13 @@
   let value = parseInt(countEl.textContent) || 0;
   value = Math.max(0, value + delta);
   countEl.textContent = value;
+document.addEventListener("input", function (e) {
+  if (e.target.classList.contains("counter-input")) {
+    if (parseInt(e.target.value) < 0 || isNaN(e.target.value)) {
+      e.target.value = 0;
+    }
+  }
+});
 }
 
 </script> 
@@ -870,13 +877,13 @@ function renderProductos(filtro = "") {
   grid.innerHTML = "";
   let encontrados = 0;
   productoData.forEach((prod, idx) => {
-    function updateCounter(index, delta) {
+  function updateCounter(index, delta) {
   const input = document.getElementById(`count-${index}`);
   let value = parseInt(input.value) || 0;
-  value = Math.max(0, value + delta);
+  value += delta;
+  if (value < 0) value = 0;
   input.value = value;
 }
-
     if (prod.title.toLowerCase().startsWith(filtro.toLowerCase())) {
      grid.innerHTML += `
   <div class="product-card">
