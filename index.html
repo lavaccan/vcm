@@ -7,14 +7,13 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
   <style>
-.counter-container {
+  .counter-container {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 10px 0;
   gap: 12px;
 }
-
 .counter-btn {
   padding: 4px 12px;
   font-size: 1.1rem;
@@ -29,23 +28,13 @@
 .counter-btn:hover {
   background: #d9274e;
 }
-
-.counter-input {
-  width: 50px;
-  text-align: center;
-  font-size: 1.05rem;
+.counter-value {
+  font-size: 1.1rem;
   font-weight: 600;
-  border: 1.5px solid #f3b7c3;
-  border-radius: 6px;
-  padding: 4px;
   color: #333;
+  min-width: 24px;
+  text-align: center;
 }
-.counter-input:focus {
-  outline: none;
-  border-color: var(--color-principal);
-  box-shadow: 0 0 0 2px #f14d6833;
-}
-
 
    #login-modal .modal-card {
   background: #fff;
@@ -603,13 +592,6 @@
   let value = parseInt(countEl.textContent) || 0;
   value = Math.max(0, value + delta);
   countEl.textContent = value;
-document.addEventListener("input", function (e) {
-  if (e.target.classList.contains("counter-input")) {
-    if (parseInt(e.target.value) < 0 || isNaN(e.target.value)) {
-      e.target.value = 0;
-    }
-  }
-});
 }
 
 </script> 
@@ -877,13 +859,6 @@ function renderProductos(filtro = "") {
   grid.innerHTML = "";
   let encontrados = 0;
   productoData.forEach((prod, idx) => {
-  function updateCounter(index, delta) {
-  const input = document.getElementById(`count-${index}`);
-  let value = parseInt(input.value) || 0;
-  value += delta;
-  if (value < 0) value = 0;
-  input.value = value;
-}
     if (prod.title.toLowerCase().startsWith(filtro.toLowerCase())) {
      grid.innerHTML += `
   <div class="product-card">
