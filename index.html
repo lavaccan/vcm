@@ -824,14 +824,20 @@ function renderProductos(filtro = "") {
   let encontrados = 0;
   productoData.forEach((prod, idx) => {
     if (prod.title.toLowerCase().startsWith(filtro.toLowerCase())) {
-      grid.innerHTML += `
-        <div class="product-card">
-          <img src="${prod.img}" alt="${prod.title}">
-          <div class="product-name">${prod.title}</div>
-          <div class="product-price">${prod.price}</div>
-          <button class="product-btn" onclick="openModal(${idx})">Ver más</button>
-        </div>
-      `;
+     grid.innerHTML += `
+  <div class="product-card">
+    <img src="${prod.img}" alt="${prod.title}">
+    <div class="product-name">${prod.title}</div>
+    <div class="product-price">${prod.price}</div>
+    <div class="counter-container">
+      <button class="counter-btn" onclick="updateCounter(${idx}, -1)">−</button>
+      <span id="count-${idx}" class="counter-value">0</span>
+      <button class="counter-btn" onclick="updateCounter(${idx}, 1)">+</button>
+    </div>
+    <button class="product-btn" onclick="openModal(${idx})">Ver más</button>
+  </div>
+`;
+
       encontrados++;
     }
   });
