@@ -7,6 +7,35 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
   <style>
+  .counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  gap: 12px;
+}
+.counter-btn {
+  padding: 4px 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background: var(--color-principal);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.counter-btn:hover {
+  background: #d9274e;
+}
+.counter-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  min-width: 24px;
+  text-align: center;
+}
+
    #login-modal .modal-card {
   background: #fff;
   border-radius: 18px;
@@ -558,6 +587,13 @@
     const modal = document.getElementById('register-modal');
     if (modal && modal.style.display === 'flex' && e.target === modal) closeRegister();
   });
+  function updateCounter(index, delta) {
+  const countEl = document.getElementById(`count-${index}`);
+  let value = parseInt(countEl.textContent) || 0;
+  value = Math.max(0, value + delta);
+  countEl.textContent = value;
+}
+
 </script> 
 </head>
 <!-- Popup de Login -->
