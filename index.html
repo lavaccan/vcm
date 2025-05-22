@@ -865,11 +865,11 @@ function renderProductos(filtro = "") {
     <img src="${prod.img}" alt="${prod.title}">
     <div class="product-name">${prod.title}</div>
     <div class="product-price">${prod.price}</div>
-    <div class="counter-container">
-      <button class="counter-btn" onclick="updateCounter(${idx}, -1)">−</button>
-       <input type="number" id="count-${idx}" class="counter-input" value="0" min="0" />
-      <button class="counter-btn" onclick="updateCounter(${idx}, 1)">+</button>
-    </div>
+  <div class="counter-bar">
+  <button class="counter-btn" onclick="updateCounter(${idx}, -1)" id="btn-minus-${idx}" aria-label="Restar">−</button>
+  <input type="text" class="counter-value" id="count-${idx}" value="0" readonly />
+  <button class="counter-btn" onclick="updateCounter(${idx}, 1)" id="btn-plus-${idx}" aria-label="Sumar">+</button>
+</div>
     <button class="product-btn" onclick="openModal(${idx})">Ver más</button>
   </div>
 `;
